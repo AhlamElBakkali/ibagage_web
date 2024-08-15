@@ -1,0 +1,53 @@
+<div class="main-content bg-white h-fit static rounded-3xl shadow mx-24 lg:mx-64 pb-4">
+    <div class="text-center text-xl text-white p-4 font-semibold rounded-t-3xl bg-primary">Emplacement d'arrivée</div>
+    <div [attr.dir]="getDirection()" class="w-full h-[70vh] p-8">
+        <div class="flex w-full justify-center gap-x-10 pb-6 text-lg">
+            <div class="static">
+                <input id="pac-input" type="text" [(ngModel)]="vars.searchText" class="xl:w-[40rem] w-full">
+                <button class="absolute right-0 top-0 mt-2 mr-3" (click)="vars.searchText = ''">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="gray" class="h-8 w-4">
+                        <path fill-rule="evenodd"
+                            d="M3.293 3.293a1 1 0 011.414 0L10 8.586l5.293-5.293a1 1 0 111.414 1.414L11.414 10l5.293 5.293a1 1 01-1.414 1.414L10 11.414l-5.293 5.293a1 1 01-1.414-1.414L8.586 10 3.293 4.707a1 1 010-1.414z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="h-full border-none">
+            <div class="map-wrapper h-full relative">
+                <div id="map_center">
+                    <div id="adresseArrival" class="font-semibold address-display">{{vars.adresseArrival}}</div>
+                    <svg fill="#4930c7" height="40px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+                        style="enable-background:new 0 0 512 512;" xml:space="preserve">
+                        <g>
+                            <path d="M227.9,309.6v137.7l19.4,29c4.2,6.3,13.4,6.3,17.6,0l19.3-29V309.6c-9.1,1.7-18.5,2.7-28.1,2.7S237,311.3,227.9,309.6z
+                                M256,31c-69.9,0-126.6,56.7-126.6,126.6S186.1,284.1,256,284.1s126.6-56.7,126.6-126.6S325.9,31,256,31z M256,97.8
+                                c-33,0-59.8,26.8-59.8,59.8c0,5.8-4.7,10.5-10.5,10.5s-10.5-4.7-10.5-10.5c0-44.6,36.3-80.9,80.9-80.9c5.8,0,10.5,4.7,10.5,10.5
+                                C266.5,93.1,261.8,97.8,256,97.8z" />
+                        </g>
+                    </svg>
+                </div>
+                <div #map id="map" class="h-[90%] w-full shadow border-0 rounded-lg"></div>
+                <div class="cursor-pointer text-center absolute bottom-28 left-4">
+                    <div class="bg-white cursor-pointer dark:bg-night-500 pt-[0.4em] p-2 rounded-full w-fit ml-2 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]"
+                        (click)="getGeoLocation()">
+                        <svg fill="#6B50F6" height="24px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 51.636 51.636" xml:space="preserve">
+                            <path d="M51.353,0.914c-0.295-0.305-0.75-0.39-1.135-0.213L0.583,23.481c-0.399,0.184-0.632,0.605-0.574,1.041
+                            s0.393,0.782,0.826,0.854l22.263,3.731l2.545,21.038c0.054,0.438,0.389,0.791,0.824,0.865c0.057,0.01,0.113,0.015,0.169,0.015
+                            c0.375,0,0.726-0.211,0.896-0.556l24-48.415C51.72,1.675,51.648,1.218,51.353,0.914z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pt-4 flex justify-center">
+        <button
+            (click)="addAnnouncement({user:convertToNumber(getUser().id) ,data_adresse: {a: vars.adresseArrival,d: vars.data.data_adresse.d},data_location:{a:{lg:vars.centerLocation.lng,lt:vars.centerLocation.lat},d:{lg:vars.data.data_location.d.lg,lt:vars.data.data_location.d.lt}}})"
+            class="bg-primary z-10 cursor-pointer px-10 py-2 hover:bg-secondary text-white rounded-lg shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]">
+            Suivant
+        </button>
+    </div>
+</div>

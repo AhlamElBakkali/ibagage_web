@@ -1,0 +1,233 @@
+/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// primng
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+// button
+.light {
+  @apply h-[44px] px-8 bg-white text-base text-purple-700 rounded-full shadow-lg font-medium border-none duration-700 border-primary;
+}
+
+.dark {
+  @apply h-[44px] px-8 text-white text-base bg-gradient-to-r from-primary to-purple-700 hover:bg-gradient-to-r hover:from-white hover:to-white font-medium hover:font-medium hover:text-primary rounded-full shadow-lg hover:duration-500 duration-500;
+}
+
+.light:focus {
+  box-shadow: none;
+}
+
+.light:hover {
+  @apply shadow-lg bg-gradient-to-r font-medium border-none bg-primary from-primary to-purple-700 text-white duration-500;
+}
+
+// input
+input,textarea {
+  @apply  border-primary
+  bg-white appearance-none border shadow rounded-lg w-full py-3.5 px-4 text-[0.95rem] text-gray-500 leading-tight focus:outline-none focus:border-third
+}
+
+input :focus {
+  @apply appearance-none border border-primary w-full text-gray-800 leading-tight bg-[#a7a7a712] mt-1
+}
+
+input :hover {
+  @apply appearance-none border border-primary w-full  text-gray-800 leading-tight bg-[#a7a7a712] mt-1
+}
+
+input:enabled:focus {
+  box-shadow: none
+}
+
+input:enabled:hover {
+  @apply border-primary;
+}
+
+
+// switch
+.p-inputswitch .p-inputswitch-slider {
+  background-color: #d8d9df;
+  height: 24px;
+  box-shadow: none;
+}
+
+.p-inputswitch .p-inputswitch-slider:focus {
+  box-shadow: none;
+}
+
+.p-inputswitch .p-inputswitch-slider:before {
+  background-color: #ffffff;
+  box-shadow: none;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  background-color: #6B50F6;
+  box-shadow: none;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+  background-color: #ffffff;
+  box-shadow: none;
+}
+// dropdown
+.p-dropdown {
+  @apply w-[100%] duration-300 border border-primary text-[0.96rem] lg:w-[24rem];
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+  box-shadow: 0 0 0 2px #0044ff0f;
+  @apply border-primary;
+}
+
+.p-dropdown:hover {
+  @apply border-secondary;
+}
+
+.icon {
+  @apply text-[0.6rem];
+}
+
+.p-dropdown:not(.p-disabled):hover {
+  box-shadow: 0 0 0 0.2rem #0044ff0f;
+}
+
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight, .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight:hover{
+  @apply text-black text-[0.85rem] bg-[#e0daff];
+}
+
+
+// checkbox
+.p-checkbox .p-checkbox-box.p-highlight {
+  @apply border-primary bg-primary text-white;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  @apply border-primary
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
+  box-shadow: none;
+  @apply border-primary 
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
+  @apply border-primary border bg-primary text-white;
+}
+
+p-checkbox {
+  box-shadow: none;
+  @apply border border-primary rounded-lg bg-primary text-white;
+}
+
+p-checkbox-box p-highlight {
+  box-shadow: none;
+  @apply border border-primary rounded-lg bg-primary text-white;
+}
+
+p-checkbox:checked {
+  box-shadow: none;
+  @apply border border-primary rounded-lg bg-primary text-white;
+}
+
+.bg_image {
+  background-image: url("/src/assets/pictures/background_home.png");
+  height: 20rem;
+  background-size: cover;
+}
+
+body{
+  @apply bg-gray-50
+
+}
+
+strong {
+  @apply text-gray-600
+}
+
+header {
+  transition: transform 1.5s ease-in-out;
+}
+
+.animation {
+  animation: bounce 2s infinite;
+
+  @keyframes bounce {
+
+    0%,
+    100% {
+      transform: translateY(-5%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+
+    50% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+}
+
+.address-display {
+  position: absolute;
+  top: -35px; /* Adjust as needed */
+  left: 19px; /* Adjust as needed */
+  transform: translateX(-50%);
+  background-color: #4930c7;
+  padding: 5px 10px;
+  width: fit-content;
+  color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: smaller;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000; /* Ensure it appears above the map */
+}
+
+#map_canvas {
+  width: 90%;
+  height: 80%;
+  border: 1px solid red;
+}
+
+#address {
+  padding: 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.map-wrapper {
+  #map_center {
+      position: absolute;
+      z-index: 99;
+      height: 40px;
+      width: 100%;
+      top: 49%;
+      left: 50.5%;
+      margin-left: -21px;
+      margin-top: -41px;
+  }
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Ensure it is above other elements */
+}
+
+.main-content {
+  margin-top: 7rem; /* Adjust this value as needed to avoid overlapping with the fixed header */
+}
+
+.your-custom-css-class {
+  background-color: #123456;
+  color: white;
+}
+
+.gm-ui-hover-effect{
+  width: 41px;
+  height: 25px;
+}

@@ -1,0 +1,75 @@
+.remove-button {
+    position: absolute;
+    top: -14px;
+    right: -14px;
+    background-color: rgba(0, 0, 0, 0.24);
+    border: none;
+    border-radius: 50%;
+    padding: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .remove-button i {
+    color: white;
+    font-size: 16px;
+  }
+  
+  .remove-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+
+
+  .image-area {
+    position: relative;
+    background: #333;
+  }
+  .image-area img{
+    max-width: 100%;
+  }
+  .remove-image {
+  display: none;
+  position: absolute;
+  top: -9px;
+  right: -9px;
+  border-radius: 10em;
+  padding: 2px 6px 2px;
+  text-decoration: none;
+  font: 700 16px/17px sans-serif;
+  background: #555;
+  border: 2px solid #fff;
+  color: #FFF;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    -webkit-transition: background 0.5s;
+    transition: background 0.5s;
+  }
+  .remove-image:hover {  
+    border-radius: 10em;
+
+    border: 2px solid #fff;
+    background: #dd2b2b;
+    padding: 2px 6px 2px;
+    top: -9px;
+    right: -9px;
+  }
+  .remove-image:active {
+    background: #dd2b2b;
+    border: 2px solid #fff;
+    top: -9px;
+    right: -9px;
+  }
+  /* Zoom In #1 */
+  .hover01 figure img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+  }
+  .hover01 figure:hover img {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }

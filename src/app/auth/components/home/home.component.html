@@ -1,0 +1,201 @@
+<header
+  [ngClass]="{ 'fixed top-0 left-0 w-full bg-white shadow-md transition-transform': true, 'translate-y-0': showHeader, '-translate-y-full': !showHeader }">
+  <div class="container mx-auto p-4">
+    <div class="flex justify-between items-center">
+      <div class="relative">
+        <img src="assets/pictures/favicon_dark.png" alt="" class="w-36">
+      </div>
+      <nav class="space-x-6 items-center">
+        <a href="#" class="hover:text-primary underline">About</a>
+        <a href="#" class="hover:text-primary hover:underline underline">Solution</a>
+        <button p-button class="dark" (click)="isVisibleLogin = true">Se connecter</button>
+      </nav>
+    </div>
+  </div>
+</header>
+<div class="bg-primary-50 from-primary-50 to-primary-700 h-full text-primary-50 shadow">
+  <div class="relative h-[85%]">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('assets/pictures/bg_home.jpg');">
+      <div class="absolute inset-0 bg-black opacity-70"></div>
+    </div>
+    <div class="relative container mx-auto pl-14 pr-4 py-12">
+      <div class="flex justify-between items-center">
+        <div class="relative">
+          <img src="assets/pictures/faviconWebSite.png" alt="" class="w-36">
+        </div>
+        <nav class="space-x-6 items-center">
+          <a href="#" class="hover:text-purple-200 underline">About</a>
+          <a href="#" class="hover:text-purple-200 underline">Solution</a>
+          <button p-button (click)="isVisibleLogin = true" class="light">Se connecter</button>
+        </nav>
+      </div>
+      <div class="mt-60 mb-20 text-center grid grid-cols-2 text-primary-50 font-medium">
+        <div></div>
+        <p class="text-lg lg-px-20 mb-6">Chez <span class="text-purple-200 text-xl font-bold">IBAGAGE</span>, nous
+          comprenons les
+          défis liés au transport de
+          bagages,
+          que ce soit lors d'un déménagement,
+          d'un voyage ou simplement pour une aide supplémentaire. Notre mission est de vous permettre de
+          trouver
+          facilement des conducteurs
+          fiables pour transporter vos bagages en toute sécurité et efficacité.</p>
+        <div></div>
+        <div class="flex justify-center pt-4 space-x-4">
+          <button p-button class="dark animation" (click)="isVisible = true">Télécharger
+            l'application</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<main class="mx-auto bg-primary-50 px-[24rem] py-24">
+  <section class="mb-28">
+    <div class="flex items-center justify-center gap-5 ">
+      <div>
+        <h2 class="text-xl font-bold text-gray-800"> Pourquoi Choisir IBAGAGE ? </h2>
+        <div class="px-10 w-fit py-[.18rem] rounded-full bg-primary mt-1 mb-5"></div>
+        <p>
+          Chez IBAGAGE, nous comprenons les défis liés au transport de bagages, que ce soit lors d'un
+          déménagement,
+          d'un voyage ou simplement pour une aide supplémentaire. Notre mission est de vous permettre de
+          trouver
+          facilement
+          des conducteurs fiables pour transporter vos bagages en toute sécurité et efficacité.
+        </p>
+        <p>
+          Avec IBAGAGE, profitez d'une réservation rapide et facile en quelques clics. Tous nos conducteurs
+          sont
+          vérifiés
+          pour garantir la sécurité de vos affaires. Vous pouvez rester informé de l'emplacement de vos
+          bagages et de
+          l'heure
+          estimée de livraison grâce à notre fonctionnalité de suivi en temps réel.
+        </p>
+        <p>
+          Nous offrons des options flexibles adaptées à vos besoins, que vous ayez besoin d'une petite voiture
+          pour
+          quelques sacs ou d'un véhicule plus grand pour des objets volumineux. Profitez également de la
+          commodité et de
+          la sécurité des paiements intégrés à l'application, pour une transaction fluide et sans souci.
+        </p>
+      </div>
+      <div class="col-span-2">
+        <img src="assets/pictures/home1.jpg" class="rounded-sm w-[70rem]" alt="">
+      </div>
+    </div>
+  </section>
+  <section class="mb-28">
+    <div class="flex items-center justify-center gap-5 ">
+      <div>
+        <img src="assets/pictures/home2.jpeg" class="rounded-sm w-[60rem]" alt="">
+      </div>
+      <div>
+        <h2 class="text-xl font-bold text-gray-800">Comment Ça Marche</h2>
+        <div class="px-10 w-fit py-[.18rem] rounded-full bg-primary mt-1 mb-5"></div>
+        <p>
+          Choisissez votre véhicule parmi notre large choix, puis indiquez vos points de ramassage et de
+          livraison et
+          planifiez
+          l'heure qui vous convient. Vous pouvez suivre le trajet de vos bagages en temps réel et rester
+          informé de leur
+          statut.
+          Votre conducteur livrera vos bagages en toute sécurité à l'adresse spécifiée.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="">
+    <h2 class="text-2xl font-semibold mb-4">Rejoignez la Communauté IBAGAGE</h2>
+    <p>Découvrez la commodité et la tranquillité d'esprit offertes par IBAGAGE. Que vous vous rendiez à l'aéroport,
+      que vous déménagiez ou que vous ayez simplement besoin d'aide pour vos sacs, nous sommes là pour vous.
+      Téléchargez
+      l'application dès aujourd'hui et expérimentez la manière la plus simple de transporter vos bagages.</p>
+  </section>
+</main>
+
+<p-dialog [(visible)]="isVisible" [style]="{ width: '35rem' }" [modal]="true" [draggable]="false" [resizable]="false">
+  <div class="flex justify-center items-center h-full">
+    <div class="text-center pt-6 pb-14 px-2">
+      <img src="assets/pictures/favicon_dark.png" class="w-[40%] mx-auto" alt="">
+      <p class="text-3xl text-gray-800 font-semibold mt-5 mb-10">
+        Dirigez l'appareil photo de votre smartphone vers le code QR pour télécharger
+      </p>
+      <img src="assets/pictures/qrcode.png" class="w-1/2 mx-auto" alt="">
+      <p class="text-sm text-gray-800 mt-10 font-medium">
+        Scannez le code QR avec l'appareil photo de votre téléphone pour télécharger l'application <span
+          class="font-medium text-secondary">IBAGAGE</span>
+      </p>
+    </div>
+  </div>
+</p-dialog>
+
+<p-dialog [(visible)]="isVisibleLogin" [style]="{ width: '35rem' }" [modal]="true" [draggable]="false" [resizable]="false">
+  <div class="flex justify-center items-center h-full">
+    <div class="text-center pb-16 px-2">
+      <img src="assets/pictures/favicon_dark.png" class="w-[70%] mx-auto" alt="">
+      <p class="text-lg text-gray-700 font-medium mt-14 mb-6">
+        Se connecter à votre compte
+      </p>
+      <div class="flex flex-col space-y-4">
+        <input pInputText placeholder="Numéro de téléphone" name="phone" [(ngModel)]="vars.login">
+        <div class="relative text-left">
+          <i [class]="showPassword ? 'pi pi-eye' : 'pi pi-eye-slash'"
+             class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#948ecb] text-lg cursor-pointer"
+             (click)="showPassword=!showPassword">
+          </i>
+          <input pInputText [type]="showPassword ? 'text' : 'password'" placeholder="Mot de passe" name="mdp" [(ngModel)]="vars.password">
+        </div>
+        <div class="flex items-center justify-end pr-2 pt-1 text-[0.8rem] text-gray-500">
+          <label class="mr-2 mb-2">Me souvenir de moi</label>
+          <p-inputSwitch [(ngModel)]="switchValue" name="memorise" />
+        </div>
+      </div>
+      <div class="mt-12">
+        <button p-button class="dark cursor-pointer" severity="help" (click)="doLogin()">Se connecter</button>
+        <div class="text-xs font-medium pt-4"> Vous n'avez pas de compte? <span
+            class="text-primary dark:text-violet-300 cursor-pointer underline"
+            (click)="isVisibleLogin = false; isVisibleSignup = true">S'inscrire</span></div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+
+
+<p-dialog [(visible)]="isVisibleSignup" [style]="{ width: '35rem' }" [modal]="true" [draggable]="false"
+  [resizable]="false">
+  <div class="flex justify-center items-center h-full">
+    <div class="text-center pt-6 pb-14 px-2">
+      <img src="assets/pictures/favicon_dark.png" class="w-[70%] mx-auto" alt="">
+      <p class="text-lg text-gray-700 font-medium mt-14 mb-6">
+        Créer votre compte
+      </p>
+      <div class="flex flex-col space-y-4">
+        <input pInputText placeholder="Nom et prénom" name="name" />
+        <input pInputText placeholder="Numero de téléphone" name="phone" />
+        <div class="relative">
+          <i [class]="showPassword ? 'pi pi-eye' : 'pi pi-eye-slash'"
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#948ecb] text-lg cursor-pointer"
+            (click)="showPassword = !showPassword">
+          </i>
+          <input pInputText [type]="showPassword ? 'text' : 'password'" placeholder="Mot de passe" name="mdp" />
+        </div>
+        <div class="flex items-center mt-4">
+          <p-checkbox value="" inputId="terms"/>
+          <label for="terms" class="ml-2 text-sm">J'accepte les <a href="#" class="text-primary underline">termes et conditions</a></label>
+        </div>
+      </div>
+      <div class="mt-16">
+        <button p-button class="dark cursor-pointer" severity="help" [disabled]="!termsAccepted">S'inscrire</button>
+        <div class="text-xs font-medium pt-4">
+          Vous avez deja un compte? <span class="text-primary dark:text-violet-300 cursor-pointer underline"
+            (click)="isVisibleSignup = false; isVisibleLogin = true">Se connecter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</p-dialog>
+
+
+<p-toast position="bottom-right"/>
