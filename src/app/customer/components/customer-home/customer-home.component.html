@@ -25,7 +25,7 @@
         </button>
       </div>
       <p-dropdown [options]="getDataList('vehicules.liste_type_vehicules')" [(ngModel)]="vars.type_vehicule"
-        optionLabel="name" [showClear]="true" placeholder="Type de véhicule">
+        optionLabel="name" [showClear]="true" placeholder="Type de véhicule" (ngModelChange)="onTypeVehiculeChange()">
         <ng-template pTemplate="selectedItem" let-selectedOption>
           <div class="flex align-items-center gap-x-3">
             <img [src]="'assets/vehicules/'+selectedOption.code + '.png'" style="width: 30px" />

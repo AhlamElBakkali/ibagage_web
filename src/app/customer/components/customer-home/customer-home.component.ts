@@ -24,12 +24,12 @@ export class CustomerHomeComponent extends Composant {
 
   constructor(
     protected override app: AppService,
-    // public translate: TranslateService,
+    public translate: TranslateService,
     private geolocationService: GeolocationService
 
   ) {
     super(app)
-    // translate.use(localStorage.getItem('lang') || 'fr');
+    translate.use(localStorage.getItem('lang') || 'fr');
   }
 
   async ngAfterViewInit() {
@@ -97,9 +97,22 @@ export class CustomerHomeComponent extends Composant {
     this.addMarkers();
   }
 
+  onTypeVehiculeChange() {
+    this.addMarkers();
+  }
+  
   async addMarkers() {
     const dataList = await this.getDataList("tiers.drivers");
-    dataList.forEach(data => {
+    let filteredDataList = dataList;
+    if(this.vars.type_vehicule){
+      this.clearMarkers();
+      filteredDataList = dataList.filter(data => 
+        data.vehicules.some((element: { type_vehicule: { id: any; }; }) => {
+          return element.type_vehicule.id === this.vars.type_vehicule.id;
+        })
+      );
+    }
+    filteredDataList.forEach(data => {
       const iconUrl = 'assets/pictures/camionMap.png';
       const marker = new google.maps.Marker({
         position: { lat: Number(data.data_location.lt), lng: Number(data.data_location.lg) },
@@ -111,6 +124,7 @@ export class CustomerHomeComponent extends Composant {
           anchor: new google.maps.Point(20, 40),
         },
       });
+  
       const infoWindowContent = `
         <div class="text-center w-full bg-[#e7e7e740] pb-4 px-4">
           <div class="flex justify-center w-full" style="padding-bottom: 1rem"> 
@@ -128,19 +142,25 @@ export class CustomerHomeComponent extends Composant {
           </div>
         </div>
       `;
-
       const infoWindow = new google.maps.InfoWindow({
         content: infoWindowContent
       });
-
+  
       marker.addListener("click", () => {
         infoWindow.open(this.map, marker);
       });
-
+  
       this.markers.push(marker);
     });
   }
-
+  
+  clearMarkers() {
+    this.markers.forEach(marker => {
+      marker.setMap(null);
+    });
+    this.markers = [];
+  }
+  
   createAnnonce() {
     this.app.navigate(['customer/departure'])
   }
