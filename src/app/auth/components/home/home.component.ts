@@ -41,7 +41,6 @@ export class HomeComponent extends Composant {
     }
     this.lastScrollTop = scrollTop;
   }
-
   
   async doLogin() {
     if (navigator.geolocation) {

@@ -1,0 +1,8 @@
+::ng-deep app-driver-home {
+    .p-card-body {
+        @apply rounded-xl cursor-pointer
+    }   
+    .p-card-content {
+        @apply py-0
+    }
+}

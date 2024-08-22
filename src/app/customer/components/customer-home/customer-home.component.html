@@ -15,7 +15,7 @@
   <div [attr.dir]="getDirection()" class="w-full h-[70vh]">
     <div class="flex w-full justify-center gap-x-10 pb-6">
       <div class="relative">
-        <input id="pac-input" type="text" [(ngModel)]="vars.searchText" class="lg:w-[30rem] w-full" placeholder="">
+        <input id="pac-input" type="text" [(ngModel)]="vars.searchText" class="lg:w-[30rem] w-full" [placeholder]="'SEARCH' | translate">
         <button class="absolute right-0 top-0 mt-2 mr-3" (click)="vars.searchText = ''">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="gray" class="h-8 w-4">
             <path fill-rule="evenodd"
@@ -25,7 +25,7 @@
         </button>
       </div>
       <p-dropdown [options]="getDataList('vehicules.liste_type_vehicules')" [(ngModel)]="vars.type_vehicule"
-        optionLabel="name" [showClear]="true" placeholder="Type de véhicule">
+        optionLabel="name" [showClear]="true" [placeholder]="'TYPEVEHI' | translate" (ngModelChange)="onTypeVehiculeChange()">
         <ng-template pTemplate="selectedItem" let-selectedOption>
           <div class="flex align-items-center gap-x-3">
             <img [src]="'assets/vehicules/'+selectedOption.code + '.png'" style="width: 30px" />
@@ -45,7 +45,7 @@
     </div>
     <div class="absolute bottom-[11.5rem] cursor-pointer left-[8.5rem] text-center">
       <div
-        class="bg-white cursor-pointer dark:bg-night-500 pt-[0.4em] p-2 rounded-full w-fit ml-2 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]"
+        class="bg-white cursor-pointer dark:bg-night-500 p-2 rounded-full w-fit ml-2 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)]"
         (click)="getGeoLocation()">
         <svg fill="#6B50F6" height="24px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 51.636 51.636" xml:space="preserve">

@@ -24,12 +24,11 @@ export class CustomerHomeComponent extends Composant {
 
   constructor(
     protected override app: AppService,
-    // public translate: TranslateService,
+    public translate: TranslateService,
     private geolocationService: GeolocationService
-
   ) {
     super(app)
-    // translate.use(localStorage.getItem('lang') || 'fr');
+    translate.use(localStorage.getItem('lang') || 'fr');
   }
 
   async ngAfterViewInit() {
@@ -46,60 +45,101 @@ export class CustomerHomeComponent extends Composant {
       console.error('Error getting location', error);
     }
   }
-
   async showMap() {
+    if (isNaN(this.latitude) || isNaN(this.longitude)) {
+      console.error('Invalid latitude or longitude:', this.latitude, this.longitude);
+      return;
+    }
+
     const location = new google.maps.LatLng(this.latitude, this.longitude);
+
     this.map = new google.maps.Map(document.getElementById('map') as HTMLElement, {
       center: location,
       zoom: 17,
       mapTypeId: 'roadmap',
       disableDefaultUI: true
     });
+
     const input = document.getElementById('pac-input') as HTMLInputElement;
+    if (!input) {
+      console.error('SearchBox input element not found');
+      return;
+    }
     const searchBox = new google.maps.places.SearchBox(input);
+
     this.map.addListener('bounds_changed', () => {
       const bounds = this.map.getBounds();
       if (bounds) {
         searchBox.setBounds(bounds);
       }
     });
+
     const currentLocationMarker = new google.maps.Marker({
       position: location,
       map: this.map,
       title: 'Current Location'
     });
+
     const infoWindow = new google.maps.InfoWindow({
       content: "C'est ma localisation !"
     });
+
     currentLocationMarker.addListener("click", () => {
       infoWindow.open(this.map, currentLocationMarker);
     });
+
     searchBox.addListener('places_changed', () => {
       const places = searchBox.getPlaces();
-      if (places.length == 0) {
+      if (!places || places.length === 0) {
         return;
       }
+    
       const bounds = new google.maps.LatLngBounds();
+    
       places.forEach((place: any) => {
-        if (!place.geometry) {
+        if (!place.geometry || !place.geometry.location) {
           console.log('Returned place contains no geometry');
           return;
         }
+    
         if (place.geometry.viewport) {
           bounds.union(place.geometry.viewport);
         } else {
           bounds.extend(place.geometry.location);
         }
       });
-
-      this.map.fitBounds(bounds);
+    
+      if (!bounds.isEmpty()) {
+        this.map.fitBounds(bounds);
+      } else {
+        console.error("Invalid bounds:", bounds);
+      }    
+      try {
+        this.map.fitBounds(bounds);
+      } catch (error) {
+        console.error('Error setting map bounds:', error);
+      }
     });
+
+    this.addMarkers();
+  }
+
+  onTypeVehiculeChange() {
     this.addMarkers();
   }
 
   async addMarkers() {
     const dataList = await this.getDataList("tiers.drivers");
-    dataList.forEach(data => {
+    let filteredDataList = dataList;
+    if (this.vars.type_vehicule) {
+      this.clearMarkers();
+      filteredDataList = dataList.filter(data =>
+        data.vehicules.some((element: { type_vehicule: { id: any; }; }) => {
+          return element.type_vehicule.id === this.vars.type_vehicule.id;
+        })
+      );
+    }
+    filteredDataList.forEach(data => {
       const iconUrl = 'assets/pictures/camionMap.png';
       const marker = new google.maps.Marker({
         position: { lat: Number(data.data_location.lt), lng: Number(data.data_location.lg) },
@@ -111,6 +151,7 @@ export class CustomerHomeComponent extends Composant {
           anchor: new google.maps.Point(20, 40),
         },
       });
+
       const infoWindowContent = `
         <div class="text-center w-full bg-[#e7e7e740] pb-4 px-4">
           <div class="flex justify-center w-full" style="padding-bottom: 1rem"> 
@@ -128,7 +169,6 @@ export class CustomerHomeComponent extends Composant {
           </div>
         </div>
       `;
-
       const infoWindow = new google.maps.InfoWindow({
         content: infoWindowContent
       });
@@ -139,6 +179,13 @@ export class CustomerHomeComponent extends Composant {
 
       this.markers.push(marker);
     });
+  }
+
+  clearMarkers() {
+    this.markers.forEach(marker => {
+      marker.setMap(null);
+    });
+    this.markers = [];
   }
 
   createAnnonce() {

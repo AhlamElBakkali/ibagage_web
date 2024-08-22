@@ -1,5 +1,5 @@
 <div class="main-content bg-white h-fit static rounded-3xl shadow mx-24 lg:mx-64 pb-4">
-    <div class="text-center text-xl text-white p-4 font-semibold rounded-t-3xl bg-primary">Mes annonces</div>
+    <div class="text-center text-lg text-white p-4 font-semibold rounded-t-3xl bg-primary uppercase tracking-wider">Mes annonces</div>
     <p-scrollPanel [style]="{ width: '100%', height: '30rem'}" styleClass="custombar1">
         <div [attr.dir]="getDirection()" *ngIf="getDataList('annonces.liste_annonces').length === 0" >
             <div class="justify-center flex pt-[10%]">
@@ -16,9 +16,9 @@
         </div>
         <div [attr.dir]="getDirection()" class="p-8">
             <div *ngFor="let annonce of getDataList('annonces.liste_annonces')">
-                <div class="p-1 mb-4 rounded-lg shadow items-center">
+                <div class="p-3 mb-4 rounded-lg shadow items-center">
                     <!-- -------------------------------------------------------------------------- -->
-                    <div class="float-end text-sm p-1 px-2 rounded-full text-orange-700 "
+                    <div class="float-end text-sm p-2 px-4 rounded-full text-orange-700 bg-orange-50 "
                         *ngIf="annonce.etat === 'pending'"
                         (click)="vars.isopen = true; vars.isPaused = false; vars.annonce = annonce ;">
                         {{'PENDING' | translate}}

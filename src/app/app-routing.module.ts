@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './auth/components/home/home.component';
-import { ErpResolverService } from './shared/resolvers/erp-resolver.service';
 import { SharedModule } from './shared/shared.module';
+import { PsgResolverService } from './shared/resolvers/psg-resolver.service';
+import { DrvResolverService } from './shared/resolvers/drv-resolver.service';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent,
-    resolve: { allData: ErpResolverService },
+    component: HomeComponent
   },  
   {
     path: 'customer',
@@ -17,16 +17,23 @@ const routes: Routes = [
         (m) => m.CustomerModule
       ),
   },
+  {
+    path: 'driver',
+    loadChildren: () =>
+      import('./driver/driver.module').then(
+        (m) => m.DriverModule
+      ),
+  },
 ];
 
-const resolvers = [ErpResolverService];
+const resolvers = [PsgResolverService, DrvResolverService];
 @NgModule({
   imports: [
     SharedModule,
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],  
-  providers: [...resolvers],
+  providers: [...resolvers,]
 
 })
 export class AppRoutingModule { }
