@@ -9,21 +9,23 @@ import { DepartureMapComponent } from './components/departure-map/departure-map.
 import { ArrivalMapComponent } from './components/arrival-map/arrival-map.component';
 import { NewAnnouncementComponent } from './components/new-announcement/new-announcement.component';
 import { AudioRecordingService } from './audio-recorder.service';
-import { ErpResolverService } from '../shared/resolvers/erp-resolver.service';
 import { MyannouncementComponent } from './components/myannouncement/myannouncement.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
+import { PsgResolverService } from '../shared/resolvers/psg-resolver.service';
+import { DriverHomeComponent } from '../driver/driver-home/driver-home.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
+
 const routes: Routes = [
   {
     path: '',
-    component: CustomerHomeComponent,
-    resolve: { allData: ErpResolverService },
+    component: DriverHomeComponent,
+    resolve: { allData: PsgResolverService },
   },
   {
     path: 'home',

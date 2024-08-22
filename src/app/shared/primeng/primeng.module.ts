@@ -10,6 +10,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
+import { CardModule } from 'primeng/card';
+import { GalleriaModule } from 'primeng/galleria';
+
 
 @NgModule({
   declarations: [],
@@ -25,6 +28,8 @@ import { ScrollPanelModule } from 'primeng/scrollpanel';
     DropdownModule,
     ToastModule,
     ScrollPanelModule,
+    CardModule,
+    GalleriaModule
   ],
   providers: [MessageService]
 })

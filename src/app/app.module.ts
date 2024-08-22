@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeModule } from './auth/components/home/home.module';
 import { AuthInterceptorService } from './core/types/services/auth-interceptor.service';
 import { CustomerModule } from './customer/customer.module';
+import { DriverModule } from './driver/driver.module';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { CustomerModule } from './customer/customer.module';
       FormsModule,
       HttpClientModule,
       HomeModule,
-      CustomerModule
+      CustomerModule,
+      DriverModule
     ],
   bootstrap: [AppComponent],
   providers: [
