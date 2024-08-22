@@ -1,0 +1,836 @@
+(function () {
+
+      var $parcel$global =
+        typeof globalThis !== 'undefined'
+          ? globalThis
+          : typeof self !== 'undefined'
+          ? self
+          : typeof window !== 'undefined'
+          ? window
+          : typeof global !== 'undefined'
+          ? global
+          : {};
+  
+var $parcel$modules = {};
+var $parcel$inits = {};
+
+var parcelRequire = $parcel$global["parcelRequire94c2"];
+
+if (parcelRequire == null) {
+  parcelRequire = function(id) {
+    if (id in $parcel$modules) {
+      return $parcel$modules[id].exports;
+    }
+    if (id in $parcel$inits) {
+      var init = $parcel$inits[id];
+      delete $parcel$inits[id];
+      var module = {id: id, exports: {}};
+      $parcel$modules[id] = module;
+      init.call(module.exports, module, module.exports);
+      return module.exports;
+    }
+    var err = new Error("Cannot find module '" + id + "'");
+    err.code = 'MODULE_NOT_FOUND';
+    throw err;
+  };
+
+  parcelRequire.register = function register(id, init) {
+    $parcel$inits[id] = init;
+  };
+
+  $parcel$global["parcelRequire94c2"] = parcelRequire;
+}
+
+var parcelRegister = parcelRequire.register;
+parcelRegister("iabPP", function(module, exports) {
+parcelRequire("7oyeI");
+parcelRequire("2ZcpR");
+parcelRequire("i77pL");
+parcelRequire("6vcqP");
+parcelRequire("g7m2H");
+parcelRequire("aWGtl");
+parcelRequire("9TQeq");
+parcelRequire("kK3lH");
+parcelRequire("6lnS6");
+parcelRequire("4r6RI");
+parcelRequire("2z75a");
+parcelRequire("5gQD3");
+parcelRequire("5g7S1");
+
+});
+parcelRegister("7oyeI", function(module, exports) {
+class $562554f1089a42af$var$Accordion extends HTMLElement {
+    connectedCallback() {
+        this.addEventListener("click", (e)=>{
+            const titleElement = e.target.closest("[data-title]");
+            if (titleElement) this.toggleContent(titleElement);
+        });
+    }
+    toggleContent(titleElement) {
+        const articleElement = titleElement.closest("article");
+        const currentActive = this.querySelector("article.-active");
+        if (currentActive && currentActive !== articleElement) currentActive.classList.remove("-active");
+        articleElement.classList.toggle("-active");
+    }
+}
+customElements.define("c-accordion", $562554f1089a42af$var$Accordion);
+
+});
+
+parcelRegister("2ZcpR", function(module, exports) {
+class $22cae8d6605b9054$var$Banner extends HTMLElement {
+    constructor(){
+        super();
+        this.queryParams = {};
+    }
+    get closeButton() {
+        return this.querySelector("[data-trigger=close]");
+    }
+    handleDefaultVisibility() {
+        this.queryParams = new URLSearchParams(window.location.search);
+        if (this.queryParams.has("banner") && this.queryParams.get("banner") != "" && this.queryParams.get("banner") == this.id) this.showBanner();
+    }
+    hideBanner() {
+        this.classList.add("hidden");
+    }
+    showBanner() {
+        this.classList.remove("hidden");
+    }
+    handleCloseButton(e) {
+        this.hideBanner();
+        this.queryParams.delete("banner");
+        window.location.search = this.queryParams.toString();
+    }
+    connectedCallback() {
+        this.bind();
+        this.handleDefaultVisibility();
+    }
+    bind() {
+        this.closeButton.addEventListener("click", (e)=>this.handleCloseButton(e));
+    }
+}
+customElements.define("c-banner", $22cae8d6605b9054$var$Banner);
+
+});
+
+parcelRegister("i77pL", function(module, exports) {
+class $d2fea1d511b86dea$var$Blockquote extends HTMLElement {
+    constructor(){
+        super();
+        this.cycleIntervalTime = 5000;
+        this.cycleDelayTime = 5000;
+        this.cycleInterval = null;
+        this.cycleDelayInterval = null;
+        this.currentSlide = 0;
+    }
+    get slides() {
+        return this.querySelectorAll("[data-slide]");
+    }
+    get previews() {
+        return this.querySelectorAll("[data-preview]");
+    }
+    get activeSlide() {
+        return this.querySelector("[data-slide].-active");
+    }
+    get activePreview() {
+        return this.querySelector("[data-preview].-active");
+    }
+    connectedCallback() {
+        this.setDefaultSlide();
+        this.startCycle();
+        this.bind();
+    }
+    bind() {
+        this.previews.forEach((preview, idx)=>{
+            preview.addEventListener("click", (e)=>{
+                this.setSlide(idx);
+                e.preventDefault();
+            });
+        });
+    }
+    setDefaultSlide() {
+        this.slides[0].classList.add("-active");
+        this.previews[0].classList.add("-active");
+        this.currentSlide = 0;
+    }
+    setNextSlide() {
+        let slidesLenght = this.slides.length;
+        let next = this.currentSlide == slidesLenght - 1 ? 0 : this.currentSlide + 1;
+        this.activeSlide.classList.remove("-active");
+        this.activePreview.classList.remove("-active");
+        this.slides[next].classList.add("-active");
+        this.previews[next].classList.add("-active");
+        this.currentSlide = next;
+    }
+    setSlide(idx) {
+        this.stopCycle();
+        this.currentSlide = idx - 1;
+        this.setNextSlide();
+        this.startCycle();
+    }
+    startCycle() {
+        this.cycleDelay = setTimeout(()=>{
+            this.cycleInterval = setInterval(()=>{
+                this.setNextSlide();
+            }, this.cycleIntervalTime);
+        }, this.cycleDelayTime);
+    }
+    stopCycle() {
+        clearInterval(this.cycleInterval);
+        clearTimeout(this.cycleDelay);
+    }
+}
+customElements.define("c-blockquote", $d2fea1d511b86dea$var$Blockquote);
+
+});
+
+parcelRegister("6vcqP", function(module, exports) {
+class $4bbf47fb7ac0a309$var$Dialog extends HTMLElement {
+    get closeButton() {
+        return this.querySelector("[data-trigger=close]");
+    }
+    closeDialog(event) {
+        var url = window.location.pathname;
+        var scroll = window.scrollY;
+        // When closing there is a buggy # left.
+        // Having a <base> tag during migration brings odd behaviours if we try to remove it programatically
+        // For now we live with the buggy # until we finish the migration.
+        window.location.hash = "" // hides the modal
+        ;
+        window.scroll(0, scroll) // makes sure scroll does not move
+        ;
+        event.preventDefault();
+    }
+    connectedCallback() {
+        this.bind();
+    }
+    bind() {
+        this.closeButton.addEventListener("click", (e)=>{
+            this.closeDialog(e);
+        });
+    }
+}
+customElements.define("c-dialog", $4bbf47fb7ac0a309$var$Dialog);
+
+});
+
+parcelRegister("g7m2H", function(module, exports) {
+class $bbbe65f8167975af$var$Header extends HTMLElement {
+    constructor(){
+        super();
+        this.props = {
+            activeMenu: "main",
+            activePillClass: "--active",
+            arrowDirection: "",
+            arrowPosition: 0,
+            baseClass: "js-header",
+            bodyOpenClass: "--header-open",
+            hiddenClass: "--hidden",
+            isHandheld: false,
+            isPopoverOpen: false,
+            openClass: "--open",
+            lastScrollY: 0,
+            headerVisible: true,
+            headerVisibleClass: "--hide",
+            scrollClass: "--scroll"
+        };
+        // Props Proxy to observe prop changes
+        this.propsProxy = new Proxy(this.props, {
+            set: (target, key, value)=>{
+                const oldValue = target[key];
+                // Set new value
+                target[key] = value;
+                // Handle prop changes
+                this.propsHandler(key, value, oldValue);
+                return true;
+            }
+        });
+        this.els = {
+            arrow: this.querySelector(`.${this.props.baseClass}-arrow`),
+            closeButton: this.querySelector(`.${this.props.baseClass}-close`),
+            navigation: this.querySelector(`.${this.props.baseClass}-nav`),
+            navigationMenus: this.querySelectorAll(`.${this.props.baseClass}-nav-menu`),
+            navigationTriggers: this.querySelectorAll(`.${this.props.baseClass}-nav-trigger`),
+            openButton: this.querySelector(`.${this.props.baseClass}-open`),
+            popover: this.querySelector(`.${this.props.baseClass}-popover`),
+            popoverSections: this.querySelectorAll(`.${this.props.baseClass}-popover-section`)
+        };
+    }
+    changeArrowDirection() {
+        if (!this.props.arrowDirection) return;
+        const leftClass = "--left";
+        const rightClass = "--right";
+        const config = {
+            left: {
+                add: leftClass,
+                remove: rightClass
+            },
+            right: {
+                add: rightClass,
+                remove: leftClass
+            }
+        };
+        const classList = this.els.popover.classList;
+        const useConfig = (action)=>config[this.props.arrowDirection][action];
+        classList.remove(useConfig("remove"));
+        classList.add(useConfig("add"));
+    }
+    handleScroll() {
+        const { lastScrollY: lastScrollY, baseClass: baseClass, scrollClass: scrollClass } = this.props;
+        const currentScrollY = window.scrollY;
+        const scrollingDown = currentScrollY > lastScrollY;
+        const headerHeight = this.offsetHeight; // Altura del encabezado para consideraciones adicionales
+        const siblingHeaderHeight = this.parentElement.nextElementSibling && this.parentElement.nextElementSibling.tagName.toLowerCase() === "m-secondarymenu" ? this.parentElement.nextElementSibling.offsetHeight : 0;
+        const totalHeight = headerHeight + siblingHeaderHeight;
+        const menu = document.querySelector(`.${baseClass}`).parentElement.id === "v3" ? document.querySelector(`.${baseClass}`).parentElement : document.querySelector(`.${baseClass}`);
+        // Si el scroll es 0, quita todas las clases
+        if (currentScrollY === 0) {
+            menu.classList.remove(`${scrollClass}`, `${scrollClass}-up`);
+            this.propsProxy.headerVisible = true; // Asumiendo que propsProxy actualiza tu estado correctamente
+            return; // Termina la ejecución aquí
+        }
+        // Comportamiento cuando se desplaza hacia abajo y supera totalHeight
+        if (scrollingDown && currentScrollY > totalHeight) {
+            if (this.props.headerVisible) {
+                this.propsProxy.headerVisible = false; // Actualiza el estado
+                menu.classList.remove(`${scrollClass}-up`);
+                menu.classList.add(`${scrollClass}`);
+            }
+        } else if (!scrollingDown && currentScrollY > 0) // Comportamiento cuando se desplaza hacia arriba y no está en 0
+        {
+            if (!this.props.headerVisible) {
+                this.propsProxy.headerVisible = true; // Actualiza el estado
+                menu.classList.remove(`${scrollClass}`);
+                menu.classList.add(`${scrollClass}-up`);
+            }
+        }
+        // Actualiza la última posición de scroll
+        this.propsProxy.lastScrollY = currentScrollY;
+    }
+    changeArrowPosition() {
+        this.els.arrow.style.transform = `translate(${parseInt(this.props.arrowPosition)}px)`;
+    }
+    closePopover() {
+        document.body.classList.remove(this.props.bodyOpenClass);
+        this.classList.remove(this.props.openClass);
+        this.els.popover.classList.remove("--left", "--right");
+    }
+    getActiveMenu() {
+        return Array.from(this.els.navigationMenus).filter((menu)=>{
+            return menu.dataset.headerMenu === this.props.activeMenu;
+        })[0];
+    }
+    getArrowPosition() {
+        // Don't move arrow if is tablet or lower
+        if (this.props.isHandheld) return;
+        const viewportWidth = window.innerWidth;
+        const activeTrigger = Array.from(this.els.navigationTriggers).filter((trigger)=>{
+            return trigger.dataset.headerMenu === this.props.activeMenu;
+        })[0];
+        const viewportCenter = viewportWidth / 2;
+        const { width: width, x: x } = activeTrigger.getBoundingClientRect();
+        const triggerPosition = x + width / 2;
+        const arrowPosition = (viewportCenter - triggerPosition) * -1;
+        return arrowPosition;
+    }
+    hidePill(section, e) {
+        const pill = section.querySelector(".js-header-popover-pill");
+        pill.classList.remove(this.props.activePillClass);
+    }
+    navigationHandler(e) {
+        if (!e.target.classList.contains(`${this.props.baseClass}-nav-trigger`)) return;
+        const menuId = e.target.dataset.headerMenu;
+        this.propsProxy.isPopoverOpen = true;
+        this.propsProxy.activeMenu = menuId;
+    }
+    openPopover() {
+        document.body.classList.add(this.props.bodyOpenClass);
+        this.classList.add(this.props.openClass);
+    }
+    propsHandler(prop, newValue, oldValue) {
+        if (prop === "activeMenu") this.toggleMenu();
+        if (prop === "arrowDirection") this.changeArrowDirection();
+        if (prop === "arrowPosition") this.changeArrowPosition();
+        if (prop === "isPopoverOpen") this.togglePopover();
+    }
+    resizeHandler() {
+        this.setHandheld();
+        if (this.props.isPopoverOpen) {
+            this.setArrowPosition();
+            this.setPopoverHeight();
+        }
+    }
+    setArrowDirection(arrowOldPosition) {
+        this.propsProxy.arrowDirection = this.propsProxy.arrowPosition > arrowOldPosition ? "right" : "left";
+    }
+    setArrowPosition() {
+        const arrowOldPosition = this.props.arrowPosition;
+        const arrowPosition = this.getArrowPosition();
+        this.propsProxy.arrowPosition = arrowPosition;
+        this.setArrowDirection(arrowOldPosition);
+    }
+    setHandheld() {
+        this.propsProxy.isHandheld = window.innerWidth <= 1080;
+    }
+    setPopoverHeight(activeMenu) {
+        if (this.props.isHandheld) return;
+        activeMenu = activeMenu || this.getActiveMenu();
+        const menuHeight = activeMenu.getBoundingClientRect().height;
+        this.els.popover.style.height = `${menuHeight}px`;
+    }
+    hideLinksHeader() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const param = urlParams.get("nav");
+        if (param && param.includes("hidden")) document.body.classList.add("--nav-hidden");
+    }
+    showPill(section, e) {
+        const isLink = e.target.classList.contains(`${this.props.baseClass}-popover-link`);
+        const pill = section.querySelector(".js-header-popover-pill");
+        if (!isLink || this.props.isHandheld) {
+            pill.classList.remove(this.props.activePillClass);
+            return;
+        }
+        /* Get link's relative position */ const { offsetLeft: offsetLeft, offsetTop: offsetTop, offsetParent: { offsetLeft: sectionOffsetLeft, offsetTop: sectionOffsetTop } } = e.target;
+        const pillPosition = {
+            x: sectionOffsetLeft + offsetLeft,
+            y: sectionOffsetTop + offsetTop
+        };
+        pill.classList.add(this.props.activePillClass);
+        pill.style.transform = `translate(${parseInt(pillPosition.x)}px, ${parseInt(pillPosition.y)}px)`;
+    }
+    hideAllMenus() {
+        this.els.navigationMenus.forEach((menu)=>{
+            menu.classList.add(this.props.hiddenClass);
+            menu.setAttribute("aria-hidden", "true");
+        });
+    }
+    toggleMenu() {
+        const activeMenu = this.getActiveMenu();
+        // Hide all menus
+        this.hideAllMenus();
+        if (!activeMenu) return;
+        // Show active menu
+        activeMenu.classList.remove(this.props.hiddenClass);
+        activeMenu.setAttribute("aria-hidden", "false");
+        // Set popover arrow position
+        this.setArrowPosition();
+        // Set new popover height
+        this.setPopoverHeight(activeMenu);
+        // Set menu ID in header node
+        this.dataset.headerMenu = this.props.activeMenu;
+    }
+    togglePopover() {
+        this.props.isPopoverOpen ? this.openPopover() : this.closePopover();
+    }
+    bindEvents() {
+        window.addEventListener("resize", (e)=>this.resizeHandler());
+        if (this.classList.contains("-nav-hidden")) {
+            console.log(this.parentElement);
+            this.parentElement.setAttribute("style", "position: relative");
+        } else window.addEventListener("scroll", (e)=>this.handleScroll());
+        if (!this.props.isHandheld) {
+            this.els.navigation.addEventListener("mouseover", (e)=>this.navigationHandler(e));
+            this.addEventListener("mouseleave", (e)=>this.propsProxy.isPopoverOpen = false);
+            this.els.popoverSections.forEach((popoverSection)=>{
+                popoverSection.addEventListener("mouseover", (e)=>this.showPill(popoverSection, e));
+                popoverSection.addEventListener("mouseout", (e)=>this.hidePill(popoverSection, e));
+            });
+        } else {
+            this.els.popover.addEventListener("click", (e)=>this.navigationHandler(e));
+            this.els.closeButton.addEventListener("click", ()=>this.propsProxy.isPopoverOpen = false);
+            this.els.openButton.addEventListener("click", ()=>this.propsProxy.isPopoverOpen = true);
+        }
+    }
+    connectedCallback() {
+        this.hideLinksHeader();
+        this.setHandheld();
+        this.bindEvents();
+    }
+}
+customElements.define("m-header", $bbbe65f8167975af$var$Header);
+
+});
+
+parcelRegister("aWGtl", function(module, exports) {
+class $7f80444cacee39aa$var$MFooter extends HTMLElement {
+    constructor(){
+        super();
+        // Inicialización de referencias a elementos del DOM
+        this.els = {};
+    }
+    // Método para añadir listeners y lógica inicial
+    init() {
+        // Listener para cambios en el selector de país
+        this.els.countrySelector = this.querySelector('[data-trigger="countrySelector"]');
+        if (this.els.countrySelector) {
+            this.els.countrySelector.addEventListener("change", (event)=>{
+                window.location.href = event.target.value;
+            });
+            this.renderCurrentCountry();
+        }
+        // Listener para el toggle de contenido en headers
+        this.els.headers = this.querySelectorAll(".m-footer__group header");
+        this.els.headers.forEach((header)=>{
+            header.addEventListener("click", ()=>{
+                if (window.innerWidth < 767) {
+                    const group = header.parentElement;
+                    group.classList.toggle("--show");
+                    const icon = group.querySelector(".e-icon");
+                    if (icon) {
+                        icon.classList.toggle("-direction_down_md");
+                        icon.classList.toggle("-direction_up_md");
+                    }
+                    const content = group.querySelector(".m-footer__content");
+                    if (group.classList.contains("--show")) {
+                        const height = content.scrollHeight + "px";
+                        content.style.maxHeight = height;
+                    } else content.style.maxHeight = null;
+                }
+            });
+        });
+    }
+    // Método para seleccionar el país actual basado en la URL
+    renderCurrentCountry() {
+        const countryCodeRegex = /^\/(\w{2})/;
+        if (countryCodeRegex.test(window.location.pathname)) {
+            const countryCode = countryCodeRegex.exec(window.location.pathname)[1];
+            const optionNode = this.els.countrySelector.querySelector(`[value^="/${countryCode}"]`);
+            if (optionNode) optionNode.setAttribute("selected", true);
+        }
+    }
+    // Método del ciclo de vida llamado cuando el elemento se conecta al DOM
+    connectedCallback() {
+        this.init();
+    }
+}
+customElements.define("m-footer", $7f80444cacee39aa$var$MFooter);
+
+});
+
+parcelRegister("9TQeq", function(module, exports) {
+class $7351c43b9b965213$var$Secondarymenu extends HTMLElement {
+    constructor(){
+        super();
+    }
+    get buttonSecondaryMenu() {
+        return this.querySelector('[data-trigger="toggleSecondaryMenu"]');
+    }
+    get secondaryMenuContent() {
+        return this.querySelector('[data-trigger="toggleSecondaryMenu"] + ul');
+    }
+    bind() {
+        this.buttonSecondaryMenu.addEventListener("click", ()=>{
+            this.secondaryMenuContent.classList.toggle("isOpen");
+        });
+    }
+    connectedCallback() {
+        this.bind();
+    }
+}
+customElements.define("m-secondarymenu", $7351c43b9b965213$var$Secondarymenu);
+
+});
+
+parcelRegister("kK3lH", function(module, exports) {
+document.addEventListener("DOMContentLoaded", function() {
+    let elementosSubdued = document.querySelectorAll(".-subdued");
+    if (elementosSubdued.length === 0) return;
+    for(let i = 0; i < elementosSubdued.length; i++){
+        let elementoActual = elementosSubdued[i];
+        let elementoSiguiente = elementosSubdued[i + 1];
+        if (elementoSiguiente && elementoSiguiente.previousElementSibling === elementoActual) {
+            elementoActual.classList.add("-firstchild");
+            let indicePrimerElemento = i;
+            while(elementoSiguiente && elementoSiguiente.previousElementSibling === elementoActual){
+                i++;
+                elementoActual = elementoSiguiente;
+                elementoSiguiente = elementosSubdued[i + 1];
+            }
+            elementoActual.classList.add("-lastchild");
+            // Aplicar la clase '-middlechild' a los elementos entre el primero y el último
+            for(let j = indicePrimerElemento + 1; j < i; j++)elementosSubdued[j].classList.add("-middlechild");
+        }
+    }
+});
+
+});
+
+parcelRegister("6lnS6", function(module, exports) {
+class $49e738a189a356b6$var$Success extends HTMLElement {
+    get messageNode() {
+        return this.querySelector("[data-render=message]");
+    }
+    showMessage(message) {
+        this.messageNode.innerText = message;
+    }
+    connectedCallback() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const param = urlParams.get("message");
+        if (param) this.showMessage(param);
+    }
+}
+customElements.define("c-success", $49e738a189a356b6$var$Success);
+
+});
+
+parcelRegister("4r6RI", function(module, exports) {
+class $33af025817457185$var$YouTubeVideo extends HTMLElement {
+    get videoCover() {
+        return this.querySelector('[data-node="youtubeCover"]');
+    }
+    get videoSrc() {
+        return this.videoCover.getAttribute("data-video");
+    }
+    get videoFrame() {
+        return this.querySelector('[data-node="youtubeIframe"]');
+    }
+    hideCover() {
+        this.videoCover.classList.add("fade-out");
+    }
+    addIframeSrc() {
+        this.hideCover();
+        this.videoFrame.src = this.videoSrc + "&autoplay=1";
+    }
+    connectedCallback() {
+        this.bind();
+    }
+    bind() {
+        this.videoCover.addEventListener("click", (e)=>this.addIframeSrc(e));
+    }
+}
+customElements.define("c-youtube-video", $33af025817457185$var$YouTubeVideo);
+
+});
+
+parcelRegister("2z75a", function(module, exports) {
+class $1de45814d595a588$var$CookiesUI extends HTMLElement {
+    constructor(){
+        super();
+        this.initializeComponent();
+    }
+    initializeComponent() {
+        if (this.hasConsent()) this.noShowCookies();
+        else {
+            if (this.isTargetActive()) this.hideBanner();
+            this.showCookies();
+            this.setupCloseButtonListener();
+            this.addEventListeners();
+        }
+    }
+    isTargetActive() {
+        const cookieBanner = document.getElementById("cookiedialog");
+        if (!cookieBanner) return false;
+        const currentFragment = window.location.hash; // Obtiene el fragmento del URL actual
+        return currentFragment === `#${cookieBanner.id}`;
+    }
+    hasConsent() {
+        const cookieAcceptance = JSON.parse(localStorage.getItem("cookie_acceptance"));
+        return cookieAcceptance !== null && "ad_user_data" in cookieAcceptance;
+    }
+    // If we need to check the cookie instead of localstorage  
+    //  hasConsent() {
+    //  return document.cookie.includes("cookie_acceptance");
+    //  }
+    addEventListeners() {
+        this.addEventListener("click", (event)=>{
+            this.handleButtonClick(event);
+        });
+    }
+    handleButtonClick(event) {
+        const trigger = event.target.dataset.trigger;
+        switch(trigger){
+            case "save":
+                this.saveConsentAndCloseBanner();
+                this.sendGTM("launch_gtm");
+                break;
+            case "saveall":
+                this.saveAll();
+                this.saveConsentAndCloseBanner();
+                this.sendGTM("launch_gtm");
+                break;
+            case "deniedall":
+                this.deniedall();
+                this.noShowCookies();
+                this.sendGTM("cookie_denied");
+                break;
+            case "savedialog":
+                this.closeDialog();
+                this.saveConsent();
+                this.noShowCookies();
+                this.sendGTM("launch_gtm");
+                break;
+            case "openpreferences":
+                this.openPreferences();
+                this.sendGTM("cookies_dialog_open");
+                break;
+            default:
+                if (event.target.dataset.title === "") this.toggleContent(event.target);
+                break;
+        }
+    }
+    saveConsentAndCloseBanner() {
+        this.saveConsent();
+        this.noShowCookies();
+    }
+    saveAll() {
+        this.querySelectorAll('input[type="checkbox"]').forEach((checkbox)=>{
+            if (!checkbox.disabled) checkbox.checked = true;
+        });
+    }
+    updateConsent(checkboxLogic) {
+        const currentConsent = JSON.parse(localStorage.getItem("cookie_acceptance")) || {};
+        const currentTime = new Date().getTime();
+        const consent = {
+            consent_date_first: currentConsent.consent_date_first || currentTime,
+            consent_update: currentTime
+        };
+        this.querySelectorAll('input[type="checkbox"]').forEach((checkbox)=>{
+            const checkboxName = checkbox.getAttribute("data-name");
+            consent[checkboxName] = checkboxLogic(checkbox);
+        });
+        localStorage.setItem("cookie_acceptance", JSON.stringify(consent));
+        return consent;
+    }
+    deniedall() {
+        this.updateConsent((checkbox)=>checkbox.disabled ? "granted" : "denied");
+        this.noShowCookies();
+    //    this.saveCookie(); 
+    }
+    saveConsent() {
+        const consent = this.updateConsent((checkbox)=>checkbox.checked ? "granted" : "denied");
+        this.sendGTM("cookie_acceptance");
+    //    this.saveCookie(); 
+    }
+    //    saveCookie() {
+    //      const consent = JSON.parse(localStorage.getItem("cookie_acceptance")) || {};
+    //      const expiryDate = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000); // 1 year expiry
+    //  
+    //      document.cookie = `cookie_acceptance=${JSON.stringify(consent)}; domain:.cabify.com; expires=${expiryDate.toUTCString()}; path=/`;
+    //  }
+    closeDialog() {
+        const scrollY = window.scrollY;
+        window.location.hash = "";
+        window.scroll(0, scrollY);
+    }
+    setupCloseButtonListener() {
+        const buttonClose = document.querySelector('#cookiedialog [title="Cerrar"]');
+        if (buttonClose) buttonClose.addEventListener("click", (e)=>{
+            this.toggleCookies();
+        });
+    }
+    openPreferences() {
+        this.hideBanner();
+        window.location.hash = "cookiedialog"; // Cambia el fragmento de URL
+    }
+    noShowCookies() {
+        document.querySelector("c-cookies").classList.add("-hidden");
+    }
+    showCookies() {
+        document.querySelector("c-cookies").classList.remove("-hidden");
+        this.sendGTM("cookies_banner_open");
+    }
+    toggleCookies() {
+        document.querySelector(".banner").classList.toggle("-hidden");
+    }
+    hideBanner() {
+        document.querySelector(".banner").classList.add("-hidden");
+    }
+    toggleContent(clickedElement) {
+        const articleElement = clickedElement.closest("article");
+        const currentActive = this.querySelector("article.-active");
+        if (currentActive && currentActive !== articleElement) currentActive.classList.remove("-active");
+        articleElement.classList.toggle("-active");
+    }
+    sendGTM(keyEvent, valueEvent) {
+        if (typeof window.dataLayer !== "undefined") {
+            window.dataLayer = window.dataLayer || [];
+            if (valueEvent) //console.log(keyEvent, valueEvent);
+            window.dataLayer.push({
+                event: keyEvent,
+                value: valueEvent
+            });
+            else //console.log(keyEvent);
+            window.dataLayer.push({
+                event: keyEvent
+            });
+        } else console.log("GTM no est\xe1 definido a\xfan.");
+    }
+}
+customElements.define("c-cookies", $1de45814d595a588$var$CookiesUI);
+
+});
+
+parcelRegister("5gQD3", function(module, exports) {
+/*
+
+  Script to propagate all query params in the current url to any link clicked on the page.
+  This help us minimise duplicated pages on Google Search and allow us to have complete tracing of campaign visitors that browse our site.
+  More info: https://developers.google.com/search/blog/2007/09/google-duplicate-content-caused-by-url
+
+*/ let $3d67455d09d61982$var$queryParams = new URLSearchParams(window.location.search);
+function $3d67455d09d61982$var$appendQueryParams(url) {
+    if (!$3d67455d09d61982$var$queryParams.toString()) return url;
+    let concatChar = url.indexOf("?") != -1 ? "&" : "?";
+    let filteredParams = new URLSearchParams();
+    for (let [key, value] of $3d67455d09d61982$var$queryParams.entries())if (key !== "message") filteredParams.append(key, value);
+    let encodedParams = decodeURIComponent(filteredParams.toString());
+    let processedParams = encodedParams.replace(/\?/g, "&");
+    return `${url}${concatChar}${processedParams}`;
+}
+// Delegate click on every <a/> tag instead of attaching individual listeners to avoid performance issues:
+document.body.addEventListener("click", (e)=>{
+    // Support <a/> tags with child elements
+    let target = e.target.tagName === "A" ? e.target : event.target.closest("a");
+    /*
+    Make sure we have a valid target, with href attribute.
+    Make sure we have query params to append.
+  */ if (target && target.hasAttribute("href") && $3d67455d09d61982$var$queryParams.toString() !== "") {
+        let currentHref = target.getAttribute("href");
+        // Make sure links to cabify.com or to an absolute path
+        let pointsToCabify = currentHref.indexOf("cabify.com") != -1 || currentHref.startsWith("/");
+        if (pointsToCabify) // Check if current href already has query params.
+        target.setAttribute("href", $3d67455d09d61982$var$appendQueryParams(currentHref));
+    }
+});
+// Propagate query params to heroiframe component
+// Make sure we have query params and a heroiframe component on the page
+let $3d67455d09d61982$var$iframe = document.querySelector("[data-select=heroiframe]");
+if ($3d67455d09d61982$var$queryParams.toString() !== "" && $3d67455d09d61982$var$iframe) $3d67455d09d61982$var$iframe.setAttribute("src", $3d67455d09d61982$var$appendQueryParams($3d67455d09d61982$var$iframe.src));
+
+});
+
+parcelRegister("5g7S1", function(module, exports) {
+// Delegate click on every <a/> tag instead of attaching individual listeners to avoid performance issues:
+document.body.addEventListener("click", (e)=>{
+    // Support <a/> tags with child elements
+    let target = e.target.tagName === "A" ? e.target : event.target.closest("a");
+    // Make sure we have a valid target, with href attribute.
+    if (target && target.hasAttribute("href")) {
+        let currentHref = target.getAttribute("href");
+        // Detect links to cabify.com or to an absolute path
+        let pointsToCabify = currentHref.indexOf("cabify.com") != -1 || currentHref.startsWith("/");
+        // Detect downloads links hosted at cabify.com or to an absolute path
+        let isDownloadsLocationAnyFile = currentHref.startsWith("/static/downloads/") && currentHref.lastIndexOf(".");
+        let isPDF = currentHref.lastIndexOf(".pdf") > -1;
+        // Check if href starts with #
+        let startsWithHash = currentHref.startsWith("#");
+        if (isDownloadsLocationAnyFile || isPDF) target.setAttribute("download", "");
+        if (!pointsToCabify) target.setAttribute("target", "_blank");
+        if (startsWithHash) {
+            e.preventDefault();
+            // Scroll to the target anchor
+            let targetElement = document.querySelector(currentHref);
+            if (targetElement) targetElement.scrollIntoView({
+                behavior: "smooth"
+            });
+        }
+    }
+});
+
+});
+
+
+parcelRequire("iabPP");
+
+})();
+//# sourceMappingURL=main.js.map
