@@ -12,6 +12,7 @@ import { MessageService } from 'primeng/api';
 import { ScrollPanelModule } from 'primeng/scrollpanel';
 import { CardModule } from 'primeng/card';
 import { GalleriaModule } from 'primeng/galleria';
+import { SidebarModule } from 'primeng/sidebar';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { GalleriaModule } from 'primeng/galleria';
     ToastModule,
     ScrollPanelModule,
     CardModule,
-    GalleriaModule
+    GalleriaModule,
+    SidebarModule
   ],
   providers: [MessageService]
 })

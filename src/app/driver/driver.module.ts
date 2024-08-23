@@ -9,6 +9,8 @@ import { HttpClient } from '@angular/common/http';
 import { DriverHomeComponent } from './driver-home/driver-home.component';
 import { PrimengModule } from '../shared/primeng/primeng.module';
 import { DrvResolverService } from '../shared/resolvers/drv-resolver.service';
+import { FormVehiculeComponent } from './vehicule/components/vehicule/form-vehicule.component';
+import { VehiculeComponent } from './vehicule/vues/vehicule/vehicule.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -24,11 +26,17 @@ const routes: Routes = [
     path: 'home',
     component: DriverHomeComponent
   },
+  {
+    path: 'vehicules',
+    component: VehiculeComponent
+  },
 ];
 
 @NgModule({
   declarations: [
     DriverHomeComponent,
+    FormVehiculeComponent,
+    VehiculeComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +54,7 @@ const routes: Routes = [
   ],
   providers: [],
   exports: [
-    // FormVehiculeComponent,
+    FormVehiculeComponent,
     
   ]
 })

@@ -24,19 +24,19 @@
       <nav class="m-header__aside">
         <ul class="m-header__nav --secondary">
           <li>
-            <div class="m-header__nav__trigger js-header-nav-trigger GTM-header-nav-item" data-header-menu="login">
-              Login
+            <div class="m-header__nav__trigger js-header-nav-trigger GTM-header-nav-item" (click)="isVisibleLogin = true" data-header-menu="login">
+              Se connecter
             </div>
           </li>
           <li>
-            <button class="e-cta --primary --s js-header-nav-trigger GTM-header-nav-item" data-header-menu="sign-up">
-              Sign up
+            <button class="e-cta --primary --s js-header-nav-trigger GTM-header-nav-item" (click)="isVisibleSignup = true" data-header-menu="sign-up">
+              S'inscrire
             </button>
           </li>
           <li>
             <button class="e-cta --outline --s js-header-nav-trigger GTM-header-nav-item" data-header-menu="language">
               <i class="e-icon --flag-en --xs"></i>
-              EN
+              Fr
             </button>
           </li>
         </ul>
@@ -140,14 +140,14 @@
             <li>
               <button class="m-header__popover__link js-header-nav-trigger GTM-header-nav-item"
                 data-header-menu="login">
-                Login
-                <i class="e-icon --s --direction_right_md" aria-hidden="true"></i>
+                Se connecter
+                <i class="e-icon --s --direction_right_md" aria-hidden="true" (click)="isVisibleLogin = true"></i>
               </button>
             </li>
           </ul>
         </nav>
       </div>
-      <div class="m-header__popover__inner --hidden js-header-nav-menu" data-header-menu="drivers" aria-hidden="true">
+      <!-- <div class="m-header__popover__inner --hidden js-header-nav-menu" data-header-menu="drivers" aria-hidden="true">
         <nav class="m-header__popover__section  js-header-popover-section">
           <h4 class="m-header__popover__title e-heading --3xs">
             Drive
@@ -579,18 +579,19 @@
           </ul>
           <div class="m-header__popover__pill --l js-header-popover-pill"></div>
         </nav>
-      </div>
+      </div> -->
     </div>
   </m-header>
 </div>
 <section class="m-hero ">
   <section class="g-container">
     <div class="g-cell -x6">
-      <h1 class="t-title-1">Safer, better quality, and a city at your fingertips</h1>
-      <p class="t-subtitle">Become a driver and start earning</p>
+      <!-- <h1 class="t-title-1">Safer, better quality, and a city at your fingertips</h1> -->
+      <h1 class="t-title-1">Plus sûr, de meilleure qualité, et une ville à portée de main</h1>
+      <p class="t-subtitle">Devenez transporteur de bagages et commencez à gagner</p>
       <div class="g-container g-cell -x6">
-        <a class="e-cta -primary" href="https://cabify.com/en/drivers">
-          Drive with us
+        <a class="e-cta -primary"  (click)="isVisible = true">
+          Télécharger l'application
         </a>
       </div>
     </div>
@@ -606,7 +607,7 @@
     </div>
     <div class="g-cell -x6">
       <div class="g-container g-cell -x6">
-        <p class="e-tag">Why choose cabify</p>
+        <p class="e-tag">Pourquoi choisir <span class="tracking-wider font-bold">IBAGAGE</span> </p>
       </div>
       <ul class="g-container g-cell -x6">
         <li class="g-container g-cell -x6">
@@ -614,9 +615,9 @@
             <figure class="e-bounded"><i class="e-icon -large -shield_person"></i></figure>
           </div>
           <div class="g-cell -x5">
-            <p class="t-text-superlead --bold">Your safety is our priority</p>
-            <p class="t-text-lead">With geolocated rides, verified drivers and a safety button available to take care
-              of you during your ride.</p>
+            <p class="t-text-superlead --bold">Votre sécurité est notre priorité</p>
+            <p class="t-text-lead">Avec des trajets géolocalisés, des chauffeurs vérifiés et
+               un bouton de sécurité disponible pour prendre soin de vous pendant votre trajet.</p>
           </div>
         </li>
         <li class="g-container g-cell -x6">
@@ -624,9 +625,9 @@
             <figure class="e-bounded"><i class="e-icon -large -shield_check"></i></figure>
           </div>
           <div class="g-cell -x5">
-            <p class="t-text-superlead --bold">The highest quality standards</p>
-            <p class="t-text-lead">Professional drivers, modern vehicles and the ability to control your journey
-              preferences via the app. At last, you’ll travel as you deserve to.</p>
+            <p class="t-text-superlead --bold">Les normes de qualité les plus élevées</p>
+            <p class="t-text-lead">Des chauffeurs professionnels, des véhicules modernes et la possibilité 
+              de contrôler vos préférences de voyage via l'application. Enfin, vous voyagerez comme vous le méritez.</p>
           </div>
         </li>
         <li class="g-container g-cell -x6">
@@ -634,13 +635,13 @@
             <figure class="e-bounded"><i class="e-icon -large -coins"></i></figure>
           </div>
           <div class="g-cell -x5">
-            <p class="t-text-superlead --bold">Clear and transparent prices</p>
-            <p class="t-text-lead">We always show you the price before you order the journey so that you can decide
-              how best to get there. No surprises.</p>
+            <p class="t-text-superlead --bold">Des prix clairs et transparents</p>
+            <p class="t-text-lead">Nous vous montrons toujours le prix avant que vous ne commandiez le trajet afin que 
+              vous puissiez décider de la meilleure façon d'y arriver. Pas de surprises.</p>
           </div>
         </li>
       </ul>
-      <div class="g-container g-cell -x5 e-cta-stores -offset-x1">
+      <!-- <div class="g-container g-cell -x5 e-cta-stores -offset-x1">
         <a href="https://y9vg.adj.st?adj_t=b2u0cdb&adj_deeplink=cabify%3A%2F%2F%2F&campaign=ALL_ORGANIC_HOME&adj_redirect=https%3A%2F%2Fitunes.apple.com%2Fes%2Fapp%2Fcabify-tu-chofer-privado%2Fid476087442%3Fmt%3D8"
           title="App IOS" class="GTM-apple">
           <img src="https://cabify.website/static/badges/badge_appstore_en.svg" alt="App Store download button">
@@ -655,11 +656,11 @@
           web app
           <i class="e-icon -arrow_right_md"></i>
         </a>
-      </div>
+      </div> -->
     </div>
   </section>
 </section>
-<section class="m-mediaimage">
+<!-- <section class="m-mediaimage">
   <section class="g-container -reverse">
     <div class="g-cell -x6 media-img">
       <img alt="" class="e-image -ratio-4-3" src="https://cabify.website/static/pages/index/home-mediaimage.png">
@@ -763,28 +764,18 @@
       </a>
     </div>
   </section>
-</section>
+</section> -->
 <div id="v3" class="v3-footer">
   <m-footer class="m-footer theme-brand">
     <div class="m-footer__container g-container">
       <div class="m-footer__head g-container g-cell --x12">
         <div class="m-footer__logo g-cell --x6 --tablet:x3 --mobile:x2">
-          <a href="https://cabify.com/en" title="Go to Homepage">
-            <img src="https://assets.cabifil.es/images/logos_cabify/lo_cabify_inverted.svg" alt="Cabify Logo">
-          </a>
-        </div>
-        <div class="e-cta-stores g-cell --x6 --tablet:x3 --mobile:x2">
-          <a href="https://y9vg.adj.st?adj_t=b2u0cdb&adj_deeplink=cabify%3A%2F%2F%2F&campaign=ALL_ORGANIC_HOME&adj_redirect=https%3A%2F%2Fitunes.apple.com%2Fes%2Fapp%2Fcabify-tu-chofer-privado%2Fid476087442%3Fmt%3D8"
-            title="App IOS" class="GTM-apple">
-            <img src="/static/badges/badge_appstore.svg" alt="Botón de descarga App Store">
-          </a>
-          <a href="https://y9vg.adj.st?adj_t=b2u0cdb&adj_deeplink=cabify%3A%2F%2F%2F&campaign=ALL_ORGANIC_HOME&adj_redirect=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.cabify.rider"
-            title="App Android" class="GTM-android">
-            <img src="/static/badges/badge_googleplay.svg" alt="Botón de descarga Google Play">
-          </a>
+          <div class="">
+            <img src="assets/pictures/faviconWebSite.png" alt="" class="w-36 max-w-fit">
+          </div>
         </div>
       </div>
-      <div class="m-footer__main g-container g-cell --x12">
+      <!-- <div class="m-footer__main g-container g-cell --x12">
         <div class="m-footer__column g-cell --x3 --tablet:x3 --mobile:x12">
           <div class="m-footer__group">
             <header>
@@ -962,26 +953,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="m-footer__foot g-container g-cell --x12">
         <div class="m-footer__column g-cell --x6 --tablet:x2 --mobile:x12">
-          <label class="GTM-footer-nav-item">
-            <select data-trigger="countrySelector">
-              <optgroup label="Local">
-                <option value="/ar">Argentina</option>
-                <option value="/cl">Chile</option>
-                <option value="/co">Colombia</option>
-                <option value="/es">España</option>
-                <option value="/mx">México</option>
-                <option value="/pe">Perú</option>
-                <option value="/uy">Uruguay</option>
-              </optgroup>
-              <optgroup label="Global">
-                <option value="/en/">English</option>
-              </optgroup>
-            </select>
-            <i class="e-icon -direction_down_md" aria-hidden="true"></i>
-          </label>
         </div>
         <div class="m-footer__column g-cell --x3 --tablet:x2 --mobile:x12">
           <div class="e-cta-rrss">
@@ -998,7 +972,7 @@
           </div>
         </div>
         <div class="m-footer__column g-cell --x3 --tablet:x2 --mobile:x12">
-          <p>© 2024 Maxi Mobility S.L.</p>
+          <p>© 2024 NewDev Maroc.</p>
         </div>
       </div>
     </div>
@@ -1435,6 +1409,7 @@
       l'application dès aujourd'hui et expérimentez la manière la plus simple de transporter vos bagages.</p>
   </section>
 </main>
+<p-toast position="bottom-right"/> -->
 
 <p-dialog [(visible)]="isVisible" [style]="{ width: '35rem' }" [modal]="true" [draggable]="false" [resizable]="false">
   <div class="flex justify-center items-center h-full">
@@ -1518,5 +1493,3 @@
   </div>
 </p-dialog>
 
-
-<p-toast position="bottom-right"/> -->

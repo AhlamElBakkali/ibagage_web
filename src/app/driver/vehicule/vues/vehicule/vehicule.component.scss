@@ -1,0 +1,15 @@
+// ion-footer {
+//     background-color: white !important;
+//     height: 50px !important;
+//     min-height: 50px !important;
+//     position: fixed !important;
+//     bottom: 4px !important;
+// }
+::ng-deep app-vehicule {
+    .p-card-body {
+        @apply rounded-xl cursor-pointer mb-5 flex
+    }   
+    .p-card-content {
+        @apply py-0
+    }
+}

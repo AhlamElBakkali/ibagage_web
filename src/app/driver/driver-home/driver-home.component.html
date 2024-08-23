@@ -1,27 +1,7 @@
-<!-- <div>
-    <div [attr.dir]="getDirection()" class="bg-white fixed p-2 w-full" id="main-content">
-      <div class="items-center flex justify-between">
-        <div class="bg-white dark:bg-night-500 py-2 rounded-full shadow" (click)="setDataString('menu.toggle', 1)">
-          <ion-menu-button slot="start" class="text-2xl text-primary p-0">
-          </ion-menu-button>
-        </div>
-        <div id="present-alert" class="bg-white p-1 px-2">
-          <ion-toggle [checked]="getUser().dispo" color="success" (ionChange)="checkAvailability($event)">
-            {{ 'ONLINE' | translate }}
-          </ion-toggle>
-        </div>
-        <ion-alert id="availability-alert" [header]="alertHeader" [message]="alertMessage"
-          [buttons]="alertButtons"></ion-alert>
-        <div class=" bg-white p-1 px-2 rounded-full shadow"><ion-icon name="notifications"
-            class="text-2xl text-primary"></ion-icon>
-        </div>
-      </div>
-    </div>
-  </div> -->
-<!-- <app-menu></app-menu> -->
-<div class="">
-  <div *ngIf="getDataList('annonces.liste_annonces').length === 0">
-    <div class="justify-center flex pt-[30%]">
+<app-menu></app-menu>
+<div *ngIf="getDataList('annonces.liste_annonces').length === 0" class="w-full p-40">
+  <div class=" bg-white rounded-lg shadow p-56">
+    <div class="justify-center flex">
       <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon"
         style="width: 3rem; height: 3rem;vertical-align: middle;fill: currentColor;overflow: hidden; fill: rgb(214, 214, 214);"
         viewBox="0 0 1024 1024" version="1.1">
@@ -31,63 +11,65 @@
     </div>
     <div class="text-center text-[#bbbbbb] font-medium text-sm tracking-wide">{{'NOANNOUNCEMENT' | translate}}</div>
   </div>
-  <div [attr.dir]="getDirection()" class="w-full pt-28 p-32">
-    <div class="w-full">
-      <div class="relative grid grid-cols-2 gap-10 ">
-        <p-card [style]="{ width: '100%', height: '100%'}" styleClass="custombar1"
-          *ngFor="let annonce of getDataList('annonces.liste_annonces')"
-          (click)="setDataObject('annonce.current_annonce', annonce);vars.isopen = true">
-          <div class="flex gap-2 px-3 pt-2">
-            <div class=" text-black font-bold first-letter:uppercase text-lg">
-              {{annonce.user.nom}}<span class="font-normal text-gray-600 text-sm">,
-                {{annonce.user?.data_adresse?.tel}}</span>
-            </div>
+</div>
+<div *ngIf="getDataList('annonces.liste_annonces').length > 0" [attr.dir]="getDirection()" class="pt-32 px-32">
+  <div class="w-full">
+    <div class="relative grid grid-cols-2 gap-10">
+      <p-card [style]="{ width: '100%', height: '100%'}" styleClass="custombar1"
+        *ngFor="let annonce of getDataList('annonces.liste_annonces')"
+        (click)="setDataObject('annonce.current_annonce', annonce);vars.isopen = true">
+        <div class="flex gap-2 px-3 pt-2">
+          <div class=" text-black font-bold first-letter:uppercase text-lg">
+            {{annonce.user.nom}}<span class="font-normal text-gray-600 text-sm">,
+              {{annonce.user?.data_adresse?.tel}}</span>
           </div>
-          <div class="pl-3 pr-2 pt-4">
-            <div class="p-1 text-gray-700 flex gap-2 items-center">
-              <i class="pi pi-circle-on text-green-500 text-sm"></i>
-              {{annonce.data_adresse?.d}}
+        </div>
+        <div class="pl-3 pr-2 pt-4">
+          <div class="p-1 text-gray-700 flex gap-2 items-center">
+            <i class="pi pi-circle-on text-green-500 text-sm"></i>
+            {{annonce.data_adresse?.d}}
+          </div>
+          <div class="p-1 text-gray-700 flex gap-2 items-center pt-1">
+            <i class="pi pi-circle-on text-red-500 text-sm"></i>
+            {{annonce.data_adresse?.a}}
+          </div>
+          <div class="text-[0.8rem] pb-1 pt-3 text-gray-600 self-center">
+            <span class=" tracking-wide text-sm">{{'TITTLEDATE' | translate}} {{annonce.date_fin
+              | date: 'MMM d, y'}}</span>
+          </div>
+          <div class="flex justify-between">
+            <div class="flex -space-x-4 rtl:space-x-reverse" *ngIf="annonce.medias as medias">
+              <img *ngFor="let pic of medias" class="w-12 h-12 border-2 border-white rounded-lg dark:border-gray-800"
+                [src]="api+'/files/'+pic.fichier+'/'+pic.nom" alt="" alt="">
+              <div
+                class="flex items-center justify-center w-12 h-12 text-xs font-medium text-white bg-violet-600 border-2 border-white rounded-lg hover:bg-violet-700 dark:border-gray-800">
+                {{medias.length}}</div>
             </div>
-            <div class="p-1 text-gray-700 flex gap-2 items-center pt-1">
-              <i class="pi pi-circle-on text-red-500 text-sm"></i>
-              {{annonce.data_adresse?.a}}
-            </div>
-            <div class="text-[0.8rem] pb-1 pt-3 text-gray-600 self-center">
-              <span class=" tracking-wide text-sm">{{'TITTLEDATE' | translate}} {{annonce.date_fin
-                | date: 'MMM d, y'}}</span>
-            </div>
-            <div class="flex justify-between">
-              <div class="flex -space-x-4 rtl:space-x-reverse" *ngIf="annonce.medias as medias">
-                <img *ngFor="let pic of medias" class="w-12 h-12 border-2 border-white rounded-lg dark:border-gray-800"
-                  [src]="api+'/files/'+pic.fichier+'/'+pic.nom" alt="" alt="">
-                <div
-                  class="flex items-center justify-center w-12 h-12 text-xs font-medium text-white bg-violet-600 border-2 border-white rounded-lg hover:bg-violet-700 dark:border-gray-800">
-                  {{medias.length}}</div>
-              </div>
-              <!-- <a [href]="'tel:'+annonce.user.data_adresse.tel" style="text-align: -webkit-center">
+            <!-- <a [href]="'tel:'+annonce.user.data_adresse.tel" style="text-align: -webkit-center">
                                 <i class="pi pi-phone p-2 bg-teal-500 text-white rounded-full" name="call"></i>
                             </a> -->
-            </div>
           </div>
-        </p-card>
-      </div>
+        </div>
+      </p-card>
     </div>
   </div>
-  <p-dialog [(visible)]="vars.isopen" [style]="{ width: '40rem' }" [modal]="true" [draggable]="false"
-    dismissableMask="false" [resizable]="false">
-    <div *ngIf="getDataObject('annonce.current_annonce') as annonce" class="opn-padding">
-      <div class=" text-black pr-7 text-lg font-bold first-letter:uppercase bg-primary-50 p-3 rounded-sm">
-        {{annonce.user?.nom}} {{'ANNDESCR' | translate}}
-        {{annonce.date_fin | date: 'd MMM, y' }}<span *ngIf="annonce.user?.data_adresse?.tel">, {{'CALLHIM' | translate}} {{annonce.user?.data_adresse?.tel}}</span>.
-      </div>
-      <div class="p-2">
-        <div class="flex justify-center gap-8">
-          <div class="text-center">
-            <img *ngFor="let pic of annonce.user?.medias"
-              class="w-[3.5rem] h-[3.5rem] border-2 border-white rounded-full dark:border-gray-800"
-              [src]="api+'/files/'+pic.fichier+'/'+pic.nom" alt="" alt="">
-          </div>
-          <!-- <a [href]="'tel:'+annonce.user.data_adresse.tel" style="text-align: -webkit-center">
+</div>
+<p-dialog [(visible)]="vars.isopen" [style]="{ width: '40rem' }" [modal]="true" [draggable]="false"
+  dismissableMask="false" [resizable]="false">
+  <div *ngIf="getDataObject('annonce.current_annonce') as annonce" class="opn-padding">
+    <div class=" text-black pr-7 text-lg font-bold first-letter:uppercase bg-primary-50 p-3 rounded-sm">
+      {{annonce.user?.nom}} {{'ANNDESCR' | translate}}
+      {{annonce.date_fin | date: 'd MMM, y' }}<span *ngIf="annonce.user?.data_adresse?.tel">, {{'CALLHIM' | translate}}
+        {{annonce.user?.data_adresse?.tel}}</span>.
+    </div>
+    <div class="p-2">
+      <div class="flex justify-center gap-8">
+        <div class="text-center">
+          <img *ngFor="let pic of annonce.user?.medias"
+            class="w-[3.5rem] h-[3.5rem] border-2 border-white rounded-full dark:border-gray-800"
+            [src]="api+'/files/'+pic.fichier+'/'+pic.nom" alt="" alt="">
+        </div>
+        <!-- <a [href]="'tel:'+annonce.user.data_adresse.tel" style="text-align: -webkit-center">
                 <i class="p-3 bg-teal-500 text-white rounded-full pi pi-phone"></i>
                 <div class="text-xs">
                   Contacter
@@ -99,46 +81,45 @@
                   {{'SECURITY' | translate}}
                 </div>
               </div> -->
+      </div>
+      <div class="py-3">
+        <div class="flex pb-2 items-center">
+          <div
+            class="w-3 h-3 bg-violet-500  rounded-full -start-1.5 mr-2 border border-white dark:border-gray-900 dark:bg-gray-700">
+          </div><span class=" font-medium">{{annonce.data_adresse?.d}}</span>
         </div>
-        <div class="py-3">
-          <div class="flex pb-2 items-center">
-            <div
-              class="w-3 h-3 bg-violet-500  rounded-full -start-1.5 mr-2 border border-white dark:border-gray-900 dark:bg-gray-700">
-            </div><span class=" font-medium">{{annonce.data_adresse?.d}}</span>
-          </div>
-          <div class="flex items-center">
-            <div
-              class="w-3 h-3 bg-emerald-500 rounded-full  -start-1.5 mr-2 border border-white dark:border-gray-900 dark:bg-gray-700">
-            </div><span class=" font-medium">{{annonce.data_adresse?.a}}
-            </span>
-          </div>
-        </div>
-        <div class="p-2 border-[1px] border-gray-400 first-letter:uppercase" *ngIf="annonce.description">
-          {{annonce.description}}
-        </div>
-        <div class="flex gap-2 py-2">
-          <span class="bg-gray-100 text-gray-700 rounded-md px-2 py-1 text-xs font-extralight p-1">150g</span>
-          <span class="bg-gray-100 text-gray-700 rounded-md px-2 py-1 text-xs font-extralight p-1">cammion</span>
+        <div class="flex items-center">
+          <div
+            class="w-3 h-3 bg-emerald-500 rounded-full  -start-1.5 mr-2 border border-white dark:border-gray-900 dark:bg-gray-700">
+          </div><span class=" font-medium">{{annonce.data_adresse?.a}}
+          </span>
         </div>
       </div>
-      <div>
-        <audio *ngIf="getAnnonceVocal(annonce) as vocal" controls>
-          <source [src]="api+'/files/'+vocal.fichier+'/'+vocal.nom" type="audio/webm">
-        </audio>
+      <div class="p-2 border-[1px] border-gray-400 first-letter:uppercase" *ngIf="annonce.description">
+        {{annonce.description}}
       </div>
-      <div class="flex justify-center">
-        <p-galleria *ngIf="annonce.medias?.length>0" [value]="annonce.medias" [autoPlay]="true" [circular]="true"
-          [responsiveOptions]="responsiveOptions" [numVisible]="5" [containerStyle]="{ 'max-width': '640px' }">
-          <ng-template pTemplate="item" let-pic>
-            <img class="p-2 " [src]="api+'/files/'+pic.fichier+'/'+pic.nom" alt="" />
-          </ng-template>
-          <ng-template pTemplate="thumbnail" let-pic>
-            <div class="grid grid-nogutter justify-content-center">
-              <img class="p-2" [src]="api+'/files/'+pic.fichier+'/'+pic.nom" alt="" />
-            </div>
-          </ng-template>
-        </p-galleria>
+      <div class="flex gap-2 py-2">
+        <span class="bg-gray-100 text-gray-700 rounded-md px-2 py-1 text-xs font-extralight p-1">150g</span>
+        <span class="bg-gray-100 text-gray-700 rounded-md px-2 py-1 text-xs font-extralight p-1">cammion</span>
       </div>
     </div>
-  </p-dialog>
-</div>
+    <div>
+      <audio *ngIf="getAnnonceVocal(annonce) as vocal" controls>
+        <source [src]="api+'/files/'+vocal.fichier+'/'+vocal.nom" type="audio/webm">
+      </audio>
+    </div>
+    <div class="flex justify-center">
+      <p-galleria *ngIf="annonce.medias?.length>0" [value]="annonce.medias" [autoPlay]="true" [circular]="true"
+        [responsiveOptions]="responsiveOptions" [numVisible]="5" [containerStyle]="{ 'max-width': '640px' }">
+        <ng-template pTemplate="item" let-pic>
+          <img class="p-2 " [src]="api+'/files/'+pic.fichier+'/'+pic.nom" alt="" />
+        </ng-template>
+        <ng-template pTemplate="thumbnail" let-pic>
+          <div class="grid grid-nogutter justify-content-center">
+            <img class="p-2" [src]="api+'/files/'+pic.fichier+'/'+pic.nom" alt="" />
+          </div>
+        </ng-template>
+      </p-galleria>
+    </div>
+  </div>
+</p-dialog>

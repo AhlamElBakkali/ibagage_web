@@ -1,0 +1,73 @@
+<div id="v3" class="v3-header p-0 fixed w-full">
+  <header class="m-header js-header" data-header-menu="main">
+    <div class="m-header__inner flex justify-between items-center js-header-nav">
+      <div class="flex gap-x-4 items-center">
+        <div (click)="visibleSidebar=true" class="cursor-pointer">
+          <svg _ngcontent-ng-c4020586682="" width="14" height="14" fill="#6B7280" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg" class="w-7 h-7">
+            <path _ngcontent-ng-c4020586682="" fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd"></path>
+          </svg>
+        </div>
+        <div class="header_logo cursor-pointer">
+          <img src="assets/pictures/favicon_dark.png" class="w-36" />
+        </div>
+      </div>
+      <div class="p-2 flex gap-2">
+        <div class="bg-white rounded-full shadow self-center cursor-pointer">
+          <i class="pi pi-bell p-2 px-3 text-xl font-medium hover:text-orange-300 text-[#6B7280] duration-200"></i>
+      </div>
+        <div *ngIf="!getUser().medias || getUser().medias.length === 0"
+          class="bg-white rounded-full shadow self-center cursor-pointer">
+          <i class="pi pi-user p-2 px-3 text-xl font-medium hover:text-primary text-[#6B7280] duration-200"></i>
+        </div>
+        <img *ngIf="getUser().medias && getUser().medias.length > 0 && getUser().medias[0].nom"
+          [src]="this.api + '/files/'+getUser().medias[0].fichier+'/'+ getUser().medias[0].nom" alt=""
+          class="h-10 w-10 rounded-full shadow cursor-pointer ">
+      </div>
+    </div>
+  </header>
+</div>
+
+<p-sidebar [(visible)]="visibleSidebar" [baseZIndex]="10000" [position]="getDirection()==='rtl' ? 'right' : 'left'"
+  [showCloseIcon]="false">
+  <!-- [dismissable]="getDataString('menu.toggle') === '0'" -->
+  <div [attr.dir]="getDirection()" class=" dark:bg-night-900 ">
+    <div class="header_logo border-b-[1px] border-gray-400">
+      <img src="assets/pictures/favicon_dark.png" class="w-36 pb-3" />
+    </div>
+    <!-- <div class="bg-gray-50 dark:bg-night-900 ">
+      <div class="p-2 flex gap-2">
+        <div *ngIf="!getUser().medias || getUser().medias.length === 0"
+          class="bg-[#ebe8ffa3] dark:bg-violet-200 opacity-[99%] p-2 px-3 rounded-full">
+          <i class="pi pi-user max-sm:text-2xl text-3xl font-semibold text-[#6B50F6] dark:text-[#2B215C]"></i>
+        </div>
+        <img *ngIf="getUser().medias && getUser().medias.length > 0 && getUser().medias[0].nom"
+          [src]="this.api + '/files/'+getUser().medias[0].fichier+'/'+ getUser().medias[0].nom" alt=""
+          class="h-16 w-16 rounded-full shadow">
+        <div class="self-center">
+          <div class="text-gray-400 text-xs"></div>
+          <div class="text-xl text-gray-600 dark:text-white font-semibold first-letter:uppercase">{{getUser().nom}}
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="cursor-pointer ">
+      <ul class="space-y-2 font-medium p-1 pt-4 dark:bg-night-900">
+        <li *ngFor="let item of getDataList('commun.menu')" (click)="routerLink(item.routerLink)">
+          <div
+            class="flex items-center p-2 text-gray-600 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-night-500 group">
+            <i [ngClass]="item.iconp" class="text-2xl"></i>
+            <div class="ms-3 text-base font-medium">{{item.label | translate}}</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="absolute text-center left-[20%] flex justify-center bottom-0">
+      <button pButton type="button" (click)="changeMode(getUser())"
+        class="mb-4 text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:ring-purple-100 font-medium rounded-lg text-base px-8 py-2.5 dark:hover:bg-primary focus:outline-none dark:focus:ring-night-200">{{isDriverPrivilege()
+        ? "Mode passager" : "Mode courrier"}}</button>
+    </div>
+  </div>
+</p-sidebar>

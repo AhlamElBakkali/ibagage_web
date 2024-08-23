@@ -1,0 +1,13 @@
+::ng-deep .app-menu {
+    .p-sidebar-content {
+        padding: 0 !important;
+    }
+}
+
+ul li:before {
+    display: none;
+}
+
+#v3 .m-header {
+    padding: 0 !important;
+}
