@@ -1,9 +1,9 @@
 <div class="main-content bg-white h-fit static rounded-3xl shadow mx-24 lg:mx-64 pb-4">
-    <div class="text-center text-xl text-white p-4 font-semibold rounded-t-3xl bg-primary">Emplacement d'arrivée</div>
+    <div class="text-center text-xl text-white p-4 font-semibold rounded-t-3xl bg-primary"> {{'ARR' | translate}} </div>
     <div [attr.dir]="getDirection()" class="w-full h-[70vh] p-8">
         <div class="flex w-full justify-center gap-x-10 pb-6 text-lg">
             <div class="static">
-                <input id="pac-input" type="text" [(ngModel)]="vars.searchText" class="xl:w-[40rem] w-full">
+                <input id="pac-input" type="text" [(ngModel)]="vars.searchText" class="xl:w-[40rem] w-full" [placeholder]="'SEARCH' | translate">
                 <button class="absolute right-0 top-0 mt-2 mr-3" (click)="vars.searchText = ''">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="gray" class="h-8 w-4">
                         <path fill-rule="evenodd"
@@ -47,7 +47,7 @@
         <button
             (click)="addAnnouncement({user:convertToNumber(getUser().id) ,data_adresse: {a: vars.adresseArrival,d: vars.data.data_adresse.d},data_location:{a:{lg:vars.centerLocation.lng,lt:vars.centerLocation.lat},d:{lg:vars.data.data_location.d.lg,lt:vars.data.data_location.d.lt}}})"
             class="bg-primary z-10 cursor-pointer px-10 py-2 hover:bg-secondary text-white rounded-lg shadow-[-10px_-10px_30px_4px_rgba(0,0,0,0.1),_10px_10px_30px_4px_rgba(45,78,255,0.15)]">
-            Suivant
+            {{'NEXT' | translate}}
         </button>
     </div>
 </div>

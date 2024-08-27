@@ -231,3 +231,11 @@ header {
   width: 41px;
   height: 25px;
 }
+
+ul li:before{
+  content: none;
+}
+
+.p-sidebar {
+  z-index: 999999999 !important;
+}

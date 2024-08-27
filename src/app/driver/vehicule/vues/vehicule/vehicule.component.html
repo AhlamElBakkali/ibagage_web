@@ -1,13 +1,3 @@
-<!-- <ion-header>
-  <div [attr.dir]="getDirection()" class="bg-white fixed p-2 w-full" id="main-content">
-    <div class="items-center flex justify-between">
-      <div class="bg-white dark:bg-night-500 py-2 rounded-full shadow" (click)="setDataString('menu.toggle', 1)"><ion-menu-button
-          slot="start" class="text-2xl text-primary"></ion-menu-button> </div>
-      <div class=" bg-white p-1 px-2 rounded-full shadow"><ion-icon name="notifications"
-          class="text-2xl text-primary"></ion-icon></div>
-    </div>
-  </div>
-</ion-header> -->
 <app-menu></app-menu>
 <div class="">
   <div *ngIf="getDataList('vehicules.liste_vehicules').length === 0" class="w-full p-40">
@@ -23,29 +13,48 @@
       <div class="text-center text-[#bbbbbb] font-medium text-sm tracking-wide">{{'EMPTYVEHI' | translate}}</div>
     </div>
   </div>
-  <div *ngIf="getDataList('vehicules.liste_vehicules').length > 0" class="w-full pt-32 px-32 grid grid-cols-2 gap-6 ">
-    <p-card *ngFor="let vehicule of getDataList('vehicules.liste_vehicules')"
-      (click)="setDataObject('vehicule.current_vehicule', vehicule);vars.isopen = true">
-      <div class="float-right p-[0.2rem]" *ngIf="vehicule.activated">
-        <span class="relative flex h-3 w-3">
-          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-          <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
-        </span>
-      </div>
-      <div class="flex gap-2 pl-3 pt-2">
-        <div class=" text-black font-bold first-letter:uppercase">
-          {{vehicule.immatriculation}}
+  <div *ngIf="getDataList('vehicules.liste_vehicules').length > 0" class="w-full pt-32 px-32 gap-6 ">
+    <p-card *ngFor="let vehicule of getDataList('vehicules.liste_vehicules')">
+      <div>
+        <div class="flex text-lg gap-2 w-fit p-3 rounded-xl  bg-gray-50">
+          <div class=" text-black pr-7 text-center text-lg font-bold first-letter:uppercase">
+            {{vehicule.immatriculation}}<span class=" text-sm font-light w-fit"> -
+              {{vehicule.type_vehicule.libelle}}</span>
+          </div>
         </div>
       </div>
-      <div class="flex gap-2 pl-3 py-2">
-        <div class=" text-black font-bold first-letter:uppercase">
-          <span class="bg-gray-100 text-gray-700 rounded-md px-2 py-1 text-xs font-extralight p-1">
-            {{vehicule.type_vehicule.libelle}}</span>
+      <div class="grid grid-cols-3 gap-4">
+        <div *ngFor="let pic of vehicule.medias" class="flex items-center justify-center w-full p-2">
+          <label
+            class="flex flex-col items-center justify-center w-full h-52 border-[1px] border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+              <p *ngIf="!vars.verso" class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+                <span class="font-semibold">
+                  <ng-container *ngIf="pic.mdl === 'pv'; else rectoOrVerso">
+                    {{ 'PICVEHI' | translate }}
+                  </ng-container>
+                  <ng-template #rectoOrVerso>
+                    <ng-container *ngIf="pic.mdl === 'recto'; else verso">
+                      {{ 'CGRECTO' | translate }}
+                    </ng-container>
+                    <ng-template #verso>
+                      {{ 'CGVERSO' | translate }}
+                    </ng-template>
+                  </ng-template>
+                </span>
+              </p>
+              <img *ngIf="pic" [src]="api+'/files/'+pic.fichier+'/'+pic.nom" alt="Captured Image"
+                class="h-32 w-full rounded-lg" />
+              <img *ngIf="!pic" src="assets/pictures/none1.png" class="h-32 w-full rounded-lg" />
+            </div>
+          </label>
         </div>
       </div>
     </p-card>
   </div>
-  <p-dialog [(visible)]="vars.isopen" [style]="{ width: '40rem' }" [modal]="true" [draggable]="false"
+</div>
+
+  <!-- <p-dialog [(visible)]="vars.isopen" [style]="{ width: '40rem' }" [modal]="true" [draggable]="false"
     dismissableMask="false" [resizable]="false">
     <div *ngIf="getDataObject('vehicule.current_vehicule') as vehicule" class="opn-padding">
       <div class="flex text-lg gap-2 pl-3 pb-3 pt-3 w-fit p-3 rounded-xl  bg-gray-50">
@@ -83,8 +92,7 @@
         </label>
       </div>
     </div>
-  </p-dialog>
-</div>
+  </p-dialog> -->
 <!-- <ion-footer [translucent]="true">
   <ion-toolbar class="text-center">
     <div class="pt-1" (click)="openForm()">

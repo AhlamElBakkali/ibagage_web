@@ -11,6 +11,7 @@ import { PrimengModule } from '../shared/primeng/primeng.module';
 import { DrvResolverService } from '../shared/resolvers/drv-resolver.service';
 import { FormVehiculeComponent } from './vehicule/components/vehicule/form-vehicule.component';
 import { VehiculeComponent } from './vehicule/vues/vehicule/vehicule.component';
+import { StartedComponent } from './started/started.component';
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
@@ -30,13 +31,18 @@ const routes: Routes = [
     path: 'vehicules',
     component: VehiculeComponent
   },
+  {
+    path: 'started',
+    component: StartedComponent
+  },
 ];
 
 @NgModule({
   declarations: [
     DriverHomeComponent,
     FormVehiculeComponent,
-    VehiculeComponent
+    VehiculeComponent,
+    StartedComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,78 @@
+<app-menu></app-menu>
+<div class="grid grid-cols-1 items-center" style="width: -webkit-fill-available;">
+    <div class="bg-primary rounded-md text-white shadow mx-32 mt-32 lg:mx-64 p-4 text-lg">
+        Pour continuer la navigation tant qu'un courrier, veuillez renseigner toutes les informations.
+    </div>
+    <div *ngIf="getUser() as user" class=" bg-white rounded-3xl shadow mx-24 mb-20 mt-10 lg:mx-64 p-8">
+        <div class="p-4">
+            <p-dropdown [options]="getDataList('vehicules.liste_type_vehicules')" [(ngModel)]="vars.type_vehicule"
+                optionLabel="name" [showClear]="true" [placeholder]="'TYPEVEHI' | translate">
+                <ng-template pTemplate="selectedItem" let-selectedOption>
+                    <div class="flex align-items-center gap-x-3">
+                        <img [src]="'assets/vehicules/'+selectedOption.code + '.png'" style="width: 30px" />
+                        <div>{{selectedOption.libelle}}</div>
+                    </div>
+                </ng-template>
+                <ng-template let-vehicule pTemplate="item">
+                    <div class="flex align-items-center gap-x-3">
+                        <img [src]="'assets/vehicules/'+vehicule.code + '.png'" style="width: 30px" />
+                        <div>{{vehicule.libelle}}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+        <div class="p-4">
+            <input pInputText class="text-center" [placeholder]="'PLQIMMTR' | translate" type="text"
+                [(ngModel)]="vars.immatriculation" name="matricule">
+        </div>
+        <div class="flex items-center justify-center w-full p-5" (click)="takePicture('pv')">
+            <label
+                class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg *ngIf="!vars.pv" class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                    </svg>
+                    <img *ngIf="vars.pv" [src]="vars.pv" alt="Captured Image" class="h-24 w-32 rounded-lg" />
+                    <p *ngIf="!vars.pv" class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                            class="font-semibold">{{'PICVEHI' | translate}}</span> </p>
+                </div>
+            </label>
+        </div>
+        <div class="flex items-center justify-center w-full p-5" (click)="takePicture('recto')">
+            <label
+                class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg *ngIf="!vars.recto" class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                    </svg>
+                    <img *ngIf="vars.recto" [src]="vars.recto" alt="Captured Image" class="h-24 w-32 rounded-lg" />
+                    <p *ngIf="!vars.recto" class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                            class="font-semibold">{{'CGRECTO' | translate}}</span> </p>
+                </div>
+            </label>
+        </div>
+        <div class="flex items-center justify-center w-full p-5" (click)="takePicture('verso')">
+            <label
+                class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                    <svg *ngIf="!vars.verso" class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                    </svg>
+                    <img *ngIf="vars.verso" [src]="vars.verso" alt="Captured Image" class="h-24 w-32 rounded-lg" />
+                    <p *ngIf="!vars.verso" class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
+                            class="font-semibold"> {{'CGVERSO' | translate}} </span> </p>
+                </div>
+            </label>
+        </div>
+        <div class="text-center pt-8">
+            <button pButton class="dark" (click)="saveChanges()" data-header-menu="login">
+                {{'SAVE' | translate}}
+            </button>
+        </div>
+    </div>

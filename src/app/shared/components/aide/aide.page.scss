@@ -1,0 +1,17 @@
+.under::after {
+  content: '';
+  background-color: rgba(131, 107, 252, 0.692);
+  height: 12px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -8%;
+  z-index: -1;
+}
+.under {
+  position: relative;
+}
+p {
+  font-size: 1.5em;
+}

@@ -44,7 +44,7 @@ const routes: Routes = [
     component: NewAnnouncementComponent
   },
   {
-    path: 'my_announcements',
+    path: 'annonce',
     component: MyannouncementComponent
   },
     

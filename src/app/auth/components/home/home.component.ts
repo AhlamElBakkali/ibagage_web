@@ -3,6 +3,7 @@ import { Composant } from '../../../core/types/composant.base';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { AppService } from '../../../core/types/services/app.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -20,14 +21,16 @@ export class HomeComponent extends Composant {
   switchValue = true;
   showPassword: boolean = false;
   termsAccepted = false;
-
+  rememberMe = true;
   
   constructor(
     protected override app: AppService,
     private router: Router,
     private authService: AuthService,
+    public translate: TranslateService
   ) {
     super(app);
+    translate.use(localStorage.getItem('lang') || 'fr');
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -63,10 +66,10 @@ export class HomeComponent extends Composant {
       return;
     }
 
-    if (this.vars.remember) {
+    if (this.rememberMe) {
       localStorage.setItem('login', this.vars.login);
       localStorage.setItem('password', this.vars.password);
-      localStorage.setItem('remember', this.vars.remember);
+      localStorage.setItem('remember', this.rememberMe.toString());
     } else {
       localStorage.removeItem('login');
       localStorage.removeItem('password');

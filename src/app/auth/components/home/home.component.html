@@ -25,12 +25,12 @@
         <ul class="m-header__nav --secondary">
           <li>
             <div class="m-header__nav__trigger js-header-nav-trigger GTM-header-nav-item" (click)="isVisibleLogin = true" data-header-menu="login">
-              Se connecter
+             {{'LOGIN' | translate}}
             </div>
           </li>
           <li>
             <button class="e-cta --primary --s js-header-nav-trigger GTM-header-nav-item" (click)="isVisibleSignup = true" data-header-menu="sign-up">
-              S'inscrire
+             {{'SIGNUP' | translate}}
             </button>
           </li>
           <li>
@@ -62,7 +62,7 @@
           <i class="e-icon --s --close_md" aria-hidden="true"></i>
         </button>
       </div>
-      <div class="m-header__popover__inner js-header-nav-menu" data-header-menu="main">
+      <!-- <div class="m-header__popover__inner js-header-nav-menu" data-header-menu="main">
         <nav class="m-header__popover__section js-header-popover-section">
           <ul class="m-header__popover__menu --l">
             <li>
@@ -146,7 +146,7 @@
             </li>
           </ul>
         </nav>
-      </div>
+      </div> -->
       <!-- <div class="m-header__popover__inner --hidden js-header-nav-menu" data-header-menu="drivers" aria-hidden="true">
         <nav class="m-header__popover__section  js-header-popover-section">
           <h4 class="m-header__popover__title e-heading --3xs">
@@ -1416,11 +1416,11 @@
     <div class="text-center pt-6 pb-14 px-2">
       <img src="assets/pictures/favicon_dark.png" class="w-[40%] mx-auto" alt="">
       <p class="text-3xl text-gray-800 font-semibold mt-5 mb-10">
-        Dirigez l'appareil photo de votre smartphone vers le code QR pour télécharger
+        {{'QRCODE' | translate}}
       </p>
       <img src="assets/pictures/qrcode.png" class="w-1/2 mx-auto" alt="">
       <p class="text-sm text-gray-800 mt-10 font-medium">
-        Scannez le code QR avec l'appareil photo de votre téléphone pour télécharger l'application <span
+        {{'SCANQR' | translate}} <span
           class="font-medium text-secondary">IBAGAGE</span>
       </p>
     </div>
@@ -1432,7 +1432,7 @@
     <div class="text-center pb-16 px-2">
       <img src="assets/pictures/favicon_dark.png" class="w-[70%] mx-auto" alt="">
       <p class="text-lg text-gray-700 font-medium mt-14 mb-6">
-        Se connecter à votre compte
+        {{'LOGINTOURACC' | translate}}
       </p>
       <div class="flex flex-col space-y-4">
         <input pInputText placeholder="Numéro de téléphone" name="phone" [(ngModel)]="vars.login">
@@ -1444,15 +1444,15 @@
           <input pInputText [type]="showPassword ? 'text' : 'password'" placeholder="Mot de passe" name="mdp" [(ngModel)]="vars.password">
         </div>
         <div class="flex items-center justify-end pr-2 pt-1 text-[0.8rem] text-gray-500">
-          <label class="mr-2 mb-2">Me souvenir de moi</label>
-          <p-inputSwitch [(ngModel)]="vars.remember" name="memorise" />
+          <label class="mr-2 mb-2">{{'REMEMBER_ME' | translate}}</label>
+          <p-inputSwitch [(ngModel)]="rememberMe" name="memorise"/>
         </div>
       </div>
       <div class="mt-12">
-        <button p-button class="dark cursor-pointer" severity="help" (click)="doLogin()">Se connecter</button>
-        <div class="text-xs font-medium pt-4"> Vous n'avez pas de compte? <span
+        <button p-button class="dark cursor-pointer" severity="help" (click)="doLogin()">{{'LOGIN' | translate}}</button>
+        <div class="text-xs font-medium pt-4">  {{'NOACCOUNT' | translate}} <span
             class="text-primary dark:text-violet-300 cursor-pointer underline"
-            (click)="isVisibleLogin = false; isVisibleSignup = true">S'inscrire</span></div>
+            (click)="isVisibleLogin = false; isVisibleSignup = true"> {{'SIGNUP' | translate}}</span></div>
       </div>
     </div>
   </div>
@@ -1465,7 +1465,7 @@
     <div class="text-center pt-6 pb-14 px-2">
       <img src="assets/pictures/favicon_dark.png" class="w-[70%] mx-auto" alt="">
       <p class="text-lg text-gray-700 font-medium mt-14 mb-6">
-        Créer votre compte
+        {{'CREATEACCOUNT' | translate}}
       </p>
       <div class="flex flex-col space-y-4">
         <input pInputText placeholder="Nom et prénom" name="name" />
@@ -1479,14 +1479,14 @@
         </div>
         <div class="flex items-center mt-4">
           <p-checkbox value="" inputId="terms"/>
-          <label for="terms" class="ml-2 text-sm">J'accepte les <a href="#" class="text-primary underline">termes et conditions</a></label>
+          <label for="terms" class="ml-2 text-sm">{{'ACCEPT' | translate}} <a href="#" class="text-primary underline"> {{'TERMSCOND' | translate}}</a></label>
         </div>
       </div>
       <div class="mt-16">
-        <button p-button class="dark cursor-pointer" severity="help" [disabled]="!termsAccepted">S'inscrire</button>
+        <button p-button class="dark cursor-pointer" severity="help" [disabled]="!termsAccepted"> {{'SIGNUP' | translate}}</button>
         <div class="text-xs font-medium pt-4">
-          Vous avez deja un compte? <span class="text-primary dark:text-violet-300 cursor-pointer underline"
-            (click)="isVisibleSignup = false; isVisibleLogin = true">Se connecter</span>
+          {{'HADACCOUNT' | translate}} <span class="text-primary dark:text-violet-300 cursor-pointer underline"
+            (click)="isVisibleSignup = false; isVisibleLogin = true">{{'LOGIN' | translate}}</span>
         </div>
       </div>
     </div>

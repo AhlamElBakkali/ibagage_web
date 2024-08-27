@@ -1,0 +1,27 @@
+<div class="h-full mb-10 p-4">
+  <ol>
+    <li (click)="translate.use('ar'); setLang('ar'); setDirection('rtl'); "class="py-2 border-b border-b-gray-100 flex justify-between">
+      <div>
+        <div class="text-sm font-semibold">
+          العربية (المملكة العربية السعودية)
+        </div>
+      </div>
+      <div>
+        <i *ngIf="translate.currentLang === 'ar'" name="checkmark-outline"></i>
+      </div>
+    </li>
+    <li (click)="translate.use('fr'); setLang('fr'); setDirection('ltr')"
+      class="py-2 border-b border-b-gray-100 flex justify-between">
+      <div>
+        <div class="text-sm font-semibold">
+          Français
+        </div>
+        <div class="text-xs text-primary"> Français
+        </div>
+      </div>
+      <div>
+        <i *ngIf="translate.currentLang === 'fr'" name="checkmark-outline"></i>
+      </div>
+    </li>
+  </ol>
+</div>

@@ -1,0 +1,120 @@
+<app-menu></app-menu>
+<div class=" bg-white rounded-lg shadow" *ngIf="getUser() as user">
+  <ul class="p-6 divide-gray-200 dark:divide-gray-700">
+    <li class="pb-6" (click)="setDataString('settings.form', 'cmpt'); setOpen(true)">
+      <div class="flex items-center space-x-4 rtl:space-x-reverse">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-4 text-black font-medium truncate dark:text-white">
+            {{'COMPTE' | translate}}
+          </div>
+        </div>
+        <div class="inline-flex items-center text-base font-semibold text-gray-400 dark:text-white">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M8.51192 4.43057C8.82641 4.161 9.29989 4.19743 9.56946 4.51192L15.5695 11.5119C15.8102 11.7928 15.8102 12.2072 15.5695 12.4881L9.56946 19.4881C9.29989 19.8026 8.82641 19.839 8.51192 19.5695C8.19743 19.2999 8.161 18.8264 8.43057 18.5119L14.0122 12L8.43057 5.48811C8.161 5.17361 8.19743 4.70014 8.51192 4.43057Z"
+              fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+    </li>
+    <li class="pb-6" (click)="setDataString('settings.form', 'lng'); setOpen(true)">
+      <div class="flex items-center space-x-4 rtl:space-x-reverse">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-4 text-black font-medium truncate dark:text-white">
+            {{'LNG' | translate}}
+          </div>
+        </div>
+        <div class="inline-flex items-center text-base font-semibold text-gray-400 dark:text-white">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M8.51192 4.43057C8.82641 4.161 9.29989 4.19743 9.56946 4.51192L15.5695 11.5119C15.8102 11.7928 15.8102 12.2072 15.5695 12.4881L9.56946 19.4881C9.29989 19.8026 8.82641 19.839 8.51192 19.5695C8.19743 19.2999 8.161 18.8264 8.43057 18.5119L14.0122 12L8.43057 5.48811C8.161 5.17361 8.19743 4.70014 8.51192 4.43057Z"
+              fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+    </li>
+    <li *ngIf="user.fonction == 'drv'" class="pb-6" (click)="refreshPosition(user)">
+      <div class="flex items-center space-x-4 rtl:space-x-reverse">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-4 text-black font-medium truncate dark:text-white">
+            {{'POSTIONREFRESH' | translate}}
+          </div>
+        </div>
+        <div class="inline-flex items-center text-base font-semibold text-gray-400 dark:text-white">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M8.51192 4.43057C8.82641 4.161 9.29989 4.19743 9.56946 4.51192L15.5695 11.5119C15.8102 11.7928 15.8102 12.2072 15.5695 12.4881L9.56946 19.4881C9.29989 19.8026 8.82641 19.839 8.51192 19.5695C8.19743 19.2999 8.161 18.8264 8.43057 18.5119L14.0122 12L8.43057 5.48811C8.161 5.17361 8.19743 4.70014 8.51192 4.43057Z"
+              fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+    </li>
+    <li class="pb-6" (click)="setDataString('settings.form', 'abt'); setOpen(true)">
+      <div class="flex items-center space-x-4 rtl:space-x-reverse">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-4 text-black font-medium truncate dark:text-white">
+            {{'PROPOS' | translate}}
+          </div>
+        </div>
+        <div class="inline-flex items-center text-base font-semibold text-gray-400 dark:text-white">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M8.51192 4.43057C8.82641 4.161 9.29989 4.19743 9.56946 4.51192L15.5695 11.5119C15.8102 11.7928 15.8102 12.2072 15.5695 12.4881L9.56946 19.4881C9.29989 19.8026 8.82641 19.839 8.51192 19.5695C8.19743 19.2999 8.161 18.8264 8.43057 18.5119L14.0122 12L8.43057 5.48811C8.161 5.17361 8.19743 4.70014 8.51192 4.43057Z"
+              fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+    </li>
+    <li class="pb-6">
+      <div class="flex items-center space-x-4 rtl:space-x-reverse">
+        <div class="flex-1 min-w-0">
+          <div class="flex items-center gap-4 text-black font-medium truncate dark:text-white">
+            {{'RATE' | translate}}
+          </div>
+        </div>
+        <div class="inline-flex items-center text-base font-semibold text-gray-400 dark:text-white">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M8.51192 4.43057C8.82641 4.161 9.29989 4.19743 9.56946 4.51192L15.5695 11.5119C15.8102 11.7928 15.8102 12.2072 15.5695 12.4881L9.56946 19.4881C9.29989 19.8026 8.82641 19.839 8.51192 19.5695C8.19743 19.2999 8.161 18.8264 8.43057 18.5119L14.0122 12L8.43057 5.48811C8.161 5.17361 8.19743 4.70014 8.51192 4.43057Z"
+              fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+    </li>
+  </ul>
+
+</div>
+<div class=" px-5 text-center w-full absolute bottom-12">
+  <div>
+    <button type="button" (click)="logout()"
+      class="mb-2 w-full text-white bg-primary hover:bg-primary focus:ring-4 focus:ring-purple-100 rounded-lg text-base px-4 py-2.5  dark:hover:bg-primary focus:outline-none dark:focus:ring-night-200">{{'LOGOUT'
+      | translate}}</button>
+  </div>
+  <div>
+    <button type="button" id="present-alert"
+      class="mb-8 w-full text-red-600  bg-[#F3F3F3] hover:bg-[#DCDCDC] focus:ring-4 focus:ring-purple-100 rounded-lg text-base px-4 py-2.5  dark:hover:bg-primary focus:outline-none dark:focus:ring-night-200">{{'ACCDEL'
+      | translate}}</button>
+  </div>
+</div>
+<!-- <ion-alert trigger="present-alert" header="Êtes-vous sûr(e) de vouloir supprimer votre compte ?"
+          message="Toutes les informations liées à votre profil seront définitivement effacées"
+          [buttons]="alertButtons"></ion-alert> -->
+<!-- <ion-modal [isOpen]="isModalOpen"> <ng-template>
+      <div [attr.dir]="getDirection()"
+        class="items-center flex justify-between p-1 bg-primary dark:bg-night-900 text-white ">
+        <div class="items-center flex justify-center gap-1 px-1.5 p-1 rounded-full" (click)="setOpen(false)">
+          <ion-icon name="chevron-back" class="text-xl"></ion-icon>
+          <div class="font-semibold">
+            {{'SETTINGS' | translate}}
+          </div>
+        </div>
+        <div></div>
+        <div></div>
+      </div>
+      <ion-content>
+        <compte-form *ngIf="getDataString('settings.form')==='cmpt'"></compte-form>
+        <langage-form *ngIf="getDataString('settings.form')==='lng'"></langage-form>
+        <about *ngIf="getDataString('settings.form')==='abt'"></about>
+      </ion-content>
+    </ng-template>
+  </ion-modal> -->

@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { AppService } from 'src/app/core/types/services/app.service';
 import { BackEndService } from 'src/app/store/services/back-end.service';
 import { CustomerComposant } from '../../customer.composant';
+import { TranslateService } from '@ngx-translate/core';
 declare const google: any;
 
 @Component({
@@ -19,8 +20,10 @@ export class DepartureMapComponent extends CustomerComposant implements AfterVie
   constructor(
     protected override app: AppService,
     protected override backendService: BackEndService,
+    public translate: TranslateService,
   ) {
     super(app, backendService);
+    translate.use(localStorage.getItem('lang') || 'fr');
   }
 
   ngAfterViewInit() {
