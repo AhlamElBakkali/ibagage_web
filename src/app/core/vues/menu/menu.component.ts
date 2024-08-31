@@ -38,10 +38,11 @@ export class MenuComponent extends Composant  {
   changeMode(data: any) {
     let rout: any;
     if (!this.isDriverPrivilege()) {
-      if(this.getUser().data_driver){
+      if(!this.getUser().data_driver){
         rout = '/driver/started';
       }
       else{
+        console.log(this.getUser().data_driver)
         rout = '/driver/home';
       }
       data.fonction = 'drv';

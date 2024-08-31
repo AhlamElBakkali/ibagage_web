@@ -16,10 +16,12 @@ export class CustomerComposant extends Composant {
   }
 
   MajAnnouncement(data:any) {
+    data.etat = 'pending';
     this.backendService.customer().editAnnStatus({data},'/customer/annonce');
   }
 
   updateStatusAnnonce(status:any,data:any) {
+    console.log(status,data)
     data.etat = status;
     delete data.medias;
     this.backendService.customer().editAnnStatus({data},'/customer/annonce');
@@ -34,4 +36,6 @@ export class CustomerComposant extends Composant {
     this.backendService.customer().deleteMedia(this.Actions.Del,id);
   }
 
+
+  
 }

@@ -1,15 +1,15 @@
-
-<div *ngIf="getDataObject('customer.annonce') as annonce" class="p-6 bg-white m-8 mt-32 lg:m-32 shadow rounded-lg">
-    <!-- <app-wait-modal *ngIf="isloading"></app-wait-modal> -->
-    <div class="pt-6 w-full px-4">
-        <div class="flex justify-between p-2 pb-4">
+<app-menu></app-menu>
+<div *ngIf="getDataObject('customer.annonce') as annonce"
+    class="absolute bg-white h-fit rounded-3xl p-8 mx-10 lg:mx-40 md:mx-28 sm:mx-20 mt-28 shadow"
+    style="width: -webkit-fill-available;">
+    <div class="w-full p-10 pb-4">
+        <div class="flex justify-between p-2 pb-6">
             <ol class="relative border-s border-gray-200 dark:border-gray-700 text-gray-500 font-medium">
                 <li class="mb-2 ms-6">
                     <div
                         class="absolute w-3 h-3 bg-[#6B50F6] rounded-full -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700">
                     </div>
                     <div>{{annonce?.data_adresse?.d}}</div>
-                    <!-- <div>Oued fès</div> -->
                 </li>
                 <li class="mb-8 ms-6">
                     <div
@@ -22,14 +22,13 @@
                     </div>
                     <div class=" pt-3">
                         {{annonce?.data_adresse?.a}}
-                        <!-- Hay anas -->
                     </div>
                 </li>
             </ol>
         </div>
-        <div class="my-6 grid md:grid-cols-3 lg:grid-cols-3 gap-y-5 gap-x-12 items-center">
+        <div class="my-6 grid lg:grid-cols-3 gap-y-5 gap-x-12 items-center">
             <div class="">
-                <label for="" class="text-gray-600 text-sm m-1">Type de véhicule:</label>
+                <div for="" class="text-gray-600 text-sm m-1">{{'TYPEVEHI' | translate}}</div>
                 <p-dropdown [options]="getDataList('vehicules.liste_type_vehicules')" [(ngModel)]="vars.type_vehicule"
                     optionLabel="name" optionValue="id" [showClear]="true" placeholder="Pickup">
                     <ng-template pTemplate="selectedItem" let-selectedOption>
@@ -47,29 +46,30 @@
                 </p-dropdown>
             </div>
             <div class="">
-                <span class=" text-gray-600 text-sm m-1 ">Jusqu'à: </span>
+                <span class=" text-gray-600 text-sm m-1 ">{{'TILL' | translate}}: </span>
                 <input type="date" name="date_deb" ngClass="" displayFormat="DD/MM/YYYY"
                     [(ngModel)]="annonce.date_fin" />
             </div>
             <div class="">
-                <label for="" class="text-gray-600 text-sm m-1">Poids:</label>
+                <label for="" class="text-gray-600 text-sm m-1">{{'WEIGHT' | translate}}:</label>
                 <input type="number" name="poids" placeholder="10 Kg" class="" [(ngModel)]="annonce.poids" />
             </div>
             <div class="col-span-2 ">
-                <label for="" class="text-gray-600 text-sm m-1">Description:</label>
+                <label for="" class="text-gray-600 text-sm m-1">{{'DESC' | translate}}:</label>
                 <textarea class="
                 " placeholder="Saisir votre description..." type="text" rows="9" [(ngModel)]="annonce.description"
                     name="description"></textarea>
             </div>
         </div>
         <div class="w-fit">
-            <div *ngIf="!isRecording && !blobUrl" class="bg-primary text-white gap-x-2 px-3 py-2 flex items-center rounded-lg"
+            <div *ngIf="!isRecording && !blobUrl"
+                class="bg-primary text-white gap-x-2 px-3 py-2 flex items-center rounded-lg cursor-pointer tracking-wide"
                 id="mic-modal" (click)="startRecording()">
                 <i class="pi pi-microphone text-[2.1rem]"></i>
-                Enregistrez votre audio
+                {{'SAVEAUDIO' | translate}}
             </div>
-            <div *ngIf="isRecording && !blobUrl" class="bg-primary text-white p-3 gap-x-4 flex items-center rounded-lg"
-                id="mic-modal" (click)="stopRecording()">
+            <div *ngIf="isRecording && !blobUrl" (click)="stopRecording()"
+                class="bg-primary text-white p-3 gap-x-4 flex items-center rounded-lg cursor-pointer tracking-wide">
                 <i class="pi pi-pause-circle text-[2rem]"></i>
                 <div *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div>
             </div>
@@ -79,9 +79,9 @@
                 </audio>
             </div>
         </div>
-        <div class="text-center">
-            <button pButton class="bg-primary text-white font-medium px-4 py-2" (click)="visibleDialog = true">
-                <i class="pi pi-camera text-3xl mr-2"></i>Choisir une image
+        <div class="text-center pt-4">
+            <button pButton class="bg-primary text-white px-4 py-2 tracking-wide" (click)="visibleDialog = true">
+                <i class="pi pi-camera text-3xl mr-2"></i>{{'CHOOSEIMG' | translate}}
             </button>
             <div class="flex w-full flex-wrap gap-5 justify-center">
                 <div class="p-2 col-span-3" *ngFor="let img of getDataList('annonce.medias')">
@@ -101,10 +101,11 @@
             </div>
         </div>
         <div class="pt-20 text-center w-full">
-            <button pButton class="dark" (click)="MajAnnouncement(annonce)">Enregistrer</button>
+            <button pButton class="dark" (click)="MajAnnouncement(annonce)">{{'SAVE' | translate}}</button>
         </div>
     </div>
 </div>
+
 <p-dialog [(visible)]="visibleDialog" [modal]="true" header="Ajouter les images" [draggable]="false"
     [style]="{ width: '55rem' }" [resizable]="false">
     <div class="px-4 pt-10 pb-2">
@@ -124,7 +125,7 @@
             </div>
         </div>
     </div>
-    <div class="text-center pt-12">
+    <div class="text-center pt-8">
         <button pButton label="Enregistrer" class="dark" (click)="saveMedias()"></button>
     </div>
 </p-dialog>

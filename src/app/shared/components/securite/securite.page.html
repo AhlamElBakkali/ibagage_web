@@ -1,206 +1,94 @@
-<div>
-  <div class="relative w-full h-[100vh] overflow-hidden">
-    <!-- <div [attr.dir]="getDirection()" class="absolute top-0 z-10 w-full py-2 px-2">
-      <div class="w-full" id="main-content">
-        <div class="items-center flex justify-between">
-          <div class="bg-white dark:bg-night-500 py-2 rounded-full shadow"><ion-menu-button slot="start"
-              class="text-2xl text-primary dark:text-violet-200"></ion-menu-button> </div>
-          <div class="bg-white dark:bg-night-500 p-1 px-2 rounded-full shadow"><ion-icon name="notifications"
-              class="text-2xl text-primary dark:text-violet-200"></ion-icon></div>
-        </div>
-      </div>
-    </div> -->
-    <div class="pt-16">
-      <div class="p-4" style="text-align: -webkit-center;">
-        <img src="assets/icon/favicon.png" alt="securite" class="w-28 h-28">
-      </div>
-      <div class="text-center text-lg font-bold">
-        {{'SECTITTLE' | translate}}
-      </div>
-      <div>
-        <ul [attr.dir]="getDirection()" class="p-6 max-w-md  divide-gray-200 dark:divide-gray-700">
-          <li class="pb-6">
-            <a href="tel:150" class="flex items-center space-x-4 rtl:space-x-reverse">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-4 font-medium text-gray-900 truncate dark:text-white">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M11.0376 4.31617L11.6866 5.4791C12.2723 6.52858 12.0372 7.90532 11.1147 8.8278C11.1147 8.8278 11.1147 8.8278 11.1147 8.8278C11.1146 8.82792 9.99588 9.94685 12.0245 11.9755C14.0525 14.0035 15.1714 12.8861 15.1722 12.8853C15.1722 12.8853 15.1722 12.8853 15.1722 12.8853C16.0947 11.9628 17.4714 11.7277 18.5209 12.3134L19.6838 12.9624C21.2686 13.8468 21.4557 16.0692 20.0628 17.4622C19.2258 18.2992 18.2004 18.9505 17.0669 18.9934C15.1588 19.0658 11.9183 18.5829 8.6677 15.3323C5.41713 12.0817 4.93421 8.84122 5.00655 6.93309C5.04952 5.7996 5.7008 4.77423 6.53781 3.93723C7.93076 2.54428 10.1532 2.73144 11.0376 4.31617Z"
-                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                  </svg>
-                  <div class="font-semibold">{{'URGENCE' | translate}}</div>
-                </div>
-              </div>
-              <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                <svg  width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M8.51192 4.43057C8.82641 4.161 9.29989 4.19743 9.56946 4.51192L15.5695 11.5119C15.8102 11.7928 15.8102 12.2072 15.5695 12.4881L9.56946 19.4881C9.29989 19.8026 8.82641 19.839 8.51192 19.5695C8.19743 19.2999 8.161 18.8264 8.43057 18.5119L14.0122 12L8.43057 5.48811C8.161 5.17361 8.19743 4.70014 8.51192 4.43057Z"
-                    fill="currentColor" />
-                </svg>
-  
-              </div>
-            </a>
-          </li>
-          <li class="pb-6">
-            <a href="https://wa.me/0708356461" class="flex items-center space-x-4 rtl:space-x-reverse">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-4 font-medium text-gray-900 truncate dark:text-white">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 13.5997 2.37562 15.1116 3.04346 16.4525C3.22094 16.8088 3.28001 17.2161 3.17712 17.6006L2.58151 19.8267C2.32295 20.793 3.20701 21.677 4.17335 21.4185L6.39939 20.8229C6.78393 20.72 7.19121 20.7791 7.54753 20.9565C8.88837 21.6244 10.4003 22 12 22Z"
-                      stroke="currentColor" stroke-width="1.5" />
-                    <path d="M8 10.5H16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                    <path d="M8 14H13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                  </svg>
-                  <div class="font-semibold">{{'CONCT' | translate}}</div>
-                </div>
-              </div>
-              <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M8.51192 4.43057C8.82641 4.161 9.29989 4.19743 9.56946 4.51192L15.5695 11.5119C15.8102 11.7928 15.8102 12.2072 15.5695 12.4881L9.56946 19.4881C9.29989 19.8026 8.82641 19.839 8.51192 19.5695C8.19743 19.2999 8.161 18.8264 8.43057 18.5119L14.0122 12L8.43057 5.48811C8.161 5.17361 8.19743 4.70014 8.51192 4.43057Z"
-                    fill="currentColor" />
-                </svg>
-              </div>
-            </a>
-          </li>
-          <li class="pb-6" (click)="setOpen(true)">
-            <div class="flex items-center space-x-4 rtl:space-x-reverse">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-4 font-medium text-gray-900 truncate dark:text-white">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                      d="M15.0595 10.4995C15.3353 10.1905 15.3085 9.71642 14.9995 9.44055C14.6905 9.16467 14.2164 9.19151 13.9405 9.50049L10.9286 12.8739L10.0595 11.9005C9.78358 11.5915 9.30947 11.5647 9.00049 11.8405C8.69151 12.1164 8.66467 12.5905 8.94055 12.8995L10.3691 14.4995C10.5114 14.6589 10.7149 14.75 10.9286 14.75C11.1422 14.75 11.3457 14.6589 11.488 14.4995L15.0595 10.4995Z"
-                      fill="currentColor" />
-                    <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M12 1.25C11.0625 1.25 10.1673 1.55658 8.72339 2.05112L7.99595 2.30014C6.51462 2.8072 5.3714 3.19852 4.55303 3.53099C4.14078 3.69846 3.78637 3.86067 3.50098 4.02641C3.22634 4.1859 2.95082 4.38484 2.76363 4.65154C2.5786 4.91516 2.48293 5.23924 2.42281 5.55122C2.36031 5.87556 2.32262 6.26464 2.2983 6.71136C2.25 7.59836 2.25 8.81351 2.25 10.3896V11.9914C2.25 18.0924 6.85803 21.0175 9.59833 22.2146L9.62543 22.2264C9.96523 22.3749 10.2846 22.5144 10.6516 22.6084C11.0391 22.7076 11.4507 22.75 12 22.75C12.5493 22.75 12.9609 22.7076 13.3484 22.6084C13.7154 22.5144 14.0348 22.3749 14.3745 22.2264L14.4017 22.2146C17.142 21.0175 21.75 18.0924 21.75 11.9914V10.3898C21.75 8.81361 21.75 7.5984 21.7017 6.71136C21.6774 6.26464 21.6397 5.87556 21.5772 5.55122C21.5171 5.23924 21.4214 4.91516 21.2364 4.65154C21.0492 4.38484 20.7737 4.1859 20.499 4.02641C20.2136 3.86067 19.8592 3.69846 19.447 3.53099C18.6286 3.19852 17.4854 2.8072 16.004 2.30013L15.2766 2.05112C13.8327 1.55658 12.9375 1.25 12 1.25ZM9.08062 3.5143C10.6951 2.96164 11.3423 2.75 12 2.75C12.6577 2.75 13.3049 2.96164 14.9194 3.5143L15.4922 3.71037C17.0048 4.22814 18.1079 4.60605 18.8824 4.92069C19.269 5.07774 19.5491 5.20935 19.7457 5.32353C19.8428 5.3799 19.9097 5.42642 19.9543 5.46273C19.9922 5.49349 20.0066 5.51092 20.0087 5.51348C20.0106 5.5166 20.0231 5.53737 20.0406 5.58654C20.0606 5.64265 20.0827 5.72309 20.1043 5.83506C20.148 6.06169 20.1811 6.37301 20.2039 6.79292C20.2497 7.63411 20.25 8.80833 20.25 10.4167V11.9914C20.25 17.1665 16.3801 19.7135 13.8012 20.84C13.4297 21.0023 13.2152 21.0941 12.9764 21.1552C12.7483 21.2136 12.47 21.25 12 21.25C11.53 21.25 11.2517 21.2136 11.0236 21.1552C10.7848 21.0941 10.5703 21.0023 10.1988 20.84C7.6199 19.7135 3.75 17.1665 3.75 11.9914V10.4167C3.75 8.80833 3.75028 7.63411 3.79608 6.79292C3.81894 6.37301 3.85204 6.06169 3.89571 5.83506C3.91729 5.72309 3.93944 5.64265 3.95943 5.58654C3.97693 5.5374 3.98936 5.51663 3.99129 5.51349C3.99336 5.51095 4.0078 5.49351 4.04567 5.46273C4.09034 5.42642 4.15722 5.3799 4.25429 5.32353C4.4509 5.20935 4.731 5.07774 5.11759 4.92069C5.8921 4.60605 6.99521 4.22814 8.5078 3.71037L9.08062 3.5143Z"
-                      fill="currentColor" />
-                  </svg>
-                  <div class="font-semibold">{{'CONSEILSEC' | translate}}</div>
-                </div>
-              </div>
-              <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" clip-rule="evenodd"
-                    d="M8.51192 4.43057C8.82641 4.161 9.29989 4.19743 9.56946 4.51192L15.5695 11.5119C15.8102 11.7928 15.8102 12.2072 15.5695 12.4881L9.56946 19.4881C9.29989 19.8026 8.82641 19.839 8.51192 19.5695C8.19743 19.2999 8.161 18.8264 8.43057 18.5119L14.0122 12L8.43057 5.48811C8.161 5.17361 8.19743 4.70014 8.51192 4.43057Z"
-                    fill="currentColor" />
-                </svg>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
+<app-menu></app-menu>
+<div class="absolute bg-white h-fit rounded-3xl p-8 mx-10 lg:mx-40 md:mx-28 sm:mx-20 mt-28 shadow" style="width: -webkit-fill-available;">
+  <div class="flex justify-center w-full">
+    <img class="h-80" src="assets/pictures/security.png" alt="">
   </div>
-  <!-- <ion-modal [isOpen]="isModalOpen">
-    <ng-template>
-      <div [attr.dir]="getDirection()" class="flex justify-between p-1 bg-primary dark:bg-night-900 text-white items-center">
-        <div class="px-1.5 p-1 rounded-full" (click)="setOpen(false)">
-          <ion-icon name="chevron-back" class="text-xl"></ion-icon>
+  <div [attr.dir]="getDirection()">
+    <ol class="px-10">
+      <li class="py-3 border-b border-b-gray-100">
+        <div class="flex gap-2">
+          <div
+            class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
+            1
+          </div>
+          <div class="self-end font-semibold text-lg">
+            {{'SEC1' | translate}}
+          </div>
         </div>
-        <div class="font-semibold">
-          {{'SECURITY' | translate}}
+        <div class="pl-10 pt-3">
+          {{'SEC1DET' | translate}}
         </div>
-        <div></div>
-      </div>
-      <ion-content>
-        <div style="text-align: -webkit-center;">
-          <img class="w-48 h-48" src="assets/pictures/security.png" alt="">
+      </li>
+      <li class="py-3 border-b border-b-gray-100">
+        <div class="flex gap-2">
+          <div
+            class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
+            2
+          </div>
+          <div class="self-end font-semibold text-lg">
+            {{'SEC2' | translate}}
+          </div>
         </div>
-        <div [attr.dir]="getDirection()" class="h-full mb-10 p-4">
-          <ol>
-            <li class="py-2 border-b border-b-gray-100">
-              <div class="flex gap-2">
-                <div
-                  class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
-                  1
-                </div>
-                <div class="self-end font-semibold text-lg">
-                  {{'SEC1' | translate}}
-                </div>
-              </div>
-              <div class="pl-10 pt-3">
-                {{'SEC1DET' | translate}}
-              </div>
-            </li>
-            <li class="py-2 border-b border-b-gray-100">
-              <div class="flex gap-2">
-                <div
-                  class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
-                  2
-                </div>
-                <div class="self-end font-semibold text-lg">
-                  {{'SEC2' | translate}}
-                </div>
-              </div>
-              <div class="pl-10 pt-3">
-                {{'SEC2DET' | translate}}
-              </div>
-            </li>
-            <li class="py-2 border-b border-b-gray-100">
-              <div class="flex gap-2">
-                <div
-                  class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
-                  3
-                </div>
-                <div class="self-end font-semibold text-lg">
-                  {{'SEC3' | translate}}
-                </div>
-              </div>
-              <div class="pl-10 pt-3">
-                {{'SEC3DET' | translate}}
-              </div>
-            </li>
-            <li class="py-2 border-b border-b-gray-100">
-              <div class="flex gap-2">
-                <div
-                  class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
-                  4
-                </div>
-                <div class="self-end font-semibold text-lg">
-                  {{'SEC4' | translate}}
-                </div>
-              </div>
-              <div class="pl-10 pt-3">
-                {{'SEC4DET' | translate}}
-              </div>
-            </li>
-            <li class="py-2 border-b border-b-gray-100">
-              <div class="flex gap-2">
-                <div
-                  class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
-                  5
-                </div>
-                <div class="self-end font-semibold text-lg">
-                  {{'SEC5' | translate}}
-                </div>
-              </div>
-              <div class="pl-10 pt-3">
-                {{'SEC5DET' | translate}}
-              </div>
-            </li>
-            <li class="py-2 border-b border-b-gray-100">
-              <div class="flex gap-2">
-                <div
-                  class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
-                  6
-                </div>
-                <div class="self-end font-semibold text-lg">
-                  {{'SEC6' | translate}}
-                </div>
-              </div>
-              <div class="pl-10 pt-3">
-                {{'SEC6DET' | translate}}
-              </div>
-            </li>
-          </ol>
+        <div class="pl-10 pt-3">
+          {{'SEC2DET' | translate}}
         </div>
-        <p>
-
-        </p>
-      </ion-content>
-    </ng-template>
-  </ion-modal>
-  <app-menu></app-menu> -->
+      </li>
+      <li class="py-3 border-b border-b-gray-100">
+        <div class="flex gap-2">
+          <div
+            class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
+            3
+          </div>
+          <div class="self-end font-semibold text-lg">
+            {{'SEC3' | translate}}
+          </div>
+        </div>
+        <div class="pl-10 pt-3">
+          {{'SEC3DET' | translate}}
+        </div>
+      </li>
+      <li class="py-3 border-b border-b-gray-100">
+        <div class="flex gap-2">
+          <div
+            class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
+            4
+          </div>
+          <div class="self-end font-semibold text-lg">
+            {{'SEC4' | translate}}
+          </div>
+        </div>
+        <div class="pl-10 pt-3">
+          {{'SEC4DET' | translate}}
+        </div>
+      </li>
+      <li class="py-3 border-b border-b-gray-100">
+        <div class="flex gap-2">
+          <div
+            class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
+            5
+          </div>
+          <div class="self-end font-semibold text-lg">
+            {{'SEC5' | translate}}
+          </div>
+        </div>
+        <div class="pl-10 pt-3">
+          {{'SEC5DET' | translate}}
+        </div>
+      </li>
+      <li class="py-3 border-b border-b-gray-100">
+        <div class="flex gap-2">
+          <div
+            class="w-8 h-8 bg-primary text-center font-semibold text-white rounded-full flex items-center justify-center font-mono">
+            6
+          </div>
+          <div class="self-end font-semibold text-lg">
+            {{'SEC6' | translate}}
+          </div>
+        </div>
+        <div class="pl-10 pt-3">
+          {{'SEC6DET' | translate}}
+        </div>
+      </li>
+    </ol>
+  </div>
 </div>

@@ -1,9 +1,9 @@
 <app-menu></app-menu>
-<div class="absolute bg-white h-fit rounded-3xl p-8 mx-40 mt-28 shadow" style="width: -webkit-fill-available;">
+<div class="absolute bg-white h-fit rounded-3xl p-8 mx-10 lg:mx-40 md:mx-28 sm:mx-20 mt-28 shadow" style="width: -webkit-fill-available;">
   <div [attr.dir]="getDirection()" class="w-full h-[70vh]">
     <div class="flex w-full justify-center gap-x-10 pb-6">
       <div class="relative">
-        <input id="pac-input" type="text" [(ngModel)]="vars.searchText" class="lg:w-[30rem] w-full" [placeholder]="'SEARCH' | translate">
+        <input id="pac-input" type="text" [(ngModel)]="vars.searchText" class="xl:w-[37rem] md:w-[18rem] sm:w-[12rem]" [placeholder]="'SEARCH' | translate">
         <button class="absolute right-0 top-0 mt-2 mr-3" (click)="vars.searchText = ''">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="gray" class="h-8 w-4">
             <path fill-rule="evenodd"

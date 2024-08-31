@@ -9,6 +9,7 @@ import { HomeModule } from './auth/components/home/home.module';
 import { AuthInterceptorService } from './core/types/services/auth-interceptor.service';
 import { CustomerModule } from './customer/customer.module';
 import { DriverModule } from './driver/driver.module';
+import { MessageService } from 'primeng/api';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { DriverModule } from './driver/driver.module';
     ],
   bootstrap: [AppComponent],
   providers: [
+    MessageService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,

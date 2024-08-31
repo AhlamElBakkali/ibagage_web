@@ -27,6 +27,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
   imports: [ FormsModule, 
     StoreModule, 
+    PrimengModule,
     CoreModule,
     CommonModule,
     TranslateModule.forRoot({

@@ -25,9 +25,9 @@
 }
 
 // input
-input,textarea {
-  @apply  border-primary
-  bg-white appearance-none border shadow rounded-lg w-full py-3.5 px-4 text-[0.95rem] text-gray-500 leading-tight focus:outline-none focus:border-third
+input,
+textarea {
+  @apply border-primary bg-white appearance-none border shadow rounded-lg w-full py-3.5 px-4 text-gray-700 leading-tight focus:outline-none focus:border-third
 }
 
 input :focus {
@@ -35,7 +35,7 @@ input :focus {
 }
 
 input :hover {
-  @apply appearance-none border border-primary w-full  text-gray-800 leading-tight bg-[#a7a7a712] mt-1
+  @apply appearance-none border border-primary w-full text-gray-800 leading-tight bg-[#a7a7a712] mt-1
 }
 
 input:enabled:focus {
@@ -72,9 +72,10 @@ input:enabled:hover {
   background-color: #ffffff;
   box-shadow: none;
 }
+
 // dropdown
 .p-dropdown {
-  @apply w-[100%] duration-300 border border-primary text-[0.96rem] lg:w-[24rem];
+  @apply duration-300 border border-primary text-[0.96rem] sm:w-[16rem] md:w-[20rem] xl:w-[22rem] 2xl:w-[23rem] w-[-webkit-fill-available];
 }
 
 .p-dropdown:not(.p-disabled).p-focus {
@@ -94,7 +95,8 @@ input:enabled:hover {
   box-shadow: 0 0 0 0.2rem #0044ff0f;
 }
 
-.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight, .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight:hover{
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight,
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight:hover {
   @apply text-black text-[0.85rem] bg-[#e0daff];
 }
 
@@ -110,24 +112,24 @@ input:enabled:hover {
 
 .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-focus {
   box-shadow: none;
-  @apply border-primary 
+  @apply border-primary
 }
 
 .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
   @apply border-primary border bg-primary text-white;
 }
 
-p-checkbox {
+.p-checkbox {
   box-shadow: none;
   @apply border border-primary rounded-lg bg-primary text-white;
 }
 
-p-checkbox-box p-highlight {
+.p-checkbox-box p-highlight {
   box-shadow: none;
   @apply border border-primary rounded-lg bg-primary text-white;
 }
 
-p-checkbox:checked {
+.p-checkbox:checked {
   box-shadow: none;
   @apply border border-primary rounded-lg bg-primary text-white;
 }
@@ -138,9 +140,8 @@ p-checkbox:checked {
   background-size: cover;
 }
 
-body{
+body {
   @apply bg-gray-50
-
 }
 
 strong {
@@ -171,8 +172,10 @@ header {
 
 .address-display {
   position: absolute;
-  top: -35px; /* Adjust as needed */
-  left: 19px; /* Adjust as needed */
+  top: -35px;
+  /* Adjust as needed */
+  left: 19px;
+  /* Adjust as needed */
   transform: translateX(-50%);
   background-color: #4930c7;
   padding: 5px 10px;
@@ -182,7 +185,8 @@ header {
   border-radius: 5px;
   font-size: smaller;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1000; /* Ensure it appears above the map */
+  z-index: 1000;
+  /* Ensure it appears above the map */
 }
 
 #map_canvas {
@@ -199,14 +203,14 @@ header {
 
 .map-wrapper {
   #map_center {
-      position: absolute;
-      z-index: 99;
-      height: 40px;
-      width: 100%;
-      top: 49%;
-      left: 50.5%;
-      margin-left: -21px;
-      margin-top: -41px;
+    position: absolute;
+    z-index: 99;
+    height: 40px;
+    width: 100%;
+    top: 49%;
+    left: 50.5%;
+    margin-left: -21px;
+    margin-top: -41px;
   }
 }
 
@@ -215,11 +219,13 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000; /* Ensure it is above other elements */
+  z-index: 1000;
+  /* Ensure it is above other elements */
 }
 
 .main-content {
-  margin-top: 7rem; /* Adjust this value as needed to avoid overlapping with the fixed header */
+  margin-top: 7rem;
+  /* Adjust this value as needed to avoid overlapping with the fixed header */
 }
 
 .your-custom-css-class {
@@ -227,15 +233,26 @@ header {
   color: white;
 }
 
-.gm-ui-hover-effect{
+.gm-ui-hover-effect {
   width: 41px;
   height: 25px;
 }
 
-ul li:before{
+ul li:before {
   content: none;
 }
 
 .p-sidebar {
   z-index: 999999999 !important;
+}
+
+.p-confirm-popup-footer {
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+}
+
+.p-confirm-popup-accept {
+  @apply bg-red-500 text-white px-3 py-1 rounded-lg;
+
 }

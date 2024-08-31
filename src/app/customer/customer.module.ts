@@ -15,6 +15,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
 import { PsgResolverService } from '../shared/resolvers/psg-resolver.service';
 import { DriverHomeComponent } from '../driver/driver-home/driver-home.component';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -72,6 +73,9 @@ const routes: Routes = [
       }
     }),
   ],
-  providers: [AudioRecordingService],
+  providers: [AudioRecordingService,
+    MessageService,
+    ConfirmationService
+  ],
 })
 export class CustomerModule { }

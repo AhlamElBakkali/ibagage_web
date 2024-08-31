@@ -9,6 +9,11 @@
   "HELP": "Aide",
   "LOGOUT": "Se déconnecter",
   "TITTLEDATE": "Valable jusqu'à",
+  "TILL": "Jusqu'à",
+  "WEIGHT": "Poids",
+  "DESC": "Description",
+  "SAVEAUDIO": "Enregistrez votre audio",
+  "CHOOSEIMG": "Choisir une image",
   "ANNDESCR": "a annoncé une demande de livraison d'un colis avant le",
   "ADDVEHI": "Ajouter une voiture",
   "EMPTYVEHI": "Aucun véhicule enregistré",
@@ -88,5 +93,18 @@
   "SCANQR":"Scannez le code QR avec l'appareil photo de votre téléphone pour télécharger l'application" ,
   "DRIVER":"Courrier",
   "PASSENGER":"Passager",
-  "CHOOSEROLE": "Trouvez facilement des transporteurs pour vos bagages et bénéficiez d'un service rapide et fiable à tout moment. Laissez des évaluations pour aider à améliorer la qualité du service, assurant ainsi une expérience optimale pour tous les utilisateurs."
+  "CHOOSEROLE": "Trouvez facilement des transporteurs pour vos bagages et bénéficiez d'un service rapide et fiable à tout moment. Laissez des évaluations pour aider à améliorer la qualité du service, assurant ainsi une expérience optimale pour tous les utilisateurs",
+  "CONFIRM_DELETE_MESSAGE": "Êtes-vous sûr de vouloir annuler cette annonce?",
+  "CONFIRMED": "Confirmé",
+  "RECORD_DELETED": "Enregistrement supprimé",
+  "REJECTED": "Rejeté",
+  "REJECTED_DETAIL": "Vous avez refusé l'opération",
+  "CONFIRM_DELETE_ACCOUNT": "Êtes-vous sûr(e) de vouloir supprimer votre compte ?",
+  "DELETE_ACCOUNT_MESSAGE": "Toutes les informations liées à votre profil seront définitivement effacées",
+  "YES": "Oui",
+  "NO": "Non",
+  "MYANNOUNCEMENT": "Ma announces",
+  "CANCELLED": "Annulé",
+  "YOU_HAVE_CANCELLED": "Vous avez annulé"
+  
 }

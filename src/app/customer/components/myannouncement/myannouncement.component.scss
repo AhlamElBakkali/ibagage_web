@@ -3,5 +3,10 @@
   .p-scrollpanel-bar {
     background-color: #cececec4;
   }  
+.p-confirm-popup-footer{
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
+}
 }
   

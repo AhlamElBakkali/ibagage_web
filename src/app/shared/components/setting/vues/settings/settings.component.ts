@@ -1,38 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { AppService } from 'src/app/core/types/services/app.service';
 import { DriverComposant } from 'src/app/driver/vehicule/features/driver.composant';
 import { BackEndService } from 'src/app/store/services/back-end.service';
 
 @Component({
-  selector: 'app-deiver-settings',
+  selector: 'app-settings',
   templateUrl: 'settings.component.html',
   styleUrls: ['settings.component.scss'],
 })
-export class SettingsPage extends DriverComposant  {
-  
+export class SettingsPage extends DriverComposant {
+
   function = localStorage.getItem('role');
 
   constructor(
     protected override app: AppService,
     protected backend: BackEndService,
     private router: Router,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
     public translate: TranslateService
   ) {
     translate.use(localStorage.getItem('lang') || 'fr');
     super(app, backend)
   }
-
-  public alertButtons = [
-    {
-      text: 'Supprimer',
-      role: 'confirm',
-      handler: () => {
-        this.dropAccount(this.getUser())
-      },
-    },
-  ];
 
   isModalOpen = false;
 
@@ -47,10 +40,38 @@ export class SettingsPage extends DriverComposant  {
     localStorage.removeItem('role');
   }
 
-  async refreshPosition(user:any) {
+
+  confirmDeleteAccount(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: this.translate.instant('DELETE_ACCOUNT_MESSAGE'),
+      header: this.translate.instant('CONFIRM_DELETE_ACCOUNT'),
+      icon: 'pi pi-exclamation-triangle',
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-secondary',
+      acceptLabel: this.translate.instant('YES'),
+      rejectLabel: this.translate.instant('NO'), accept: () => {
+        this.dropAccount(this.getUser());
+        this.messageService.add({
+          severity: 'info',
+          summary: this.translate.instant('CONFIRMED'),
+          detail: this.translate.instant('RECORD_DELETED')
+        });
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'info',
+          summary: this.translate.instant('CANCELLED'),
+          detail: this.translate.instant('YOU_HAVE_CANCELLED')
+        });
+      }
+    });
+  }
+
+  async refreshPosition(user: any) {
     if (navigator.geolocation) {
       try {
-        const position:any = await new Promise((resolve, reject) => {
+        const position: any = await new Promise((resolve, reject) => {
           navigator.geolocation.getCurrentPosition(resolve, reject);
         });
         const latitude = position.coords.latitude;
@@ -65,5 +86,5 @@ export class SettingsPage extends DriverComposant  {
       this.app.presentToast('Impossible de charger la position actuelle.', 'bottom', 'error-toast');
     }
   }
-  
+
 }

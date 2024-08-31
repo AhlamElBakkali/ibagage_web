@@ -74,8 +74,13 @@ export class CustomerService extends BaseService {
           if (response) {
             if (action == 'add') { this.setDataObject('customer.annonce', response); }
             if (action == 'edit') { this.setDataList('annonces.liste_annonces', response); }
-            if (action == 'del') { this.setDataList('annonces.liste_annonces', response); }
-            this.router.navigate([route]);
+            if (action == 'del') {
+              console.log('Response:', response);
+              this.setDataList('annonces.liste_annonces', response); }
+            // this.router.navigate([route]);
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+              this.router.navigate([route]);
+            });
           }
         })
       )

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { AudioRecordingService } from '../../audio-recorder.service';
 import { lastValueFrom } from 'rxjs';
 import { DataInput } from 'src/app/core/types/data-input.type';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-new-announcement',
@@ -33,12 +34,12 @@ export class NewAnnouncementComponent extends CustomerComposant implements OnIni
     private apiService: ApiService,
     private audioRecordingService: AudioRecordingService,
     private sanitizer: DomSanitizer,
-    // public translate: TranslateService,
+    public translate: TranslateService,
     private route: Router,
 
   ) {
     super(app, backendService);
-    // translate.use(localStorage.getItem('lang') || 'fr');
+    translate.use(localStorage.getItem('lang') || 'fr');
     this.audioRecordingService
       .recordingFailed()
       .subscribe(() => (this.isRecording = false));
@@ -58,11 +59,7 @@ export class NewAnnouncementComponent extends CustomerComposant implements OnIni
     this.setDataString('menu.toggle', 0)
     this.vars.isopen = false
   }
-
-  createAnnonce() {
-    // this.router.navigate(['/customer/annonce']);
-  }
-
+  
   startRecording() {
     if (!this.isRecording) {
       this.isRecording = true;
@@ -128,9 +125,11 @@ export class NewAnnouncementComponent extends CustomerComposant implements OnIni
 
   download(): void {
     const url = window.URL.createObjectURL(this.teste.blob);
+    console.log(this.teste.blob);
     const link = document.createElement("a");
     link.href = url;
     link.download = this.teste.title;
+    console.log(this.teste);
     link.click();
   }
 

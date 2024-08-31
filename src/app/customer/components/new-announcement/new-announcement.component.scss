@@ -20,8 +20,11 @@
   .remove-button:hover {
     background-color: rgba(0, 0, 0, 0.7);
   }
-
-
+::ng-deep app-new-announcement{
+  .p-dropdown {
+    width: 17rem !important;
+  }
+}
 
   .image-area {
     position: relative;

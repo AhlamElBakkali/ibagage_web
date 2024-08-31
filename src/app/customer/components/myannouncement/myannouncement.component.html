@@ -1,9 +1,10 @@
 <app-menu></app-menu>
-<div class="absolute bg-white h-fit static rounded-3xl shadow mx-24 mt-28 lg:mx-64 pb-4" style="width: -webkit-fill-available; ">
-    <div class="text-center text-lg text-white p-4 font-semibold rounded-t-3xl bg-primary uppercase tracking-wider">Mes annonces</div>
-    <p-scrollPanel [style]="{ width: '100%', height: '30rem'}" styleClass="custombar1">
-        <div [attr.dir]="getDirection()" *ngIf="getDataList('annonces.liste_annonces').length === 0" >
-            <div class="justify-center flex pt-[10%]">
+<div class="absolute bg-white h-fit rounded-3xl shadow mx-24 mt-28 lg:mx-64 pb-4"
+    style="width: -webkit-fill-available; ">
+    <div class="text-center text-lg text-white p-4 font-semibold rounded-t-3xl bg-primary uppercase tracking-wider">{{'MYANNOUNCEMENT' | translate}}</div>
+    <p-scrollPanel [style]="{ width: '100%', height: '38rem'}" styleClass="custombar1">
+        <div [attr.dir]="getDirection()" *ngIf="getDataList('annonces.liste_annonces').length === 0">
+            <div class="justify-center flex pt-[20%]">
                 <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon"
                     style="width: 3rem; height: 3rem;vertical-align: middle;fill: currentColor;overflow: hidden; fill: rgb(214, 214, 214);"
                     viewBox="0 0 1024 1024" version="1.1">
@@ -17,45 +18,44 @@
         </div>
         <div [attr.dir]="getDirection()" class="p-8">
             <div *ngFor="let annonce of getDataList('annonces.liste_annonces')">
-                <div class="p-3 mb-4 rounded-lg shadow items-center">
+                <div class="p-3 mb-4 rounded-lg shadow items-center cursor-pointer"
+                    (click)="vars.isopen = true; vars.annonce = annonce;">
                     <!-- -------------------------------------------------------------------------- -->
-                    <div class="float-end text-sm p-2 px-4 rounded-full text-orange-700 bg-orange-50 "
-                        *ngIf="annonce.etat === 'pending'"
-                        (click)="vars.isopen = true; vars.isPaused = false; vars.annonce = annonce ;">
+                    <div class="float-end text-sm p-2 px-4 rounded-full text-orange-700 bg-red-50 "
+                        *ngIf="annonce.etat === 'pending'" (click)=" vars.isPaused = false; ">
                         {{'PENDING' | translate}}
                     </div>
-                    <div class="float-end text-sm p-1 px-2 rounded-full text-amber-700 "
-                        *ngIf="annonce.etat == 'paused'"
-                        (click)="vars.isopen = true; vars.isPaused = true; vars.annonce = annonce">
+                    <div class="float-end text-sm p-2 px-4 rounded-full text-yellow-700 bg-yellow-50 "
+                        *ngIf="annonce.etat == 'paused'" (click)="vars.isPaused = true;">
                         {{'PAUSED' | translate}}
                     </div>
-                    <div class="float-end text-sm p-1 px-2 rounded-full text-green-700 "
+                    <div class="float-end text-sm p-2 px-4 rounded-full text-green-700 bg-green-50 "
                         *ngIf="annonce.etat === 'confirmed'">
                         {{'DONE' | translate}}
                     </div>
                     <!-- --------------------------------------------------------------------------- -->
                     <div class="text-xs text-gray-500 p-2 pb-3">
-                        {{'DE' | translate}} 
+                        {{'DE' | translate}}
                         {{annonce.date_deb | date: 'd MMM, y' }}
                         {{'A' | translate}}
                         {{annonce.date_fin | date:
                         'd MMM, y' }}
                     </div>
                     <div class="px-3 text-sm text-gray-700 flex gap-2 items-center" *ngIf="annonce.data_adresse.d">
-                        <!-- <ion-icon name="disc-outline" class="text-green-500 text-sm"></ion-icon> -->
+                        <i class="pi pi-circle-on text-green-500 text-sm"></i>
                         {{annonce.data_adresse?.d}}
                     </div>
                     <div class="p-3 text-sm text-gray-700 flex gap-2 items-center">
-                        <!-- <ion-icon name="disc-outline" class="text-red-500 text-sm"></ion-icon> -->
+                        <i class="pi pi-circle-on text-red-500 text-sm"></i>
                         {{annonce.data_adresse?.a}}
                     </div>
                 </div>
             </div>
         </div>
     </p-scrollPanel>
-    <p-dialog header="header" [(visible)]="visible" [style]="{width: 'width', minWidth: 'minWidth'}">
+    <p-dialog [(visible)]="vars.isopen" [style]="{width: '33rem', minWidth: 'minWidth'}" modal="true"
+        baseZIndex="99999999">
         <div [attr.dir]="getDirection()" class="text-center p-4 pt-10">
-            <!-- --------------------------------------------------------------------------- -->
             <div class="pb-3" (click)="updateStatusAnnonce('confirmed',vars.annonce); vars.isopen = false">
                 <button
                     class="w-full text-white bg-primary hover:bg-primary focus:ring-4 focus:ring-purple-100 rounded-lg text-base px-4 py-2.5  dark:hover:bg-primary focus:outline-none dark:focus:ring-night-200">
@@ -66,7 +66,7 @@
                 (click)="updateStatusAnnonce('pending',vars.annonce); vars.isopen = false">
                 <button
                     class="p-3 bg-orange-500 text-white font-medium rounded-lg w-full shadow-[0px_0px_0px_1px_rgba(0,0,0,0.06),0px_1px_1px_-0.5px_rgba(0,0,0,0.06),0px_3px_3px_-1.5px_rgba(0,0,0,0.06),_0px_6px_6px_-3px_rgba(0,0,0,0.06),0px_12px_12px_-6px_rgba(0,0,0,0.06),0px_24px_24px_-12px_rgba(0,0,0,0.06)]">
-                    {{'RESUMEANN' | translate}} 
+                    {{'RESUMEANN' | translate}}
                 </button>
             </div>
             <div *ngIf="vars.isPaused == false" class="pb-3"
@@ -76,15 +76,14 @@
                     {{'STOPANN' | translate}}
                 </button>
             </div>
-            <div (click)="confirmDelete(vars.annonce); vars.isopen = false">
+            <div (click)="confirmDelete($event,vars.annonce)">
                 <button
                     class="mb-8 mt-12 w-full text-red-600  bg-[#F3F3F3] hover:bg-[#DCDCDC] focus:ring-4 focus:ring-purple-100 rounded-lg text-base px-4 py-2.5  dark:hover:bg-primary focus:outline-none dark:focus:ring-night-200">
                     {{'CANCELANN' | translate}}
                 </button>
             </div>
-            <!-- --------------------------------------------------------------------------- -->
         </div>
     </p-dialog>
-    <div>
-    </div>
 </div>
+<p-confirmPopup />
+<p-toast />

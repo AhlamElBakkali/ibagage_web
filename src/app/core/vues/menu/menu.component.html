@@ -1,7 +1,7 @@
-<div id="v3" class="v3-header p-0 fixed z-[99999] w-full">
+<div id="v3" class="v3-header p-0 fixed z-[99999] w-full shadow-sm">
   <header class="m-header js-header" data-header-menu="main">
     <div class="m-header__inner flex justify-between items-center js-header-nav">
-      <div class="flex gap-x-4 items-center">
+      <div class="flex gap-x-4 items-center m-0">
         <div (click)="visibleSidebar=true" class="cursor-pointer">
           <svg _ngcontent-ng-c4020586682="" width="14" height="14" fill="#6B7280" viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg" class="w-7 h-7">
@@ -17,7 +17,7 @@
       <div class="p-2 flex gap-2">
         <div class="bg-white rounded-full shadow self-center cursor-pointer">
           <i class="pi pi-bell p-2 px-3 text-xl font-medium hover:text-orange-300 text-[#6B7280] duration-200"></i>
-      </div>
+        </div>
         <div *ngIf="!getUser().medias || getUser().medias.length === 0"
           class="bg-white rounded-full shadow self-center cursor-pointer">
           <i class="pi pi-user p-2 px-3 text-xl font-medium hover:text-primary text-[#6B7280] duration-200"></i>
@@ -30,11 +30,11 @@
   </header>
 </div>
 
-<p-sidebar [(visible)]="visibleSidebar" [baseZIndex]="10000" [position]="getDirection()==='rtl' ? 'right' : 'left'"
+<p-sidebar [(visible)]="visibleSidebar" [baseZIndex]="99999999" [position]="getDirection()==='rtl' ? 'right' : 'left'"
   [showCloseIcon]="false">
   <!-- [dismissable]="getDataString('menu.toggle') === '0'" -->
   <div [attr.dir]="getDirection()" class=" dark:bg-night-900 ">
-    <div class="header_logo border-b-[1px] border-gray-400">
+    <div class="header_logo border-b-[1px] border-[#cecece]">
       <img src="assets/pictures/favicon_dark.png" class="w-36 pb-3" />
     </div>
     <!-- <div class="bg-gray-50 dark:bg-night-900 ">
