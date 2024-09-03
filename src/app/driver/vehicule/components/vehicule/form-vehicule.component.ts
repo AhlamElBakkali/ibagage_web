@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
 import { TranslateService } from '@ngx-translate/core';
 import { AppService } from 'src/app/core/types/services/app.service';
 import { ApiService } from 'src/app/core/types/services/api.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-form-vehicule',
@@ -24,6 +25,7 @@ export class FormVehiculeComponent extends DriverComposant implements OnInit {
     private router: Router,
     private apiService: ApiService,
     public translate: TranslateService,
+    private messageService: MessageService
 
   ) {
     super(app, backendService)
@@ -41,31 +43,31 @@ export class FormVehiculeComponent extends DriverComposant implements OnInit {
   openForm() {
     this.router.navigate(['driver/vehicules'])
   }
-  async takePicture(path: any) {
-    // console.log(path);
-    // const image = await Camera.getPhoto({
-    //   quality: 90,
-    //   allowEditing: false,
-    //   resultType: CameraResultType.Uri,
-    //   source: CameraSource.Camera
-    // });
 
-    // if (image && image.webPath) {
-    //   const convertedImage: any = await this.convertUriToFile(image.webPath);
-    //   if (convertedImage) {
-    //     this.vars.imageConverted = convertedImage;
-    //     this.vars.imageUrls.push(image.webPath);
-    //     path == "pv" ? this.vars.pv = image.webPath : path == "recto" ? this.vars.recto = image.webPath : this.vars.verso = image.webPath;
-    //     this.vars.imageUrlsConverted.push(this.vars.imageConverted);
-    //     this.vars.pictures.push({
-    //       name: this.vars.imageConverted.name,
-    //       mdl: path
-    //     });
-    //   } else {
-    //     console.error('Failed to convert URI to file');
-    //   }
-    // }
+  onFileSelected(event: any, path: string) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const imageUrl = reader.result as string;
+        if (path === 'pv') {
+          this.vars.pv = imageUrl;
+        } else if (path === 'recto') {
+          this.vars.recto = imageUrl;
+        } else {
+          this.vars.verso = imageUrl;
+        }
+        this.vars.pictures.push({
+          name: file.name,
+          mdl: path
+        });
+        this.vars.imageUrls.push(imageUrl);
+        this.vars.imageUrlsConverted.push(file);
+      };
+      reader.readAsDataURL(file);
+    }
   }
+  
 
   async saveMedias() {
     const formData = new FormData();
@@ -89,7 +91,21 @@ export class FormVehiculeComponent extends DriverComposant implements OnInit {
       );
       if (res) {
         this.setDataList('vehicules.liste_vehicules', res.dl);
-        this.router.navigate(['driver/vehicules'])
+        this.vars.isopen = false;
+        if(this.translate.currentLang == 'fr'){
+          this.messageService.add({severity:'success', summary: 'Success', detail: 'Vehicule ajouté avec success', life: 3000});
+        }
+        if(this.translate.currentLang == 'ar'){
+          this.messageService.add({severity:'success', summary: 'نجاح', detail: 'تم اضافة المركبة بنجاح', life: 3000});
+        }
+      }
+      else{
+        if(this.translate.currentLang == 'fr'){
+          this.messageService.add({severity:'error', summary: 'Error', detail: 'Vehicule non ajouté', life: 3000});
+        }
+        if(this.translate.currentLang == 'ar'){
+          this.messageService.add({severity:'error', summary: 'خطأ', detail: 'لم يتم اضافة المركبة', life: 3000});
+        }
       }
     }
   }

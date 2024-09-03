@@ -1,17 +1,18 @@
 <div [attr.dir]="getDirection()" class="h-full mb-10 p-2" *ngIf="getUser() as user">
   <div class="p-2">
     <div class="flex justify-center pb-10">
-      <div class="img self-center">
+      <div class="img self-center cursor-pointer">
         <div *ngIf="vars.imageSrc">
-          <img [src]="vars.imageSrc" alt="" class="h-36 w-36 rounded-full" (click)="takePicture()">
+          <img [src]="vars.imageSrc" alt="" class="h-36 w-36 rounded-full shadow" (click)="triggerFileInput()">
         </div>
         <div *ngIf="user.medias.length === 0 && !vars.imageSrc" class="px-4">
-          <img src="assets/pictures/none.png" alt="" class="h-36 w-36 rounded-full shadow" (click)="takePicture()">
+          <img src="assets/pictures/none.png" alt="" class="h-36 w-36 rounded-full shadow" (click)="triggerFileInput()">
         </div>
         <div *ngIf="user.medias.length > 0 && !vars.imageSrc" class="px-4">
           <img [src]="api+'/files/'+user.medias[0].fichier+'/'+user.medias[0].nom" alt=""
-            class="h-28 w-28 rounded-full shadow" (click)="takePicture()">
+            class="h-28 w-28 rounded-full shadow" (click)="triggerFileInput()">
         </div>
+        <input type="file" #fileInput accept="image/*" (change)="onFileSelected($event)" hidden>
       </div>
     </div>
     <div class="text-left">
@@ -23,7 +24,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" id="flag-icons-ma" viewBox="0 0 640 480"
             data-arp-injected="true">
             <path fill="#c1272d" d="M640 0H0v480h640z" />
-            <path fill="none" stroke="#006233" stroke-width="11.7" d="M320 179.4 284.4 289l93.2-67.6H262.4l93.2 67.6z" />
+            <path fill="none" stroke="#006233" stroke-width="11.7"
+              d="M320 179.4 284.4 289l93.2-67.6H262.4l93.2 67.6z" />
           </svg>
           <div class="font-semibold px-3">
             +212
@@ -33,7 +35,8 @@
           aria-describedby="helper-text-explanation" class="py-4 px-24" [placeholder]="'PHONE' | translate" required />
       </div>
       <div class="mt-4">
-        <input pInputText [placeholder]="'CIN' | translate" type="text" class="p-4" [(ngModel)]="user.data_adresse.cin" />
+        <input pInputText [placeholder]="'CIN' | translate" type="text" class="p-4"
+          [(ngModel)]="user.data_adresse.cin" />
       </div>
       <div class="mt-4">
         <input pInputText [placeholder]="'EMAIL' | translate" type="text" class="p-4"

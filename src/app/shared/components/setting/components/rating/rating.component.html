@@ -1,0 +1,43 @@
+<div class="w-full text-center">
+    <div class="text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">{{'RATEOURAPP' | translate}}</h2>
+
+        <p-rating [(ngModel)]="rating" stars="5" cancel="false" class="text-4xl text-yellow-400"></p-rating>
+
+        <div *ngIf="rating > 0" class="mt-4">
+            <p class="text-xl text-gray-700">{{ 'UGAVE' | translate }} <span class="font-bold">{{ rating }}</span> {{'STARS' | translate}}{{
+                rating > 1 && currentLang === 'fr' ? 's' : '' }}</p>
+        </div>
+    </div>
+    <button
+        class="mt-16 bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+        (click)="submitRating()">
+        {{'SUBMITRATING' | translate}}
+    </button>
+</div>
+<!-- <div class="w-full p-4">
+    <div class="text-3xl font-bold tracking-wide flex justify-center">
+        {{'RATEOURAPP' | translate}}
+    </div>
+    <div class="w-full card flex justify-center pt-12">
+        <p-rating [(ngModel)]="value" stars="5">
+            <ng-template pTemplate="cancelicon">
+                <img src="https://primefaces.org/cdn/primeng/images/demo/rating/cancel.png" width="35px"
+                    height="35px" />
+            </ng-template>
+            <ng-template pTemplate="onicon">
+                <img src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon-active.png" width="35px"
+                    height="35px" />
+            </ng-template>
+            <ng-template pTemplate="officon">
+                <img src="https://primefaces.org/cdn/primeng/images/demo/rating/custom-icon.png" width="35px"
+                    height="35px" />
+            </ng-template>
+        </p-rating>
+    </div>
+    <div class="w-full flex justify-center pt-28">
+        <button class="text-white bg-primary hover:bg-primary focus:ring-4 focus:ring-purple-100 
+        rounded-lg text-lg px-8 py-2.5  dark:hover:bg-primary focus:outline-none dark:focus:ring-night-200"
+            type="button"> {{'SAVE' | translate}} </button>
+    </div>
+</div> -->

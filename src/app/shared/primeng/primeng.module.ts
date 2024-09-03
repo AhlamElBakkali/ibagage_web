@@ -14,6 +14,10 @@ import { CardModule } from 'primeng/card';
 import { GalleriaModule } from 'primeng/galleria';
 import { SidebarModule } from 'primeng/sidebar';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { RatingModule } from 'primeng/rating';
+import { MenuModule } from 'primeng/menu';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [],
@@ -32,7 +36,11 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     CardModule,
     GalleriaModule,
     SidebarModule,
-    ConfirmPopupModule
+    ConfirmPopupModule,
+    RatingModule,
+    MenuModule,
+    ToggleButtonModule,
+    ConfirmDialogModule
   ],
   providers: [MessageService,ConfirmationService]
 })

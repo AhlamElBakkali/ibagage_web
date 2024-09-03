@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent extends Composant {
-  
+
   showHeader: boolean = false;
   private lastScrollTop: number = 0;
   isVisible = false;
@@ -22,7 +22,8 @@ export class HomeComponent extends Composant {
   showPassword: boolean = false;
   termsAccepted = false;
   rememberMe = true;
-  
+  items: any = [];
+
   constructor(
     protected override app: AppService,
     private router: Router,
@@ -32,6 +33,34 @@ export class HomeComponent extends Composant {
     super(app);
     translate.use(localStorage.getItem('lang') || 'fr');
   }
+
+
+  ngOnInit() {
+    this.items = [
+      {
+        items: [
+          {
+            label: 'Arabe',
+            command: () => {
+              this.translate.use('ar'); 
+              this.setLang('ar'); 
+              this.setDirection('rtl'); 
+              console.log(this.translate.currentLang);
+            }
+          },
+          {
+            label: 'Français',
+            command: () => {
+              this.translate.use('fr'); 
+              this.setLang('fr'); 
+              this.setDirection('ltr'); 
+              console.log(this.translate.currentLang);
+            }
+          }
+        ]
+      }
+    ];
+}
 
   @HostListener('window:scroll', ['$event'])
   onScroll(event: Event): void {
@@ -44,7 +73,8 @@ export class HomeComponent extends Composant {
     }
     this.lastScrollTop = scrollTop;
   }
-  
+
+
   async doLogin() {
     if (navigator.geolocation) {
       try {

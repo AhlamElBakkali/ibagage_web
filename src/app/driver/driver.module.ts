@@ -35,6 +35,10 @@ const routes: Routes = [
     path: 'started',
     component: StartedComponent
   },
+  {
+    path: 'vehicule/new',
+    component: FormVehiculeComponent
+  },
 ];
 
 @NgModule({

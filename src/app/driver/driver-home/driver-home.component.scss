@@ -5,4 +5,7 @@
     .p-card-content {
         @apply py-0
     }
+    .p-toast {
+        z-index: 999999999 !important;
+    }
 }

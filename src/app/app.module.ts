@@ -10,6 +10,7 @@ import { AuthInterceptorService } from './core/types/services/auth-interceptor.s
 import { CustomerModule } from './customer/customer.module';
 import { DriverModule } from './driver/driver.module';
 import { MessageService } from 'primeng/api';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { MessageService } from 'primeng/api';
       BrowserModule,
       FormsModule,
       HttpClientModule,
+      SharedModule,
       HomeModule,
       CustomerModule,
       DriverModule

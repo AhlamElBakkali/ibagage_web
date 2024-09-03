@@ -27,7 +27,8 @@
       </div>
     </li>
     <li class="py-4 cursor-pointer">
-      <div class="flex items-center gap-4 text-black font-medium truncate dark:text-white">
+      <div class="flex items-center gap-4 text-black font-medium truncate dark:text-white"
+      (click)="setDataString('settings.form', 'rat'); setOpen(true)">
         {{'RATE' | translate}}
       </div>
     </li>
@@ -49,12 +50,13 @@
   </div>
 </div>
 
-<p-dialog [(visible)]="isModalOpen" [modal]="true" [resizable]="false" [contentStyle]="{'overflow':'hidden'}" [style]="{width: '40rem'}" baseZIndex="999999">
+<p-dialog [(visible)]="isModalOpen" [modal]="true" [draggable]="false" [resizable]="false" [contentStyle]="{'overflow':'hidden'}" [style]="{width: '40rem'}" baseZIndex="999999">
   <ng-template pTemplate="content">
     <div class="p-4">
       <compte-form *ngIf="getDataString('settings.form')==='cmpt'"></compte-form>
       <langage-form *ngIf="getDataString('settings.form')==='lng'"></langage-form>
       <about *ngIf="getDataString('settings.form')==='abt'"></about>
+      <rating *ngIf="getDataString('settings.form')==='rat'"></rating>
     </div>
   </ng-template>
 </p-dialog>

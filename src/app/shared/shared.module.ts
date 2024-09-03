@@ -13,20 +13,23 @@ import { LanguageForm } from './components/setting/components/langage-form/langa
 import { AboutComponent } from './components/setting/components/about/about.component';
 import { SettingsPage } from './components/setting/vues/settings/settings.component';
 import { PrimengModule } from './primeng/primeng.module';
+import { RatingComponent } from './components/setting/components/rating/rating.component';
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
 @NgModule({
   declarations: [SecuritePage,
-     AidePage, 
-     CompteForm,
+    AidePage,
+    CompteForm,
     SettingsPage,
     LanguageForm,
-    AboutComponent
+    AboutComponent,
+    RatingComponent
   ],
-  imports: [ FormsModule, 
-    StoreModule, 
+  imports: [FormsModule,
+    StoreModule,
     PrimengModule,
     CoreModule,
     CommonModule,
@@ -42,7 +45,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PrimengModule,
     CompteForm,
     LanguageForm,
-    AboutComponent
+    AboutComponent,
+    RatingComponent
   ]
 })
 export class SharedModule { }

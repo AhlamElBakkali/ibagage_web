@@ -47,6 +47,24 @@ input:enabled:hover {
 }
 
 
+// menu 
+.p-menu {
+  top: 58px !important;
+  left: 1200px !important;
+  width: 180px !important;
+
+}
+
+.m-header button,
+.m-header li span,
+.m-header li a {
+  display: flex;
+}
+
+.p-submenu-header {
+  display: none !important;
+}
+
 // switch
 .p-inputswitch .p-inputswitch-slider {
   background-color: #d8d9df;
@@ -255,4 +273,11 @@ ul li:before {
 .p-confirm-popup-accept {
   @apply bg-red-500 text-white px-3 py-1 rounded-lg;
 
+}
+
+// dialog 
+.p-dialog-footer {
+  display: flex;
+  justify-content: end;
+  gap: 1rem;
 }

@@ -1,86 +1,71 @@
-<div class="">
-    <div [attr.dir]="getDirection()"
-        class="flex justify-between p-1 bg-primary dark:bg-night-900 text-white items-center">
-        <div class="px-1.5 p-1 rounded-full" (click)="openForm()">
-            <i name="pi pi-chevron-left" class="text-xl"></i>
-        </div>
-        <div class="font-semibold">
-            {{'MISEVEHI' | translate}}
-        </div>
-        <div>
-            <div class="px-1.5 p-1 rounded-full" (click)="saveMedias()">
-                {{'SAVE' | translate}}
-            </div>
-        </div>
+<div class="px-6">
+    <div class="mt-3">
+        <input pInputText
+            [placeholder]="'PLQIMMTR' | translate" type="text" [(ngModel)]="vars.immatriculation"
+            name="Plaque d'immatriculation">
     </div>
-    <div class="p-5">
-        <div class="mt-3">
-            <input class="bg-gray-100 appearance-none border-2 text-center border-gray-100 rounded-lg w-full py-2 px-4
-                 text-gray-600 leading-tight focus:outline-none focus:border-third"
-                [placeholder]="'PLQIMMTR' | translate" type="text" [(ngModel)]="vars.immatriculation"
-                name="Plaque d'immatriculation">
-        </div>
-        <div class="my-3">
-            <p-dropdown [options]="getDataList('vehicules.liste_type_vehicules')" [(ngModel)]="vars.type_vehicule"
-                optionLabel="name" [showClear]="true" placeholder="Type de véhicule">
-                <ng-template pTemplate="selectedItem" let-selectedOption>
-                    <div class="flex align-items-center gap-x-3">
-                        <img [src]="'assets/vehicules/'+selectedOption.code + '.png'" style="width: 30px" />
-                        <div>{{selectedOption.libelle}}</div>
-                    </div>
-                </ng-template>
-                <ng-template let-vehicule pTemplate="item">
-                    <div class="flex align-items-center gap-x-3">
-                        <img [src]="'assets/vehicules/'+vehicule.code + '.png'" style="width: 30px" />
-                        <div>{{vehicule.libelle}}</div>
-                    </div>
-                </ng-template>
-            </p-dropdown>
-        </div>
-        <div class="flex items-center justify-center w-full p-5" (click)="takePicture('pv')">
-            <label
-                class="flex flex-col items-center justify-center w-full h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <svg *ngIf="!vars.pv" class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                    </svg>
-                    <img *ngIf="vars.pv" [src]="vars.pv" alt="Captured Image" class="h-36 w-48 rounded-lg" />
-                    <p *ngIf="!vars.pv" class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                            class="font-semibold">{{'PICVEHI' | translate}}</span> </p>
+    <div class="my-3">
+        <p-dropdown [options]="getDataList('vehicules.liste_type_vehicules')" [(ngModel)]="vars.type_vehicule"
+            optionLabel="name" [showClear]="true" placeholder="Type de véhicule">
+            <ng-template pTemplate="selectedItem" let-selectedOption>
+                <div class="flex align-items-center gap-x-3">
+                    <img [src]="'assets/vehicules/'+selectedOption.code + '.png'" style="width: 30px" />
+                    <div>{{selectedOption.libelle}}</div>
                 </div>
-            </label>
-        </div>
-        <div class="flex items-center justify-center w-full p-5" (click)="takePicture('recto')">
-            <label
-                class="flex flex-col items-center justify-center w-full h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <svg *ngIf="!vars.recto" class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                    </svg>
-                    <img *ngIf="vars.recto" [src]="vars.recto" alt="Captured Image" class="h-36 w-48 rounded-lg" />
-                    <p *ngIf="!vars.recto" class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                            class="font-semibold">{{'CGRECTO'| translate}}</span> </p>
+            </ng-template>
+            <ng-template let-vehicule pTemplate="item">
+                <div class="flex align-items-center gap-x-3">
+                    <img [src]="'assets/vehicules/'+vehicule.code + '.png'" style="width: 30px" />
+                    <div>{{vehicule.libelle}}</div>
                 </div>
-            </label>
-        </div>
-        <div class="flex items-center justify-center w-full p-5" (click)="takePicture('verso')">
-            <label
-                class="flex flex-col items-center justify-center w-full h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <svg *ngIf="!vars.verso" class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
-                    </svg>
-                    <img *ngIf="vars.verso" [src]="vars.verso" alt="Captured Image" class="h-36 w-48 rounded-lg" />
-                    <p *ngIf="!vars.verso" class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span
-                            class="font-semibold">{{'CGVERSO' |translate}}</span> </p>
-                </div>
-            </label>
-        </div>
+            </ng-template>
+        </p-dropdown>
     </div>
 </div>
+<div>
+    <div class="flex items-center justify-center w-full p-5">
+        <label
+        class="flex flex-col items-center justify-center w-full h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+        <input type="file" (change)="onFileSelected($event, 'pv')" accept="image/*" hidden />
+        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <img *ngIf="vars.pv" [src]="vars.pv" alt="Captured Image" class="h-36 w-48 rounded-lg" />
+            <p *ngIf="!vars.pv" class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+            <span class="font-semibold">{{'PICVEHI' | translate}}</span>
+            </p>
+        </div>
+        </label>
+    </div>
+    
+    <div class="flex items-center justify-center w-full p-5">
+        <label
+        class="flex flex-col items-center justify-center w-full h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+        <input type="file" (change)="onFileSelected($event, 'recto')" accept="image/*" hidden />
+        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <img *ngIf="vars.recto" [src]="vars.recto" alt="Captured Image" class="h-36 w-48 rounded-lg" />
+            <p *ngIf="!vars.recto" class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+            <span class="font-semibold">{{'CGRECTO'| translate}}</span>
+            </p>
+        </div>
+        </label>
+    </div>
+    
+    <div class="flex items-center justify-center w-full p-5">
+        <label
+        class="flex flex-col items-center justify-center w-full h-52 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+        <input type="file" (change)="onFileSelected($event, 'verso')" accept="image/*" hidden />
+        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <img *ngIf="vars.verso" [src]="vars.verso" alt="Captured Image" class="h-36 w-48 rounded-lg" />
+            <p *ngIf="!vars.verso" class="mb-2 text-sm text-gray-500 dark:text-gray-400">
+            <span class="font-semibold">{{'CGVERSO' |translate}}</span>
+            </p>
+        </div>
+        </label>
+    </div>
+</div>
+<div class="pt-4 text-center" (click)="saveMedias()">
+    <button class="text-white bg-primary hover:bg-primary-700 focus:ring-4 focus:ring-purple-200
+    font-medium rounded-lg px-8 py-2.5 dark:hover:bg-primary focus:outline-none dark:focus:ring-night-200">{{'SAVE' | translate}}</button>
+</div>
+
+
+  

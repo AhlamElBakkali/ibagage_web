@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 // import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { TranslateService } from '@ngx-translate/core';
@@ -11,12 +11,10 @@ import { BackEndService } from 'src/app/store/services/back-end.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'compte-form',
   templateUrl: 'compte-form.component.html',
   styleUrls: ['compte-form.component.scss'],
 })
-// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class CompteForm extends DriverComposant {
   api = environment.api;
   constructor(
@@ -30,22 +28,43 @@ export class CompteForm extends DriverComposant {
     super(app, backend)
   }
 
-
   back() {
     this.router.navigate(['/chooseStatus']);
   }
 
-  async takePicture() {
-    // const image = await Camera.getPhoto({
-    //   quality: 90,
-    //   allowEditing: true,
-    //   resultType: CameraResultType.Uri,
-    //   source: CameraSource.Photos
-    // });
-    // this.vars.imageSrc = image.webPath;
-    // if (image.webPath) {
-    //   this.vars.imageFile = await this.convertUriToFile(image.webPath);
-    // }
+  @ViewChild('fileInput') fileInput !: ElementRef;
+  user = {
+    medias: [
+      {
+        fichier: 'path-to-file',
+        nom: 'image-name.jpg'
+      }
+    ]
+  };
+
+  triggerFileInput() {
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      this.vars.imageSrc = URL.createObjectURL(file);
+      this.convertFileToDataUrl(file).then((dataUrl) => {
+        this.vars.imageSrc = dataUrl;
+        this.vars.imageFile = file;
+      });
+    }
+  }
+
+  async convertFileToDataUrl(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
   }
 
   drivePapers() {

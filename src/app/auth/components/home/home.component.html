@@ -2,10 +2,10 @@
   <m-header class="m-header js-header" data-header-menu="main">
     <div class="m-header__inner js-header-nav">
       <div class="header_logo cursor-pointer">
-          <img src="assets/pictures/favicon_dark.png" class="w-40"/>
+        <img src="assets/pictures/favicon_dark.png" class="w-40" />
       </div>
       <nav class="m-header__main">
-        <ul class="m-header__nav">
+        <!-- <ul class="m-header__nav">
           <li>
             <div class="m-header__nav__trigger js-header-nav-trigger GTM-header-nav-item" data-header-menu="drivers">
               About
@@ -19,25 +19,33 @@
         </ul>
         <button class="m-header__open e-bounded --xl --rounded js-header-open" aria-label="Open menu">
           <i class="e-icon --s --menu_big" aria-hidden="true"></i>
-        </button>
+        </button> -->
       </nav>
       <nav class="m-header__aside">
         <ul class="m-header__nav --secondary">
           <li>
-            <div class="m-header__nav__trigger js-header-nav-trigger GTM-header-nav-item" (click)="isVisibleLogin = true" data-header-menu="login">
-             {{'LOGIN' | translate}}
+            <div class="m-header__nav__trigger js-header-nav-trigger GTM-header-nav-item"
+              (click)="isVisibleLogin = true" data-header-menu="login">
+              {{'LOGIN' | translate}}
             </div>
           </li>
           <li>
-            <button class="e-cta --primary --s js-header-nav-trigger GTM-header-nav-item" (click)="isVisibleSignup = true" data-header-menu="sign-up">
-             {{'SIGNUP' | translate}}
+            <button class="e-cta --primary --s js-header-nav-trigger GTM-header-nav-item"
+              (click)="isVisibleSignup = true" data-header-menu="sign-up">
+              {{'SIGNUP' | translate}}
             </button>
           </li>
           <li>
-            <button class="e-cta --outline --s js-header-nav-trigger GTM-header-nav-item" data-header-menu="language">
+            <!-- <button class="e-cta --outline --s js-header-nav-trigger GTM-header-nav-item" data-header-menu="language">
               <i class="e-icon --flag-en --xs"></i>
               Fr
-            </button>
+            </button> -->
+            <div class="">
+              <p-menu #menu [model]="items" [popup]="true" />
+              <p-button (onClick)="menu.toggle($event)">
+                <div class="font-bold p-2 px-3 rounded-md bg-gray-100 shadow capitalize">{{translate.currentLang}}</div>
+              </p-button>
+            </div>
           </li>
         </ul>
       </nav>
@@ -587,16 +595,17 @@
   <section class="g-container">
     <div class="g-cell -x6">
       <!-- <h1 class="t-title-1">Safer, better quality, and a city at your fingertips</h1> -->
-      <h1 class="t-title-1">Plus sûr, de meilleure qualité, et une ville à portée de main</h1>
-      <p class="t-subtitle">Devenez transporteur de bagages et commencez à gagner</p>
+      <h1 class="t-title-1">{{'HOME1' | translate}}</h1>
+      <p class="t-subtitle">{{'HOME2' | translate}}</p>
       <div class="g-container g-cell -x6">
-        <a class="e-cta -primary"  (click)="isVisible = true">
-          Télécharger l'application
+        <a class="e-cta -primary" (click)="isVisible = true">
+          {{'UPLOADAPP' | translate}}
         </a>
       </div>
     </div>
     <div class="g-cell -x6">
-      <img alt="" class="e-image -ratio-4-3" src="https://cabify.website/static/pages/index/home-hero.png">
+      <img src="assets/pictures/home_hero.jpg" class="e-image -ratio-4-3" alt="">
+      <!-- <img alt="" class="" src="https://cabify.website/static/pages/index/home-hero.png"> -->
     </div>
   </section>
 </section>
@@ -607,7 +616,7 @@
     </div>
     <div class="g-cell -x6">
       <div class="g-container g-cell -x6">
-        <p class="e-tag">Pourquoi choisir <span class="tracking-wider font-bold">IBAGAGE</span> </p>
+        <p class="e-tag">{{'HOME3' | translate}} <span class="tracking-wider font-bold">IBAGAGE</span> </p>
       </div>
       <ul class="g-container g-cell -x6">
         <li class="g-container g-cell -x6">
@@ -615,9 +624,8 @@
             <figure class="e-bounded"><i class="e-icon -large -shield_person"></i></figure>
           </div>
           <div class="g-cell -x5">
-            <p class="t-text-superlead --bold">Votre sécurité est notre priorité</p>
-            <p class="t-text-lead">Avec des trajets géolocalisés, des chauffeurs vérifiés et
-               un bouton de sécurité disponible pour prendre soin de vous pendant votre trajet.</p>
+            <p class="t-text-superlead --bold">{{'HOME4' | translate}}</p>
+            <p class="t-text-lead">{{'HOME5' | translate}}</p>
           </div>
         </li>
         <li class="g-container g-cell -x6">
@@ -625,19 +633,18 @@
             <figure class="e-bounded"><i class="e-icon -large -shield_check"></i></figure>
           </div>
           <div class="g-cell -x5">
-            <p class="t-text-superlead --bold">Les normes de qualité les plus élevées</p>
-            <p class="t-text-lead">Des chauffeurs professionnels, des véhicules modernes et la possibilité 
-              de contrôler vos préférences de voyage via l'application. Enfin, vous voyagerez comme vous le méritez.</p>
-          </div>
+            <p class="t-text-superlead --bold">{{'HOME6' | translate}}</p>
+            <p class="t-text-lead">
+              {{'HOME7' | translate}}
+            </div>
         </li>
         <li class="g-container g-cell -x6">
           <div class="g-cell -x1">
             <figure class="e-bounded"><i class="e-icon -large -coins"></i></figure>
           </div>
           <div class="g-cell -x5">
-            <p class="t-text-superlead --bold">Des prix clairs et transparents</p>
-            <p class="t-text-lead">Nous vous montrons toujours le prix avant que vous ne commandiez le trajet afin que 
-              vous puissiez décider de la meilleure façon d'y arriver. Pas de surprises.</p>
+            <p class="t-text-superlead --bold">{{'HOME8' | translate}}</p>
+            <p class="t-text-lead">{{'HOME9' | translate}}</p>
           </div>
         </li>
       </ul>
@@ -1420,14 +1427,14 @@
       </p>
       <img src="assets/pictures/qrcode.png" class="w-1/2 mx-auto" alt="">
       <p class="text-sm text-gray-800 mt-10 font-medium">
-        {{'SCANQR' | translate}} <span
-          class="font-medium text-secondary">IBAGAGE</span>
+        {{'SCANQR' | translate}} <span class="font-medium text-secondary">IBAGAGE</span>
       </p>
     </div>
   </div>
 </p-dialog>
 
-<p-dialog [(visible)]="isVisibleLogin" [style]="{ width: '35rem' }" [modal]="true" [draggable]="false" [resizable]="false">
+<p-dialog [(visible)]="isVisibleLogin" [style]="{ width: '35rem' }" [modal]="true" [draggable]="false"
+  [resizable]="false">
   <div class="flex justify-center items-center h-full">
     <div class="text-center pb-16 px-2">
       <img src="assets/pictures/favicon_dark.png" class="w-[70%] mx-auto" alt="">
@@ -1435,22 +1442,24 @@
         {{'LOGINTOURACC' | translate}}
       </p>
       <div class="flex flex-col space-y-4">
-        <input pInputText placeholder="Numéro de téléphone" name="phone" [(ngModel)]="vars.login">
+        <input pInputText [placeholder]="'FULLNAME' | translate" name="phone" [(ngModel)]="vars.login">
         <div class="relative text-left">
           <i [class]="showPassword ? 'pi pi-eye' : 'pi pi-eye-slash'"
-             class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#948ecb] text-lg cursor-pointer"
-             (click)="showPassword=!showPassword">
+            class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#948ecb] text-lg cursor-pointer"
+            (click)="showPassword=!showPassword">
           </i>
-          <input pInputText [type]="showPassword ? 'text' : 'password'" placeholder="Mot de passe" name="mdp" [(ngModel)]="vars.password">
+          <input pInputText [type]="showPassword ? 'text' : 'password'" [placeholder]="'PWD' | translate" name="mdp"
+            [(ngModel)]="vars.password">
         </div>
         <div class="flex items-center justify-end pr-2 pt-1 text-[0.8rem] text-gray-500">
           <label class="mr-2 mb-2">{{'REMEMBER_ME' | translate}}</label>
-          <p-inputSwitch [(ngModel)]="rememberMe" name="memorise"/>
+          <p-inputSwitch [(ngModel)]="rememberMe" name="memorise" />
         </div>
       </div>
       <div class="mt-12">
-        <button p-button class="dark cursor-pointer" severity="help" (click)="doLogin()">{{'LOGIN' | translate}}</button>
-        <div class="text-xs font-medium pt-4">  {{'NOACCOUNT' | translate}} <span
+        <button p-button class="dark cursor-pointer" severity="help" (click)="doLogin()">{{'LOGIN' |
+          translate}}</button>
+        <div class="text-xs font-medium pt-4"> {{'NOACCOUNT' | translate}} <span
             class="text-primary dark:text-violet-300 cursor-pointer underline"
             (click)="isVisibleLogin = false; isVisibleSignup = true"> {{'SIGNUP' | translate}}</span></div>
       </div>
@@ -1468,22 +1477,24 @@
         {{'CREATEACCOUNT' | translate}}
       </p>
       <div class="flex flex-col space-y-4">
-        <input pInputText placeholder="Nom et prénom" name="name" />
-        <input pInputText placeholder="Numero de téléphone" name="phone" />
+        <input pInputText [placeholder]="'FULLNAME' | translate " name="name" />
+        <input pInputText [placeholder]="'PHONE' | translate" name="phone" />
         <div class="relative">
           <i [class]="showPassword ? 'pi pi-eye' : 'pi pi-eye-slash'"
             class="absolute right-4 top-1/2 transform -translate-y-1/2 text-[#948ecb] text-lg cursor-pointer"
             (click)="showPassword = !showPassword">
           </i>
-          <input pInputText [type]="showPassword ? 'text' : 'password'" placeholder="Mot de passe" name="mdp" />
+          <input pInputText [type]="showPassword ? 'text' : 'password'" [placeholder]="'PWD' | translate" name="mdp" />
         </div>
         <div class="flex items-center mt-4">
-          <p-checkbox value="" inputId="terms"/>
-          <label for="terms" class="ml-2 text-sm">{{'ACCEPT' | translate}} <a href="#" class="text-primary underline"> {{'TERMSCOND' | translate}}</a></label>
+          <p-checkbox value="" inputId="terms" />
+          <label for="terms" class="ml-2 text-sm">{{'ACCEPT' | translate}} <a href="#" class="text-primary underline">
+              {{'TERMSCOND' | translate}}</a></label>
         </div>
       </div>
       <div class="mt-16">
-        <button p-button class="dark cursor-pointer" severity="help" [disabled]="!termsAccepted"> {{'SIGNUP' | translate}}</button>
+        <button p-button class="dark cursor-pointer" severity="help" [disabled]="!termsAccepted"> {{'SIGNUP' |
+          translate}}</button>
         <div class="text-xs font-medium pt-4">
           {{'HADACCOUNT' | translate}} <span class="text-primary dark:text-violet-300 cursor-pointer underline"
             (click)="isVisibleSignup = false; isVisibleLogin = true">{{'LOGIN' | translate}}</span>
@@ -1492,4 +1503,3 @@
     </div>
   </div>
 </p-dialog>
-

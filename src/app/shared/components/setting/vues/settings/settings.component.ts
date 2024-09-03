@@ -78,12 +78,22 @@ export class SettingsPage extends DriverComposant {
         const longitude = position.coords.longitude;
         user.data_location = { lt: latitude, lg: longitude };
         this.updateUser(user);
-        await this.app.presentToast('Position actuelle chargée avec succès.', 'bottom', 'success-toast');
+        if(this.translate.currentLang == 'fr'){
+          this.messageService.add({ severity: 'success', summary: 'Position actuelle', detail: 'Position actuelle chargée avec succès.' });
+        }
+        if(this.translate.currentLang == 'ar'){
+          this.messageService.add({ severity: 'success', summary: 'موقعك الحالي', detail: 'تم تحميل موقعك الحالي بنجاح' });
+        }
       } catch (error) {
         console.error('Error getting current position:', error);
       }
     } else {
-      this.app.presentToast('Impossible de charger la position actuelle.', 'bottom', 'error-toast');
+      if(this.translate.currentLang == 'fr'){
+        this.messageService.add({ severity: 'error', summary: 'Position actuelle', detail: 'Impossible de charger la position actuelle.' });
+      }
+      if(this.translate.currentLang == 'ar'){
+        this.messageService.add({ severity: 'error', summary: 'موقعك الحالي', detail: 'تعذر تحميل موقعك الحالي' });
+      }
     }
   }
 

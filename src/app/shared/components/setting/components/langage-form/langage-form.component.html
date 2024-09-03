@@ -1,26 +1,39 @@
 <div class="h-full mb-10 p-4">
   <ol>
-    <li (click)="translate.use('ar'); setLang('ar'); setDirection('rtl'); "class="py-2 border-b border-b-gray-100 flex justify-between">
-      <div>
-        <div class="text-sm font-semibold">
-          العربية (المملكة العربية السعودية)
+    <li (click)="translate.use('ar'); setLang('ar'); setDirection('rtl'); "
+      class="py-4 border-b border-b-gray-100 flex justify-between items-center cursor-pointer">
+      <div class="flex gap-4 items-center">
+        <div>
+          <img src="./assets/pictures/ar.png" alt="" class="h-10 rounded-md shadow-sm">
         </div>
+        <div>
+          <div class="text-lg font-semibold">
+            العربية (المملكة العربية السعودية)
+          </div>
+          <div class="text-sm text-primary font-medium"> العربية
+          </div>
+        </div>  
       </div>
       <div>
-        <i *ngIf="translate.currentLang === 'ar'" name="checkmark-outline"></i>
+        <i *ngIf="translate.currentLang === 'ar'" class="pi pi-check"></i>
       </div>
     </li>
     <li (click)="translate.use('fr'); setLang('fr'); setDirection('ltr')"
-      class="py-2 border-b border-b-gray-100 flex justify-between">
-      <div>
-        <div class="text-sm font-semibold">
-          Français
+      class="py-4 border-b border-b-gray-100 flex justify-between items-center cursor-pointer">
+      <div class="flex gap-4 items-center">
+        <div>
+          <img src="./assets/pictures/fr.png" alt="" class="h-10 rounded-md shadow-sm">
         </div>
-        <div class="text-xs text-primary"> Français
+        <div>
+          <div class="text-base font-semibold">
+            Français
+          </div>
+          <div class="text-sm text-primary"> Français
+          </div>
         </div>
       </div>
       <div>
-        <i *ngIf="translate.currentLang === 'fr'" name="checkmark-outline"></i>
+        <i *ngIf="translate.currentLang === 'fr'" class="pi pi-check"></i>
       </div>
     </li>
   </ol>
